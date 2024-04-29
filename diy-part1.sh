@@ -26,3 +26,7 @@ git clone --depth=1 https://github.com/2253845067/h69k-fanctrl package/h69k-fanc
 # 添加 MT7916 160Mhz 修复
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
+
+# 添加 luci-app-filebrowser 服务
+git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
+
