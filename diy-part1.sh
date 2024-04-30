@@ -18,15 +18,17 @@
 # echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 # 添加 5G 支持
-git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/Modem-Support
+# git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/Modem-Support
 
 # 添加风扇控制
-git clone --depth=1 https://github.com/2253845067/h69k-fanctrl package/h69k-fanctrl
+# git clone --depth=1 https://github.com/2253845067/h69k-fanctrl package/h69k-fanctrl
 
 # 添加 MT7916 160Mhz 修复
-rm -rf package/kernel/mt76
-git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
+# rm -rf package/kernel/mt76
+# git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
-# 添加 luci-app-filebrowser 服务
+# 编译 luci-app-filebrowser 服务
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
 
+# 编译 luci-app-cpe 服务
+git clone --depth=1 https://github.com/ouyangzq/luci-app-cpe
