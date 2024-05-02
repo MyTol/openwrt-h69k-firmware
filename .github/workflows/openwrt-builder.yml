@@ -1,5 +1,10 @@
 name: OpenWrt Builder
 
+# 设置工作流权限
+permissions:
+  contents: write
+  actions: write
+
 # 自动执行
 on:
   repository_dispatch:
