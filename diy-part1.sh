@@ -27,8 +27,8 @@
 # rm -rf package/kernel/mt76
 # git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
-# 编译 luci-app-filebrowser 服务
-git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
+# 编译 luci-app-filebrowser 应用
+# git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
 
-# 编译 luci-app-cpe 服务
+# 编译 luci-app-cpe 应用
 git clone --depth=1 https://github.com/ouyangzq/luci-app-cpe package/luci-app-cpe
