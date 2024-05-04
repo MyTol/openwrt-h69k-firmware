@@ -12,10 +12,10 @@ on:
 
 # 环境变量
 env:
-  REPO_URL: https://github.com/DHDAXCW/lede-rockchip # 骷髅头源码仓库
-  # REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: stable # 主分支
-  # REPO_BRANCH: master # 主分支
+  # REPO_URL: https://github.com/DHDAXCW/lede-rockchip # 骷髅头源码仓库
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  # REPO_BRANCH: stable # 主分支
+  REPO_BRANCH: master # 主分支
   FEEDS_CONF: feeds.conf
   CONFIG_FILE: .config # 配置文件
   DIY_P1_SH: diy-part1.sh # 自定义操作
