@@ -22,4 +22,4 @@ sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 # 添加自定义软件包
 echo '
 CONFIG_PACKAGE_luci-app-filebrowser=y
-' >> .config
+' >> 2253845067.config
