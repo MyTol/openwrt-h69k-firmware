@@ -18,3 +18,8 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/M
 
 # 修改主机
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
+
+# 添加自定义软件包
+echo '
+CONFIG_PACKAGE_luci-app-filebrowser=y
+' >> .config
