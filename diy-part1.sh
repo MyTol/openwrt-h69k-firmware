@@ -32,3 +32,6 @@ git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-
 
 # 编译 luci-app-cpe 应用
 git clone --depth=1 https://github.com/ouyangzq/luci-app-cpe package/luci-app-cpe
+
+# 编译 luci-app-virtualhere 应用
+git clone --depth=1 https://github.com/MyTol/luci-app-virtualhere package/luci-app-virtualhere
