@@ -161,6 +161,8 @@ jobs:
 
         🌳 分支: ${{ env.REPO_BRANCH }}
 
+        📄 配置: ${{ env.CONFIG_FILE }}
+
         ⏱️ 编译时间: $(date +"%Y年%m月%d日%H时%M分")
 
         🌐 管理地址: 192.168.1.1
