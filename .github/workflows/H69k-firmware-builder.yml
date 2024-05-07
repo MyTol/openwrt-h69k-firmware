@@ -18,8 +18,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf
   # CONFIG_FILE: .config # 默认配置文件
-  CONFIG_FILE: modem.config # 适配 Modem
-  # CONFIG_FILE: hypermodem.config # 适配 Hypermodem
+  # CONFIG_FILE: modem.config # 适配 Modem
+  CONFIG_FILE: hypermodem.config # 适配 Hypermodem
   DIY_P1_SH: diy-part1.sh # 自定义操作
   DIY_P2_SH: diy-part2.sh # 自定义操作
   UPLOAD_BIN_DIR: true
