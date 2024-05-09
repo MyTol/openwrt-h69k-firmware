@@ -23,14 +23,14 @@ rm -rf feeds/packages/net/{alist,adguardhome,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool}
 
 # 添加 5G 支持
-echo 'src-git modem https://github.com/MyTol/5G-Modem-Support' >>feeds.conf
+git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/modem
 
 # 添加风扇控制
-echo 'src-git fanctrl https://github.com/2253845067/h69k-fanctrl' >>feeds.conf
+git clone --depth=1 https://github.com/2253845067/h69k-fanctrl package/h69k-fanctrl
 
 # 添加 MT7916 160Mhz 修复
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
 # 编译 luci-app-filebrowser 应用
-echo 'src-git filebrowser https://github.com/wangqn/luci-app-filebrowser' >>feeds.conf
+git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
