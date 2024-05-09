@@ -19,7 +19,7 @@
 
 # 添加 5G 支持
 # git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/Modem-Support
-git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/Modem-Support
+git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/modem
 
 # 添加风扇控制
 # git clone --depth=1 https://github.com/2253845067/h69k-fanctrl package/h69k-fanctrl
