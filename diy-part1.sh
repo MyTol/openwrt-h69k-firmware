@@ -21,7 +21,7 @@
 ./scripts/feeds update -a && rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/{alist,adguardhome,xray*,v2ray*,v2ray*,sing*,smartdns}
 # rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool}
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,filebrowser,luci-app-filebrowser}
 
 # 添加 5G 支持
 # git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/modem
@@ -36,4 +36,4 @@ rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
 # 编译 luci-app-filebrowser 应用
-# git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
+git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
