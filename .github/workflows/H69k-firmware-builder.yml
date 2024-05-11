@@ -12,15 +12,12 @@ on:
 
 # 环境变量
 env:
-  # REPO_URL: https://github.com/DHDAXCW/lede-rockchip # 骷髅头源码仓库
-  # REPO_BRANCH: stable
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf
-  CONFIG_FILE: .config # 默认配置文件
-  # CONFIG_FILE: modem.fan.config # 适配 Modem
-  DIY_P1_SH: diy-part1.sh # 自定义操作
-  DIY_P2_SH: diy-part2.sh # 自定义操作
+  CONFIG_FILE: modem.config # 配置文件
+  DIY_P1_SH: diy-part1.sh # 自定义
+  DIY_P2_SH: diy-part2.sh # 自定义
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
