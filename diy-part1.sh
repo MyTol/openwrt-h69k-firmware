@@ -10,18 +10,15 @@
 # See /LICENSE for more information.
 #
 
-# Uncomment a feed source
-# sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+# 调整内核版本 5.15
+sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=5.15/g" lede/target/linux/rockchip/Makefile
+sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" lede/target/linux/rockchip/Makefile
 
-# Add a feed source
-# echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
-# echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-
-# Small 大佬常用 OpenWrt 软件包源码合集处理
+# Small 大佬常用 OpenWrt 软件包 冲突处理
 ./scripts/feeds update -a && rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/{alist,adguardhome,xray*,v2ray*,v2ray*,sing*,smartdns}
-# rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool}
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,filebrowser,luci-app-filebrowser}
+# rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool,filebrowser,luci-app-filebrowser}
 
 # 添加 5G 支持
 # git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/modem
