@@ -23,7 +23,9 @@ rm -rf feeds/packages/net/{alist,adguardhome,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool}
 
 # 添加 5G 支持
-git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/modem
+# git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/modem
+git clone --depth=1 https://github.com/MyTol/sendat package/sendat
+git clone --depth=1 https://github.com/MyTol/luci-app-cpe package/luci-app-cpe
 
 # 添加风扇控制
 # git clone --depth=1 https://github.com/2253845067/h69k-fanctrl package/h69k-fanctrl
