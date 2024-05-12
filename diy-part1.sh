@@ -26,7 +26,7 @@ git clone --depth=1 https://github.com/MyTol/sendat package/sendat
 git clone --depth=1 https://github.com/MyTol/luci-app-cpe package/luci-app-cpe
 
 # 添加风扇控制
-# git clone --depth=1 https://github.com/2253845067/h69k-fanctrl package/h69k-fanctrl
+git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
 
 # 添加 MT7916 160Mhz 修复
 rm -rf package/kernel/mt76
