@@ -19,5 +19,5 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/M
 # 修改主机
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 
-# 禁用 IPV6 ULA 头
+# 清理 IPV6 ULA 头
 sed -i "s/ula_prefix='auto'/ula_prefix=''/" package/base-files/files/bin/config_generate
