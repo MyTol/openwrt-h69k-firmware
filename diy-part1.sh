@@ -33,4 +33,4 @@ git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
 
 # 编译 luci-app-dockerman 应用
-git clone --depth=1 https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
+git clone --depth=1 https://github.com/WYC-2020/luci-app-dockerman package/luci-app-dockerman
