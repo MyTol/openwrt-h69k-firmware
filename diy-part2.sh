@@ -10,8 +10,9 @@
 # See /LICENSE for more information.
 #
 
-# 默认地址
-# sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+# 网络信息
+# sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
 
 # 主题设置
 sed -i 's/+luci-theme-bootstrap/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
