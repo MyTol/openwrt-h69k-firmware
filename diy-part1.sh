@@ -20,8 +20,9 @@ rm -rf feeds/packages/net/{alist,adguardhome,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool,filebrowser,luci-app-filebrowser,docker,dockerd}
 
 # 添加 5G 支持
-# git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/modem
-git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/modem
+rm -rf package/wwan
+# git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
+git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
 
 # 降低风扇噪音
 git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
