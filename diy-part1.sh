@@ -27,6 +27,9 @@ git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
 # 降低风扇噪音
 git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
 
+# 风扇控制
+# git clone --depth=1 https://github.com/hurrian/openwrt-alpine-fan-control
+
 # 添加 MT7916 160Mhz 修复
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
