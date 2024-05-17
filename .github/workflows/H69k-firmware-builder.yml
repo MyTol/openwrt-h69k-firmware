@@ -14,9 +14,10 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
   # REPO_URL: https://github.com/MyTol/lede-rockchip
   # REPO_BRANCH: stable
-  FEEDS_CONF: feeds.conf
+  # FEEDS_CONF: feeds.conf
   CONFIG_FILE: .config # 配置文件
   DIY_P1_SH: diy-part1.sh # 自定义
   DIY_P2_SH: diy-part2.sh # 自定义
