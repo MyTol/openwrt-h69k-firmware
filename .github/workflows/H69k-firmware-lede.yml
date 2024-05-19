@@ -14,10 +14,10 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  FEEDS_CONF: lede.feeds.conf
-  CONFIG_FILE: lede.config # 配置文件
-  DIY_P1_SH: lede.diy-part1.sh # 自定义
-  DIY_P2_SH: lede.diy-part2.sh # 自定义
+  FEEDS_CONF: config/lede/feeds.conf
+  CONFIG_FILE: config/lede/.config # 配置文件
+  DIY_P1_SH: config/lede/diy-part1.sh # 自定义
+  DIY_P2_SH: config/lede/diy-part2.sh # 自定义
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
