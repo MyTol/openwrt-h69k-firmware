@@ -14,10 +14,10 @@ on:
 env:
   REPO_URL: https://github.com/MyTol/lede-rockchip
   REPO_BRANCH: stable
-  FEEDS_CONF: feeds.conf
-  CONFIG_FILE: .config # 配置文件
-  DIY_P1_SH: diy-part1.sh # 自定义
-  DIY_P2_SH: diy-part2.sh # 自定义
+  FEEDS_CONF: config/DHDAXCW/feeds.conf
+  CONFIG_FILE: config/DHDAXCW/.config # 配置文件
+  DIY_P1_SH: config/DHDAXCW/diy-part1.sh # 自定义
+  DIY_P2_SH: config/DHDAXCW/diy-part2.sh # 自定义
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
