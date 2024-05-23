@@ -11,8 +11,8 @@
 #
 
 # 调整内核版本 5.15
-# sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
-# sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
+sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
+sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
 
 # Small 大佬常用 OpenWrt 软件包 冲突处理
 ./scripts/feeds update -a && rm -rf feeds/luci/applications/luci-app-mosdns
@@ -32,7 +32,7 @@ git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
 
 # 添加 MT7916 160Mhz 修复
 rm -rf package/kernel/mt76
-# git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
+git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
 # 编译 luci-app-filebrowser 应用
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
