@@ -21,7 +21,6 @@ rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool,filebrowser,luci-app-filebrowser,docker,dockerd}
 
 # 添加 Turboacc
-rm -rf feeds/luci/applications/luci-app-turboacc
 curl -sSL https://raw.githubusercontent.com/MyTol/turboacc/luci/add_turboacc.sh -o add_turboacc.sh
 bash add_turboacc.sh
 
