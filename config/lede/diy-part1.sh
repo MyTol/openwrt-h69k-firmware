@@ -15,9 +15,15 @@ sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=5.15/g" ./target/linux/rockchip/
 sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
 
 # Small 大佬常用 OpenWrt 软件包 冲突处理
-./scripts/feeds update -a && rm -rf feeds/luci/applications/luci-app-mosdns
+./scripts/feeds update -a
+rm -rf feeds/luci/applications/luci-app-mosdns
 # rm -rf feeds/packages/net/{alist,adguardhome,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool,filebrowser,luci-app-filebrowser,docker,dockerd}
+
+# 添加 Turboacc
+rm -rf feeds/luci/luci-app-turboacc
+curl -sSL https://raw.githubusercontent.com/MyTol/turboacc/luci/add_turboacc.sh -o add_turboacc.sh
+bash add_turboacc.sh
 
 # 添加 5G 支持
 rm -rf package/wwan
