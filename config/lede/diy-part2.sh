@@ -10,10 +10,6 @@
 # See /LICENSE for more information.
 #
 
-# 添加 Turboacc
-curl -sSL https://raw.githubusercontent.com/MyTol/turboacc/luci/add_turboacc.sh -o add_turboacc.sh
-bash add_turboacc.sh
-
 # 网络设置
 # sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
