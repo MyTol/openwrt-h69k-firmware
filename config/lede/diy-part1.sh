@@ -16,7 +16,7 @@ sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target
 
 # 冲突包处理
 ./scripts/feeds update -a
-rm -rf feeds/luci/applications/{luci-app-mosdns,luci-app-turboacc}
+rm -rf feeds/luci/applications/{luci-app-mosdns}
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool,filebrowser,luci-app-filebrowser,docker,dockerd}
 
 # 添加 5G 支持
