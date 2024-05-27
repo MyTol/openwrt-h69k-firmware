@@ -33,10 +33,6 @@ git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
-# 拉取 luci-app-turboacc 应用
-rm -rf feeds/luci/applications/luci-app-turboacc
-git clone --depth=1 https://github.com/MyTol/luci-app-turboacc feeds/luci/applications/luci-app-turboacc
-
 # 拉取 luci-app-filebrowser 应用
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
 
