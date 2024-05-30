@@ -1,25 +1,19 @@
 #!/bin/bash
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# File name: diy-part2.sh
-# Description: OpenWrt DIY script part 2 (After Update feeds)
-#
-# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-
+#=================================================
+# 初始脚本 二
+#=================================================
 # 网络设置
 #
 ## 设置 IPV4 地址
 # sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 ## 设置 IPV6 分发长度
-sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
-## 清空 IPV6 ULA 头
-sed -i "s/ula_prefix='auto'/ula_prefix=''/" package/base-files/files/bin/config_generate
+sed -i 's/ip6assign=\'60\'/ip6assign=\'64\'/g' package/base-files/files/bin/config_generate
+## 删除 IPV6 ULA 头
+sed -i 's/ula_prefix=\'auto\'/ula_prefix=\'\'/' package/base-files/files/bin/config_generate
 ## 设置主机名称
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
+## 删除 Dropbear 接口
+sed -i '/option Interface/d' package/network/services/dropbear/files/dropbear.config
 
 # 主题设置
 #
