@@ -2,7 +2,7 @@
 #=================================================
 # 初始脚本 一
 #=================================================
-#
+
 ## 添加插件源, 移动网络源
 sed -i "1isrc-git extraipk https://github.com/MyTol/extra-ipk\n" feeds.conf.default
 sed -i "2isrc-git wwan https://github.com/MyTol/5G-Modem-Support\n" feeds.conf.default
