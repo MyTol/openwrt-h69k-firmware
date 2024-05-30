@@ -10,7 +10,7 @@
 ## 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
 ## 删除 IPV6 ULA 头
-sed -i "s/ula_prefix='auto'/ula_prefix=''/" package/base-files/files/bin/config_generate
+sed -i "s/ula_prefix='auto'/ula_prefix=''/g" package/base-files/files/bin/config_generate
 ## 设置主机名称
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 ## 删除 Dropbear 接口
