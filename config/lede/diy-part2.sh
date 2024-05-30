@@ -58,7 +58,7 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' feeds/extraipk/patch/luci-app-t
 # 插件设置
 #
 ## 调整 luci-app-oled 监视接口
-sed -i 's/eth0/wwan0/g' feeds/extraipk/luci-app-oled/root/etc/uci-defaults
+sed -i 's/eth0/wwan0/g' feeds/extraipk/luci-app-oled/root/etc/uci-defaults/oled
 
 
 ## 移动 Rockchip 补丁
