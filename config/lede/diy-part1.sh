@@ -6,7 +6,7 @@
 rm -rf ./package/lean/autocore
 
 ## 添加叨叨插件库, 移动网络支持库
-sed -i "1isrc-git extraipk https://github.com/xiangfeidexiaohuo/extra-ipk\n" feeds.conf.default
+sed -i "1isrc-git extraipk https://github.com/MyTol/extra-ipk\n" feeds.conf.default
 sed -i "2isrc-git wwan https://github.com/MyTol/5G-Modem-Support\n" feeds.conf.default
 
 # 调整内核版本 5.15
