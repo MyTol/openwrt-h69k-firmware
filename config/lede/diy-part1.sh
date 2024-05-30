@@ -1,11 +1,11 @@
 #!/bin/bash
 #=================================================
-# 初始脚本
+# 初始脚本 一
 #=================================================
 ## 移除 Lean 大佬的概览界面
 rm -rf ./package/lean/autocore
 
-## 添加叨叨插件库, 移动网络支持库
+## 添加插件源, 移动网络源
 sed -i "1isrc-git extraipk https://github.com/MyTol/extra-ipk\n" feeds.conf.default
 sed -i "2isrc-git wwan https://github.com/MyTol/5G-Modem-Support\n" feeds.conf.default
 
