@@ -11,24 +11,59 @@
 #
 
 # 网络设置
+#
+## 设置 IPV4 地址
 # sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+## 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
-
-# 清理 IPV6 ULA 头
+## 清空 IPV6 ULA 头
 sed -i "s/ula_prefix='auto'/ula_prefix=''/" package/base-files/files/bin/config_generate
-
-# 主题设置
-sed -i 's/+luci-theme-bootstrap/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
-# sed -i 's/+luci-theme-bootstrap/+luci-theme-argon/g' lede/feeds/luci/collections/luci-ssl-nginx/Makefile
-# sed -i 's/+luci-theme-bootstrap/+luci-theme-argon/g' lede/feeds/luci/collections/luci-ssl-openssl/Makefile
-
-# 主机名称
+## 设置主机名称
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 
-# 版本信息
-# sed -i 's/R24.5.1/R24.5.1/g' package/lean/default-settings/files/zzz-default-settings
-# sed -i 's/OpenWrt/OmO/g' package/lean/default-settings/files/zzz-default-settings
+# 主题设置
+#
+## 清理主题
+rm -rf ./feeds/extraipk/theme/luci-theme-argon
+rm -rf ./feeds/extraipk/theme/luci-app-argon-config
+rm -rf ./feeds/luci/themes/luci-theme-argon
+rm -rf ./feeds/luci/themes/luci-theme-design
+rm -rf ./feeds/luci/themes/luci-theme-argon-mod
+rm -rf ./package/feeds/extraipk/luci-theme-argon
+rm -rf ./package/feeds/extraipk/luci-app-argon-config
+rm -rf ./package/feeds/luci/luci-theme-argon
+rm -rf ./package/feeds/luci/luci-theme-design
+rm -rf ./package/feeds/luci/luci-theme-argon-mod
+## 设置主题
+sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+sed -i 's/luci-theme-bootstrap/luci-theme-argon-18.06/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argon-18.06/g' feeds/luci/collections/luci-nginx/Makefile
 
-# 编译信息
-# sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a\<tr><td width="33%"><%:Compiler author%><\/td><td>OmO<\/td><\/tr><\/table>' package/lean/autocore/files/arm/index.htm
-# sed -i '$a\\nmsgid "Compiler author"\nmsgstr "编译者"' feeds/luci/modules/luci-base/po/zh-cn/base.po
+# 汉化补充
+#
+## 基础
+echo -e "\nmsgid \"Control\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "msgstr \"控制\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "\nmsgid \"NAS\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "msgstr \"存储\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "msgstr \"魔法\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+## 插件
+### luci-app-idns
+sed -i 's/内网域名服务/域名服务/g' feeds/extraipk/luci-app-idns/po/zh-cn/idns.po
+### luci-app-turboacc
+sed -i 's/Turbo ACC 网络加速设置/网络加速/g' feeds/extraipk/patch/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/Turbo ACC 网络加速/网络加速/g' feeds/extraipk/patch/luci-app-turboacc/po/zh-cn/turboacc.po
+
+# 插件设置
+#
+## 调整 luci-app-oled 监视接口
+sed -i 's/eth0/wwan0/g' feeds/extraipk/luci-app-oled/root/etc/uci-defaults
+
+
+## 移动 Rockchip 补丁
+cp -af feeds/extraipk/patch/rockchip/*  target/linux/rockchip/armv8/base-files/
+
+## 调整 Golang 为 1.22.x
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
