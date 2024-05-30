@@ -2,6 +2,7 @@
 #=================================================
 # 初始脚本 二
 #=================================================
+#
 # 网络设置
 #
 ## 设置 IPV4 地址
@@ -67,7 +68,7 @@ sed -i 's/services/vpn/g' package/feeds/extraipk/luci-app-passwall/luasrc/view/p
 sed -i 's/services/vpn/g' package/feeds/extraipk/luci-app-passwall/luasrc/view/passwall/rule/*.htm
 sed -i 's/services/vpn/g' package/feeds/extraipk/luci-app-passwall/luasrc/view/passwall/server/*.htm
 
-## 移动 Rockchip 补丁
+## 移动 RockChip 补丁
 cp -af feeds/extraipk/patch/rockchip/*  target/linux/rockchip/armv8/base-files/
 
 ## 调整 Golang 为 1.22.x
