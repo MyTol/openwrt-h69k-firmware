@@ -1,40 +1,24 @@
 #!/bin/bash
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# File name: diy-part1.sh
-# Description: OpenWrt DIY script part 1 (Before Update feeds)
-#
-# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
+#=================================================
+# 初始脚本
+#=================================================
+## 移除 Lean 大佬的概览界面
+rm -rf ./package/lean/autocore
+
+## 添加叨叨插件库, 移动网络支持库
+sed -i "1isrc-git extraipk https://github.com/xiangfeidexiaohuo/extra-ipk\n" feeds.conf.default
+sed -i "2isrc-git wwan https://github.com/MyTol/5G-Modem-Support\n" feeds.conf.default
 
 # 调整内核版本 5.15
 sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
 sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
 
-# 冲突包处理
+## 更新软件源
 ./scripts/feeds update -a
-rm -rf feeds/luci/applications/luci-app-mosdns
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb,sms-tool,luci-app-sms-tool,filebrowser,luci-app-filebrowser,docker,dockerd}
 
-# 添加 5G 支持
-rm -rf package/wwan
-git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
-
-# 降低风扇噪音
+# 拉取风扇降噪补丁
 git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
 
-# 风扇控制
-# git clone --depth=1 https://github.com/hurrian/openwrt-alpine-fan-control
-
-# 添加 MT7916 160Mhz 修复
+# 拉取 MT7916 160Mhz 修复补丁
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
-
-# 拉取 luci-app-filebrowser 应用
-git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
-
-# 拉取 luci-app-dockerman 应用
-# git clone --depth=1 https://github.com/WYC-2020/luci-app-dockerman package/luci-app-dockerman
