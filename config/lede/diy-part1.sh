@@ -2,9 +2,7 @@
 #=================================================
 # 初始脚本 一
 #=================================================
-## 移除 Lean 大佬的概览界面
-rm -rf ./package/lean/autocore
-
+#
 ## 添加插件源, 移动网络源
 sed -i "1isrc-git extraipk https://github.com/MyTol/extra-ipk\n" feeds.conf.default
 sed -i "2isrc-git wwan https://github.com/MyTol/5G-Modem-Support\n" feeds.conf.default
@@ -17,6 +15,7 @@ sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target
 ./scripts/feeds update -a
 
 ## 移除冲突包
+rm -rf ./package/lean/autocore
 rm -rf package/feeds/wwan/bwallocate
 rm -rf package/feeds/extraipk/luci-app-wechatpush
 
