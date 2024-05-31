@@ -19,6 +19,7 @@ sed -i '/option Interface/d' package/network/services/dropbear/files/dropbear.co
 sed -i "3iecho 2048 > /proc/sys/net/core/rmem_default\n" package/base-files/files/etc/rc.local
 sed -i "4iecho 8192 > /proc/sys/net/core/rmem_max\n" package/base-files/files/etc/rc.local
 
+
 # 主题设置
 #
 ## 清理主题
@@ -57,10 +58,15 @@ sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' feeds/extraipk/op-webdav/luci-app
 ### luci-app-vsftpd
 sed -i 's/msgstr "网络存储"/msgstr "存储"/g' feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
+### luci-app-istore
+sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/extraipk/linkease/luci/luci-app-store/src/po/zh-cn/iStore.po
+### luci-app-dockerman
+sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-samba4
 sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' feeds/luci/applications/luci-app-samba4/po/zh-cn/samba4.po
 ### luci-app-iperf3-server
 sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' feeds/extraipk/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
+
 
 # 插件设置
 #
