@@ -38,7 +38,7 @@ sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/theme
 sed -i 's/luci-theme-bootstrap/luci-theme-argon-18.06/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon-18.06/g' feeds/luci/collections/luci-nginx/Makefile
 
-# 汉化补充
+# 语言补充
 #
 ## 基础
 echo -e "\nmsgid \"Control\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
@@ -68,6 +68,8 @@ sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' feeds/luci/applications/luci-a
 sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' feeds/extraipk/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
 ### luci-app-argon-config-18.06
 sed -i 's/Argon 主题设置/主题设置/g' feeds/extraipk/theme/luci-app-argon-config-18.06/po/zh-cn/argon-config.po
+### luci-app-filebrowser
+sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/luci-app-filebrowser/po/zh-cn/filebrowser.po
 
 # 插件设置
 #
