@@ -19,7 +19,6 @@ sed -i '/option Interface/d' package/network/services/dropbear/files/dropbear.co
 sed -i "3iecho 2048 > /proc/sys/net/core/rmem_default\n" package/base-files/files/etc/rc.local
 sed -i "4iecho 8192 > /proc/sys/net/core/rmem_max\n" package/base-files/files/etc/rc.local
 
-
 # 主题设置
 #
 ## 清理主题
