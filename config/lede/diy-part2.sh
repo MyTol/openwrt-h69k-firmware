@@ -66,7 +66,8 @@ sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/luci/applications/luci-app-do
 sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' feeds/luci/applications/luci-app-samba4/po/zh-cn/samba4.po
 ### luci-app-iperf3-server
 sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' feeds/extraipk/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
-
+### luci-app-argon-config-18.06
+sed -i 's/Argon 主题设置/主题设置/g' feeds/extraipk/theme/luci-app-argon-config-18.06/po/zh-cn/argon-config.po
 
 # 插件设置
 #
