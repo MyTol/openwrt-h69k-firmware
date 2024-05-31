@@ -20,6 +20,10 @@ rm -rf package/lean/autocore
 rm -rf feeds/extraipk/op-fileBrowser
 rm -rf feeds/extraipk/luci-app-dockerman
 
+## 移除无用包
+rm -rf package/feeds/extraipk/luci-app-wechatpush
+rm -rf package/wwan/rooter/0optionalapps/bwallocate
+
 ## 拉取 5G 支持
 git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
 
