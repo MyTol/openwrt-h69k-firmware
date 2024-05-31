@@ -11,7 +11,7 @@ sed -i "2isrc-git wwan https://github.com/MyTol/5G-Modem-Support\n" feeds.conf.d
 sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
 sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target/linux/rockchip/Makefile
 
-## 更新软件源
+## 更新源
 ./scripts/feeds update -a
 
 ## 移除冲突包
@@ -26,6 +26,6 @@ git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
-# 拉取 luci-app-filebrowser 应用
+# 拉取 luci-app-filebrowser 插件
 rm -rf feeds/extraipk/op-fileBrowser
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
