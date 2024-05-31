@@ -15,6 +15,9 @@ sed -i "s/ula_prefix='auto'/ula_prefix=''/g" package/base-files/files/bin/config
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 ## 删除 Dropbear 接口
 sed -i '/option Interface/d' package/network/services/dropbear/files/dropbear.config
+## 修改缓冲区大小
+sed -i "3iecho 2048 > /proc/sys/net/core/rmem_default\n" package/base-files/files/etc/rc.local
+sed -i "4iecho 8192 > /proc/sys/net/core/rmem_max\n" package/base-files/files/etc/rc.local
 
 # 主题设置
 #
