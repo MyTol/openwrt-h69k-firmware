@@ -61,8 +61,8 @@ sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' feeds/luci/applications/luci-ap
 ### luci-app-istore
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/extraipk/linkease/luci/luci-app-store/src/po/zh-cn/iStore.po
 ### luci-app-dockerman
-#sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
-sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/extraipk/luci-app-dockerman/po/zh-cn/dockerman.po
+sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
+#sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/extraipk/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-samba4
 sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' feeds/luci/applications/luci-app-samba4/po/zh-cn/samba4.po
 ### luci-app-iperf3-server
