@@ -18,6 +18,7 @@ rm -rf package/wwan
 rm -rf package/kernel/mt76
 rm -rf package/lean/autocore
 rm -rf feeds/extraipk/op-fileBrowser
+rm -rf feeds/luci/applications/luci-app-dockerman
 
 ## 拉取 5G 支持
 git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
