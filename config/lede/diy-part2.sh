@@ -22,16 +22,16 @@ sed -i "4iecho 8192 > /proc/sys/net/core/rmem_max\n" package/base-files/files/et
 # 主题设置
 #
 ## 清理主题
-rm -rf ./feeds/extraipk/theme/luci-theme-argon
-rm -rf ./feeds/extraipk/theme/luci-app-argon-config
-rm -rf ./feeds/luci/themes/luci-theme-argon
-rm -rf ./feeds/luci/themes/luci-theme-design
-rm -rf ./feeds/luci/themes/luci-theme-argon-mod
-rm -rf ./package/feeds/extraipk/luci-theme-argon
-rm -rf ./package/feeds/extraipk/luci-app-argon-config
-rm -rf ./package/feeds/luci/luci-theme-argon
-rm -rf ./package/feeds/luci/luci-theme-design
-rm -rf ./package/feeds/luci/luci-theme-argon-mod
+rm -rf feeds/extraipk/theme/luci-theme-argon
+rm -rf feeds/extraipk/theme/luci-app-argon-config
+rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-design
+rm -rf feeds/luci/themes/luci-theme-argon-mod
+rm -rf package/feeds/extraipk/luci-theme-argon
+rm -rf package/feeds/extraipk/luci-app-argon-config
+rm -rf package/feeds/luci/luci-theme-argon
+rm -rf package/feeds/luci/luci-theme-design
+rm -rf package/feeds/luci/luci-theme-argon-mod
 ## 设置主题
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 sed -i 's/luci-theme-bootstrap/luci-theme-argon-18.06/g' feeds/luci/collections/luci/Makefile
@@ -61,7 +61,6 @@ sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' feeds/luci/applications/luci-ap
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/extraipk/linkease/luci/luci-app-store/src/po/zh-cn/iStore.po
 ### luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
-#sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/extraipk/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-samba4
 sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' feeds/luci/applications/luci-app-samba4/po/zh-cn/samba4.po
 ### luci-app-iperf3-server
@@ -69,7 +68,7 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' feeds/extraipk/luci-app-i
 ### luci-app-argon-config-18.06
 sed -i 's/Argon 主题设置/主题设置/g' feeds/extraipk/theme/luci-app-argon-config-18.06/po/zh-cn/argon-config.po
 ### luci-app-filebrowser
-sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/luci-app-filebrowser/po/zh-cn/filebrowser.po
+sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/feeds/luci/luci-app-filebrowser/po/zh-cn/filebrowser.po
 
 # 插件设置
 #
