@@ -15,7 +15,7 @@ sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target
 ./scripts/feeds update -a
 
 ## 移除冲突包
-rm -rf ./package/lean/autocore
+rm -rf package/lean/autocore
 rm -rf package/feeds/wwan/bwallocate
 rm -rf package/feeds/extraipk/luci-app-wechatpush
 
@@ -25,3 +25,7 @@ git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
 # 拉取 MT7916 160Mhz 修复补丁
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
+
+# 拉取 luci-app-filebrowser 应用
+rm -rf feeds/extraipk/op-fileBrowser
+git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
