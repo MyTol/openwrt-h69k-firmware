@@ -18,7 +18,7 @@ rm -rf package/wwan
 rm -rf package/kernel/mt76
 rm -rf package/lean/autocore
 rm -rf feeds/extraipk/op-fileBrowser
-rm -rf feeds/extraipk/luci-app-dockerman
+rm -rf package/feeds/extraipk/luci-app-dockerman
 
 ## 移除无用包
 rm -rf package/feeds/extraipk/luci-app-wechatpush
