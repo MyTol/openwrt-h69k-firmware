@@ -19,13 +19,16 @@ rm -rf package/lean/autocore
 rm -rf package/feeds/wwan/bwallocate
 rm -rf package/feeds/extraipk/luci-app-wechatpush
 
-# 拉取风扇降噪补丁
+## 拉取风扇降噪补丁
 git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/h69k-fanctrl
+#
+## 移动风扇强冷补丁
+# cp -af feeds/extraipk/patch/rockchip/* target/linux/rockchip/armv8/base-files/
 
-# 拉取 MT7916 160Mhz 修复补丁
+## 拉取 MT7916 160Mhz 修复补丁
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
-# 拉取 luci-app-filebrowser 插件
+## 拉取 luci-app-filebrowser 插件
 rm -rf feeds/extraipk/op-fileBrowser
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
