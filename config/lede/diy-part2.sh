@@ -49,6 +49,14 @@ sed -i 's/内网域名服务/域名服务/g' feeds/extraipk/luci-app-idns/po/zh-
 ### luci-app-turboacc
 sed -i 's/Turbo ACC 网络加速设置/网络加速/g' feeds/extraipk/patch/luci-app-turboacc/po/zh-cn/turboacc.po
 sed -i 's/Turbo ACC 网络加速/网络加速/g' feeds/extraipk/patch/luci-app-turboacc/po/zh-cn/turboacc.po
+### luci-app-gowebdav 
+sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' feeds/extraipk/op-webdav/luci-app-gowebdav/po/zh-cn/gowebdav.po
+### luci-app-vsftpd
+sed -i 's/msgstr "网络存储"/msgstr "存储"/g' feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
+sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
+### luci-app-samba4
+sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' feeds/luci/applications/luci-app-samba4/po/zh-cn/samba4.po
+
 
 # 插件设置
 #
