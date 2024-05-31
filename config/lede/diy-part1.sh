@@ -17,12 +17,7 @@ sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=5.15/g" ./target
 rm -rf package/wwan
 rm -rf package/kernel/mt76
 rm -rf package/lean/autocore
-rm -rf feeds/extraipk/op-fileBrowser
-rm -rf package/feeds/extraipk/luci-app-dockerman
-
-## 移除无用包
-rm -rf package/feeds/extraipk/luci-app-wechatpush
-rm -rf package/wwan/rooter/0optionalapps/bwallocate
+rm -rf package/feeds/extraipk/{luci-app-filebrowser,luci-app-dockerman,luci-app-wechatpush}
 
 ## 拉取 5G 支持
 git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
@@ -38,6 +33,9 @@ git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
 # 拉取 luci-app-filebrowser 应用
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/luci-app-filebrowser
+
+## 移除无用包
+rm -rf package/wwan/rooter/0optionalapps/bwallocate
 
 ## 安装软件源
 ./scripts/feeds install -a
