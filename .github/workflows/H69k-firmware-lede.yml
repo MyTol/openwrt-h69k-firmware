@@ -16,8 +16,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: config/lede/feeds.conf
   CONFIG_FILE: config/lede/.config # 配置文件
-  DIY_P1_SH: config/lede/diy-part1.sh # 自定义
-  DIY_P2_SH: config/lede/diy-part2.sh # 自定义
+  DIY_P1_SH: config/lede/diy-part1.sh # 自定义脚本
+  DIY_P2_SH: config/lede/diy-part2.sh # 自定义脚本
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -77,20 +77,14 @@ jobs:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
 
-    - name: 加载自定义 feeds
+    - name: 加载初始脚本 一
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 更新 feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: 安装 feeds
-      run: cd openwrt && ./scripts/feeds install -a
-
-    - name: 加载自定义配置
+    - name: 加载初始脚本 二
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
