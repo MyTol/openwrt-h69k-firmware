@@ -19,7 +19,7 @@ rm -rf package/kernel/mt76
 ## 拉取 5G 补丁
 git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
 ## 风扇降噪补丁
-git clone --depth=1 https://github.com/MyTol/h69k-fanctrl packages/utils/h69k-fanctrl
+git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/utils/h69k-fanctrl
 ## 风扇强冷补丁
 # cp -af feeds/extraipk/patch/rockchip/* target/linux/rockchip/armv8/base-files/
 ## 拉取 MT7916 160Mhz 补丁
