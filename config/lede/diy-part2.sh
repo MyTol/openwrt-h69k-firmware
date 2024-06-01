@@ -48,28 +48,28 @@ echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 ## 插件
 ### luci-app-idns
-sed -i 's/内网域名服务/域名服务/g' feeds/extraipk/luci-app-idns/po/zh-cn/idns.po
+sed -i 's/内网域名服务/域名服务/g' package/feeds/extraipk/luci-app-idns/po/zh-cn/idns.po
 ### luci-app-turboacc
-sed -i 's/Turbo ACC 网络加速设置/网络加速/g' feeds/extraipk/patch/luci-app-turboacc/po/zh-cn/turboacc.po
-sed -i 's/Turbo ACC 网络加速/网络加速/g' feeds/extraipk/patch/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/Turbo ACC 网络加速设置/网络加速/g' package/feeds/extraipk/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/feeds/extraipk/luci-app-turboacc/po/zh-cn/turboacc.po
 ### luci-app-gowebdav 
-sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' feeds/extraipk/op-webdav/luci-app-gowebdav/po/zh-cn/gowebdav.po
+sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' package/feeds/extraipk/luci-app-gowebdav/po/zh-cn/gowebdav.po
 ### luci-app-vsftpd
-sed -i 's/msgstr "网络存储"/msgstr "存储"/g' feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
-sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
+sed -i 's/msgstr "网络存储"/msgstr "存储"/g' package/feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
+sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' package/feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 ### luci-app-istore
-sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/extraipk/linkease/luci/luci-app-store/src/po/zh-cn/iStore.po
+sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/extraipk/luci-app-store/src/po/zh-cn/iStore.po
 ### luci-app-dockerman
-sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
-sed -i 's/msgstr "Docker"/msgstr "容器"/g' feeds/extraipk/luci-app-dockerman/po/zh-cn/dockerman.po
+sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
+sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/extraipk/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-samba4
-sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' feeds/luci/applications/luci-app-samba4/po/zh-cn/samba4.po
+sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' package/feeds/luci/applications/luci-app-samba4/po/zh-cn/samba4.po
 ### luci-app-iperf3-server
-sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' feeds/extraipk/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
+sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/feeds/extraipk/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
 ### luci-app-argon-config-18.06
-sed -i 's/Argon 主题设置/主题设置/g' feeds/extraipk/theme/luci-app-argon-config-18.06/po/zh-cn/argon-config.po
+sed -i 's/Argon 主题设置/主题设置/g' package/feeds/extraipk/luci-app-argon-config-18.06/po/zh-cn/argon-config.po
 ### luci-app-filebrowser
-sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/feeds/luci/luci-app-filebrowser/po/zh-cn/filebrowser.po
+sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/feeds/luci-app-filebrowser/po/zh-cn/filebrowser.po
 
 # 插件设置
 #
