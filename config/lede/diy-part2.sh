@@ -60,7 +60,7 @@ sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' package/feeds/luci/luci-app-vsf
 ### luci-app-istore
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/extraipk/luci-app-store/src/po/zh-cn/iStore.po
 ### luci-app-dockerman
-sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/extraipk/luci-app-dockerman/po/zh-cn/dockerman.po
+sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-samba4
 sed -i 's/msgstr "网络共享"/msgstr "Samba"/g' package/feeds/luci/luci-app-samba4/po/zh-cn/samba4.po
 ### luci-app-iperf3-server
@@ -68,7 +68,7 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/feeds/extraipk/lu
 ### luci-app-argon-config-18.06
 sed -i 's/Argon 主题设置/主题设置/g' package/feeds/extraipk/luci-app-argon-config-18.06/po/zh-cn/argon-config.po
 ### luci-app-filebrowser
-sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/feeds/extraipk/luci-app-filebrowser/po/zh-cn/filebrowser.po
+sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/feeds/luci/luci-app-filebrowser/po/zh-cn/filebrowser.po
 
 # 插件设置
 #
