@@ -19,7 +19,7 @@ rm -rf package/kernel/mt76
 ## 拉取 5G 补丁
 git clone --depth=1 https://github.com/MyTol/5G-Modem-Support package/wwan
 ## 风扇降噪补丁
-git clone --depth=1 https://github.com/MyTol/h69k-fanctrl package/utils/fancontrol
+git clone --depth=1 https://github.com/MyTol/h69k-fanctrl packages/utils/h69k-fanctrl
 ## 风扇强冷补丁
 # cp -af feeds/extraipk/patch/rockchip/* target/linux/rockchip/armv8/base-files/
 ## 拉取 MT7916 160Mhz 补丁
@@ -28,14 +28,9 @@ git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 ## 移除冲突包
 rm -rf package/lean/autocore
 rm -rf package/wwan/rooter/0optionalapps/bwallocate
-rm -rf feeds/extraipk/{luci-app-dockerman,luci-app-wechatpush}
-rm -rf feeds/extraipk/op-filebrowser/luci-app-filebrowser
-
-## 复制 luci-app-dockerman 应用
-cp -r feeds/luci/applications/luci-app-dockerman feeds/extraipk/luci-app-dockerman
 
 ## 拉取 luci-app-filebrowser 应用
-git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser feeds/extraipk/op-filebrowser/luci-app-filebrowser
+git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser feeds/luci/applications/luci-app-filebrowser
 
 ## 安装软件源
 ./scripts/feeds install -a
