@@ -27,11 +27,10 @@ git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 
 ## 移除冲突包
 rm -rf package/lean/autocore
-rm -rf package/feeds/extraipk/luci-app-wechatpush
 rm -rf package/wwan/rooter/0optionalapps/bwallocate
 
 ## 拉取 luci-app-filebrowser 应用
-git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser feeds/luci/applications/luci-app-filebrowser
+git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser package/feeds/luci/luci-app-filebrowser
 
 ## 安装软件源
 ./scripts/feeds install -a
