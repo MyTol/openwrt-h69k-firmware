@@ -78,8 +78,18 @@ sed -i 's/msgstr "挂载 SMB 网络共享"/msgstr "Cifs"/g' package/feeds/extrai
 
 # 插件设置
 #
-## 调整 luci-app-oled 监视接口
+## luci-app-oled
 sed -i 's/eth0/wwan0/g' feeds/extraipk/luci-app-oled/root/etc/uci-defaults/oled
+### luci-app-filebrowser
+sed -i 's/8088/8082/g' package/feeds/luci/luci-app-filebrowser/root/etc/config/filebrowser
+sed -i 's//root//home/g' package/feeds/luci/luci-app-filebrowser/root/etc/config/filebrowser
+sed -i 's//tmp//usr/bin/g' package/feeds/luci/luci-app-filebrowser/root/etc/config/filebrowser
+### luci-app-gowebdav
+sed -i 's/6086/8083/g' feeds/extraipk/op-webdav/gowebdav/files/gowebdav.config
+sed -i 's/user/OmO/g' feeds/extraipk/op-webdav/gowebdav/files/gowebdav.config
+sed -i 's/pass/password/g' feeds/extraipk/op-webdav/gowebdav/files/gowebdav.config
+sed -i 's//mnt//home/g' feeds/extraipk/op-webdav/gowebdav/files/gowebdav.config
+
 ## 调整 luci-app-passwall 插件菜单入口
 sed -i 's/services/vpn/g' package/feeds/extraipk/luci-app-passwall/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/feeds/extraipk/luci-app-passwall/luasrc/passwall/*.lua
