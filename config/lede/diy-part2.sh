@@ -69,6 +69,12 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/feeds/extraipk/lu
 sed -i 's/Argon 主题设置/主题设置/g' package/feeds/extraipk/luci-app-argon-config-18.06/po/zh-cn/argon-config.po
 ### luci-app-filebrowser
 sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/feeds/luci/luci-app-filebrowser/po/zh-cn/filebrowser.po
+### luci-app-webadmin
+sed -i 's/msgstr "Web 管理"/msgstr "网页管理"/g' package/feeds/luci/luci-app-webadmin/po/zh-cn/webadmin.po
+### luci-app-ttyd
+sed -i 's/msgstr "TTYD 终端"/msgstr "在线终端"/g' package/feeds/luci/luci-app-ttyd/po/zh-cn/terminal.po
+### luci-app-cifs-mount
+sed -i 's/msgstr "挂载 SMB 网络共享"/msgstr "Cifs"/g' package/feeds/extraipk/luci-app-cifs-mount/po/zh-cn/cifs.po
 
 # 插件设置
 #
