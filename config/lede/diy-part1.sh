@@ -30,7 +30,10 @@ rm -rf package/lean/autocore
 rm -rf package/wwan/rooter/0optionalapps/bwallocate
 rm -rf feeds/extraipk/{op-filebrowser,luci-app-dockerman,luci-app-wechatpush}
 
-# 拉取 luci-app-filebrowser 应用
+## 复制 luci-app-dockerman 应用
+cp -r feeds/luci/applications/luci-app-dockerman feeds/extraipk/luci-app-dockerman
+
+## 拉取 luci-app-filebrowser 应用
 git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser feeds/extraipk/luci-app-filebrowser
 
 ## 安装软件源
