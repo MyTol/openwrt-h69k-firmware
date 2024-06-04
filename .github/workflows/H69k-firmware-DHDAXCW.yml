@@ -89,7 +89,9 @@ jobs:
         mkdir customfeeds
         git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
         git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
-        chmod +x ./scripts/*.sh
+        chmod +x scripts/*.sh
+        pwd
+        ls
         ./scripts/hook-feeds.sh
 
     - name: 安装源
