@@ -50,8 +50,8 @@ echo -e "msgstr \"魔法\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 ### luci-app-idns
 sed -i 's/内网域名服务/域名服务/g' package/feeds/extraipk/luci-app-idns/po/zh-cn/idns.po
 ### luci-app-turboacc
-sed -i 's/Turbo ACC 网络加速设置/网络加速/g' package/feeds/extraipk/luci-app-turboacc/po/zh-cn/turboacc.po
-sed -i 's/Turbo ACC 网络加速/网络加速/g' package/feeds/extraipk/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/Turbo ACC 网络加速设置/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/Turbo ACC 网络加速/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
 ### luci-app-gowebdav 
 sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' package/feeds/extraipk/luci-app-gowebdav/po/zh-cn/gowebdav.po
 ### luci-app-vsftpd
@@ -70,7 +70,7 @@ sed -i 's/Argon 主题设置/主题设置/g' package/feeds/extraipk/luci-app-arg
 ### luci-app-filebrowser
 sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/feeds/luci/luci-app-filebrowser/po/zh-cn/filebrowser.po
 ### luci-app-webadmin
-sed -i 's/msgstr "Web 管理"/msgstr "网页管理"/g' package/feeds/luci/luci-app-webadmin/po/zh-cn/webadmin.po
+sed -i 's/msgstr "Web 管理"/msgstr "网页"/g' package/feeds/luci/luci-app-webadmin/po/zh-cn/webadmin.po
 ### luci-app-ttyd
 sed -i 's/msgstr "TTYD 终端"/msgstr "在线终端"/g' package/feeds/luci/luci-app-ttyd/po/zh-cn/terminal.po
 ### luci-app-cifs-mount
