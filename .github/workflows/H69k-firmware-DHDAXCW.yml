@@ -17,7 +17,7 @@ permissions:
   actions: write
 
 env:
-  REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  REPO_URL: https://github.com/MyTol/lede-rockchip
   REPO_BRANCH: stable
   CONFIG_FILE: configs/lede/.config
   DIY_SH: scripts/lede.sh
