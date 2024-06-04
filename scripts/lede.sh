@@ -38,7 +38,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
 rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-cp -f $GITHUB_WORKSPACE/data/bg1.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 git clone https://github.com/DHDAXCW/theme
 
 # 添加 subconverter
