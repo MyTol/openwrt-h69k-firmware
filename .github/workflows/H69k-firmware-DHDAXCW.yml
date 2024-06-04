@@ -30,6 +30,7 @@ jobs:
   Build:
     runs-on: ubuntu-22.04
     outputs:
+      OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
       PLATFORM: ${{ steps.compile.outputs.PLATFORM }}
       TARGET: ${{ steps.compile.outputs.TARGET }}
       SUBTARGET: ${{ steps.compile.outputs.SUBTARGET }}
@@ -84,21 +85,22 @@ jobs:
       id: update
       run: |
         cd openwrt
+        echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         mkdir customfeeds
         git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
         git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
-        chmod +x ../scripts/*.sh
-        ../scripts/hook-feeds.sh
+        chmod +x ./scripts/*.sh
+        ./scripts/hook-feeds.sh
 
     - name: 安装源
       run: |
-        cd openwrt
+        cd $OPENWRTROOT
         ./scripts/feeds install -a
         
     - name: 加载配置
       run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        [ -e files ] && mv files $OPENWRTROOT/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
         chmod +x scripts/*.sh
         cd openwrt
         ../$DIY_SH
@@ -108,7 +110,7 @@ jobs:
     - name: 下载软件包
       id: package
       run: |
-        cd openwrt
+        cd $OPENWRTROOT
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
@@ -116,7 +118,7 @@ jobs:
     - name: 编译固件
       id: compile
       run: |
-        cd openwrt
+        cd $OPENWRTROOT
         echo -e "$(nproc) thread compile"
         make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
         make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
@@ -124,11 +126,11 @@ jobs:
         make diffconfig
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
         make package/index
-        cd openwrt/bin/packages/*
+        cd $OPENWRTROOT/bin/packages/*
         PLATFORM=$(basename `pwd`)
         echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
         echo "PLATFORM=$PLATFORM" >> $GITHUB_OUTPUT
-        cd openwrt/bin/targets/*
+        cd $OPENWRTROOT/bin/targets/*
         TARGET=$(basename `pwd`)
         echo "TARGET=$TARGET" >> $GITHUB_ENV
         echo "TARGET=$TARGET" >> $GITHUB_OUTPUT
@@ -152,7 +154,7 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/bin
+        path: $OPENWRTROOT/bin
 
     - name: 生成固件
       if: steps.compile.outputs.status == 'success' && !cancelled()
