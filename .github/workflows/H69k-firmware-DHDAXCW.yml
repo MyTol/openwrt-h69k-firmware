@@ -90,6 +90,8 @@ jobs:
         cd openwrt
         mkdir customfeeds
         git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
+        rm -rf customfeeds/packages/lang/golang
+        git clone https://github.com/MyTol/packages_lang_golang -b 22.x customfeeds/packages/lang/golang
         git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
         chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
         $GITHUB_WORKSPACE/$DIY_P1_SH
