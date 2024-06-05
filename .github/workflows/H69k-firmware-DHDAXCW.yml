@@ -25,7 +25,7 @@ env:
   CONFIG_FILE: configs/lede/.config
   DIY_P1_SH: scripts/hook-feeds.sh
   DIY_P2_SH: scripts/lede.sh
-  DIY_P3_SH: scripts/lede.sh
+  DIY_P3_SH: scripts/preset-terminal-tools.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
