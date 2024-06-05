@@ -17,7 +17,7 @@ permissions:
 on:
   repository_dispatch:
   schedule:
-    - cron: 0 20 * * *
+    - cron: 0 02 * * *
 
 # 环境变量
 env:
