@@ -25,7 +25,7 @@ env:
   CONFIG_FILE: configs/lede/.config
   DIY_P1_SH: scripts/hook-feeds.sh
   DIY_P2_SH: scripts/lede.sh
-  DIY_P3_SH: scripts/preset-terminal-tools.sh
+  DIY_P3_SH: scripts/lede.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -34,12 +34,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    outputs:
-      OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
-      PLATFORM: ${{ steps.compile.outputs.PLATFORM }}
-      TARGET: ${{ steps.compile.outputs.TARGET }}
-      SUBTARGET: ${{ steps.compile.outputs.SUBTARGET }}
-      FIRMWARE: ${{ steps.compile.outputs.FIRMWARE }}
 
     steps:
     - name: 准备完成
@@ -94,12 +88,10 @@ jobs:
     - name: 更新源
       run: |
         cd openwrt
-        echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
-        echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
         mkdir customfeeds
         git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
         git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
-        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
+        chmod +x $DIY_P1_SH
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 安装源
@@ -111,13 +103,14 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         cd openwrt
+        chmod +x $DIY_P2_SH
+        chmod +x $DIY_P3_SH
         $GITHUB_WORKSPACE/$DIY_P2_SH
         $GITHUB_WORKSPACE/$DIY_P3_SH
         make defconfig
 
-    - name: 下载软件包
+    - name: 下载包
       id: package
       run: |
         cd openwrt
@@ -132,62 +125,39 @@ jobs:
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
-        cd $OPENWRTROOT/bin/packages/*
-        PLATFORM=$(basename `pwd`)
-        echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
-        echo "PLATFORM=$PLATFORM" >> $GITHUB_OUTPUT
-        cd $OPENWRTROOT/bin/targets/*
-        TARGET=$(basename `pwd`)
-        echo "TARGET=$TARGET" >> $GITHUB_ENV
-        echo "TARGET=$TARGET" >> $GITHUB_OUTPUT
-        cd *
-        SUBTARGET=$(basename `pwd`)
-        echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
-        echo "SUBTARGET=$SUBTARGET" >> $GITHUB_OUTPUT
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "FIRMWARE=$PWD" >> $GITHUB_OUTPUT
         echo "status=success" >> $GITHUB_OUTPUT
+        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
+        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: 检查磁盘空间
       if: (!cancelled())
       run: df -hT
 
-    - name: 打包固件
+    - name: 上传 bin 文件夹
       uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success'
-      id: generate
-      run: |
-        cd configs/opkg
-        sed -i "s/subtarget/$SUBTARGET/g" distfeeds*.conf
-        sed -i "s/target\//$TARGET\//g" distfeeds*.conf
-        sed -i "s/platform/$PLATFORM/g" distfeeds*.conf
-        cd $OPENWRTROOT
-        mkdir -p files/etc/uci-defaults/
-        cp ../scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
-        mkdir -p files/etc/opkg
-        cp ../configs/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
-        mkdir -p files/etc/opkg/keys
-        cp ../configs/opkg/1035ac73cc4e59e3 files/etc/opkg/keys/1035ac73cc4e59e3
-        if "$KMODS_IN_FIRMWARE" = 'true'
-        then
-            mkdir -p files/www/snapshots
-            cp -r bin/targets files/www/snapshots
-            cp ../configs/opkg/distfeeds-18.06-local.conf files/etc/opkg/distfeeds.conf
-        else
-            cp ../configs/opkg/distfeeds-18.06-remote.conf files/etc/opkg/distfeeds.conf
-        fi
-        cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
-        sed -i "s/http:\/\/192.168.123.100:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/lean/g" files/etc/opkg/distfeeds.conf.mirror
-        make package/install -j$(nproc) || make package/install -j1 V=s
-        make target/install -j$(nproc) || make target/install -j1 V=s
-        pushd bin/targets/rockchip/armv8
-        rm -rf *ext4* *.manifest packages *.json *.buildinfo
-        mv openwrt-rockchip-armv8-hinlink_opc-h69k-squashfs-sysupgrade.img.gz $(date +"%Y.%m.%d")-openwrt-hinlink_opc-h69k-squashfs-sysupgrade.img.gz
-        popd
-        make checksum
-        mv bin/targets/rockchip/armv8/sha256sums bin/targets/rockchip/armv8/full-sha256sums
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/bin
 
-    - name: 生成标签
+    - name: 整理固件文件
+      id: organize
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      run: |
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: 上传固件目录
+      uses: actions/upload-artifact@main
+      if: steps.organize.outputs.status == 'success' && !cancelled()
+      with:
+        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: ${{ env.FIRMWARE }}
+
+    - name: 生成发布标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
