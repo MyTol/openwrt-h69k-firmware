@@ -37,14 +37,13 @@ jobs:
     runs-on: ubuntu-22.04
       
     steps:
-    - name: Before freeing up disk space
+    - name: 释放空间前
       run: |
-        echo "Before freeing up disk space"
         echo "=============================================================================="
         df -hT
         echo "=============================================================================="
 
-    - name: "Optimize Disk Space"
+    - name: "优化空间"
       uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.1"
       with:
         operate_sudo: "True"
@@ -65,7 +64,7 @@ jobs:
         npm_clean: "True"
         os_swap: "True"
 
-    - name: Freeing up disk space
+    - name: "释放空间"
       uses: easimon/maximize-build-space@master
       with: 
         root-reserve-mb: 2048
@@ -76,14 +75,13 @@ jobs:
         remove-codeql: 'true'
         remove-docker-images: 'true'
 
-    - name: Free up disk space complete
+    - name: 释放空间后
       run: |
-        echo "Free up disk space complete"
         echo "=============================================================================="
         df -hT
         echo "=============================================================================="
 
-    - name: Checkout
+    - name: 准备完成
       uses: actions/checkout@main
 
     - name: 环境信息
