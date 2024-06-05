@@ -8,26 +8,31 @@
 
 name: H69k-firmware-DHDAXCW
 
-on:
-  repository_dispatch:
-  workflow_dispatch:
-
+# 设置工作流权限
 permissions:
   contents: write
   actions: write
 
+# 自动执行
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+# 环境变量
 env:
   REPO_URL: https://github.com/MyTol/lede-rockchip
   REPO_BRANCH: stable
   CONFIG_FILE: configs/lede/.config
-  DIY_SH: scripts/lede.sh
+  DIY_P1_SH: scripts/hook-feeds.sh
+  DIY_P2_SH: scripts/lede.sh
+  DIY_P3_SH: scripts/preset-terminal-tools.sh
   UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: false
+  UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
-  Build:
+  build:
     runs-on: ubuntu-22.04
     outputs:
       OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
@@ -35,22 +40,26 @@ jobs:
       TARGET: ${{ steps.compile.outputs.TARGET }}
       SUBTARGET: ${{ steps.compile.outputs.SUBTARGET }}
       FIRMWARE: ${{ steps.compile.outputs.FIRMWARE }}
-      
+
     steps:
     - name: 准备完成
-      uses: actions/checkout@v4
+      uses: actions/checkout@main
 
-    - name: 配置检测
+    - name: 检查服务器配置
       run: |
-        echo -e "CPU 核心总数\t: $(nproc)"
-        cat /proc/cpuinfo | grep 'model name'
-        free -h
-        uname -a
-        [ -f /proc/version ] && cat /proc/version
-        [ -f /etc/issue.net ] && cat /etc/issue.net
-        [ -f /etc/issue ] && cat /etc/issue
-        ulimit -a
-        
+        echo "若分配的服务器性能不足，务必及时取消，重新运行！"
+        echo -e "------------------------------- CPU信息 -------------------------------\n"
+        echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
+        echo -e "CPU核心及版本信息: $(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
+        echo -e "------------------------------- 内存信息 -------------------------------\n"
+        echo "已安装内存详细信息: "
+        sudo lshw -short -C memory | grep GiB
+        echo -e "\n"
+        echo -e "------------------------------- 磁盘信息 -------------------------------\n"
+        echo -e "磁盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
+        echo "------------------------------- 磁盘详情 -------------------------------\n"
+        df -Th
+
     - name: 初始化编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -66,11 +75,16 @@ jobs:
         sudo -E apt-get -qq clean
         echo "------------------------------- 设置工作目录及时区 -------------------------------"
         sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
 
-    - name: 拉取源码
+    - name: 克隆源码
+      working-directory: /workdir
       run: |
+        df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
     - name: 缓存构建动作
       uses: klever1988/cachewrtbuild@main
       with:
@@ -78,7 +92,6 @@ jobs:
         prefix: ${{ github.workspace }}/openwrt
 
     - name: 更新源
-      id: update
       run: |
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
@@ -86,36 +99,37 @@ jobs:
         mkdir customfeeds
         git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
         git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
-        chmod +x ../scripts/*.sh
-        ../scripts/hook-feeds.sh
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
+        $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 安装源
       run: |
-        cd $OPENWRTROOT
+        cd openwrt
         ./scripts/feeds install -a
-        
-    - name: 加载配置
+
+    - name: 自定义
       run: |
-        [ -e files ] && mv files $OPENWRTROOT/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
-        chmod +x scripts/*.sh
-        cd $OPENWRTROOT
-        ../$DIY_SH
-        ../scripts/preset-terminal-tools.sh
+        [ -e files ] && mv files openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$DIY_P3_SH
         make defconfig
-        
+
     - name: 下载软件包
       id: package
       run: |
-        cd $OPENWRTROOT
+        cd openwrt
+        cat .config
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-  
+
     - name: 编译固件
       id: compile
       run: |
-        cd $OPENWRTROOT
+        cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         cd $OPENWRTROOT/bin/packages/*
@@ -133,37 +147,28 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "FIRMWARE=$PWD" >> $GITHUB_OUTPUT
         echo "status=success" >> $GITHUB_OUTPUT
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
-        
+
     - name: 检查磁盘空间
       if: (!cancelled())
       run: df -hT
 
-    - name: 上传 bin 文件夹
+    - name: 打包固件
       uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: $OPENWRTROOT/bin
-
-    - name: 生成固件
-      if: steps.compile.outputs.status == 'success' && !cancelled()
+      if: steps.compile.outputs.status == 'success'
       id: generate
       run: |
         cd configs/opkg
         sed -i "s/subtarget/$SUBTARGET/g" distfeeds*.conf
         sed -i "s/target\//$TARGET\//g" distfeeds*.conf
         sed -i "s/platform/$PLATFORM/g" distfeeds*.conf
-        cd openwrt
+        cd $OPENWRTROOT
         mkdir -p files/etc/uci-defaults/
         cp ../scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         mkdir -p files/etc/opkg
         cp ../configs/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
         mkdir -p files/etc/opkg/keys
         cp ../configs/opkg/1035ac73cc4e59e3 files/etc/opkg/keys/1035ac73cc4e59e3
-        if "$UPLOAD_FIRMWARE" = 'true'
+        if "$KMODS_IN_FIRMWARE" = 'true'
         then
             mkdir -p files/www/snapshots
             cp -r bin/targets files/www/snapshots
@@ -181,46 +186,58 @@ jobs:
         popd
         make checksum
         mv bin/targets/rockchip/armv8/sha256sums bin/targets/rockchip/armv8/full-sha256sums
-        echo "status=success" >> $GITHUB_OUTPUT
-        
+
+    - name: 上传固件
+      uses: actions/upload-artifact@main
+      if: steps.organize.outputs.status == 'success' && !cancelled()
+      with:
+        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: ${{ env.FIRMWARE }}
+
     - name: 生成标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-          echo "release_tag=$(date +"%Y.%m.%d")-rockchip" >> $GITHUB_OUTPUT
-          echo "release_date=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
-          touch release.txt
-          echo "后台地址：192.168.1.1" >> release.txt
-          echo "status=success" >> $GITHUB_OUTPUT
-          
-    - name: 上传固件
+        echo "release_tag=Openwrt-For-H69K-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        touch release.txt
+        [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
+        echo "
+        📂 源码: ${{ env.REPO_URL }}
+
+        🌳 分支: ${{ env.REPO_BRANCH }}
+
+        📄 配置: ${{ env.CONFIG_FILE }}
+
+        ⏱️ 编译时间: $(date +"%Y年%m月%d日%H时%M分")
+
+        🌐 管理地址: 192.168.1.1
+
+        👤 用户名: root
+
+        🔒 密码: password " >> release.txt
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: 自动发布固件到 Releases
       uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          name: ${{ steps.tag.outputs.release_date }} openwrt-rockchip-armv8 下载固件
-          tag_name: ${{ steps.tag.outputs.release_tag }}
-          body_path: release.txt
-          files: ${{ env.FIRMWARE }}/*
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
 
-    - name: 删除 Workflow
-      uses: Mattraks/delete-workflow-runs@v2
+    - name: 删除运行记录
+      uses: Mattraks/delete-workflow-runs@main
       with:
-          retain_days: 1
-          keep_minimum_runs: 1
+        retain_days: 0
+        keep_minimum_runs: 4
 
-    - name: 删除 Releases
-      uses: dev-drprasad/delete-older-releases@v0.3.3
+    - name: 删除自动发布的旧固件
+      uses: dev-drprasad/delete-older-releases@master
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-      with:
-          keep_latest: 3
-          delete_tags: true
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 删除 Artifacts
-      uses: geekyeggo/delete-artifact@v4
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-         name: |
-            bin-archive
+        keep_latest: 2
+        delete_tags: true
