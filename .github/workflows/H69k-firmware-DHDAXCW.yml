@@ -37,14 +37,14 @@ jobs:
     runs-on: ubuntu-22.04
       
     steps:
-    - name: 准备
+    - name: Before freeing up disk space
       run: |
-        echo "磁盘空间释放前"
+        echo "Before freeing up disk space"
         echo "=============================================================================="
         df -hT
         echo "=============================================================================="
 
-    - name: "优化磁盘空间"
+    - name: "Optimize Disk Space"
       uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.1"
       with:
         operate_sudo: "True"
@@ -65,7 +65,7 @@ jobs:
         npm_clean: "True"
         os_swap: "True"
 
-    - name: 释放磁盘空间
+    - name: Freeing up disk space
       uses: easimon/maximize-build-space@master
       with: 
         root-reserve-mb: 2048
@@ -76,14 +76,17 @@ jobs:
         remove-codeql: 'true'
         remove-docker-images: 'true'
 
-    - name: 释放磁盘空间完成
+    - name: Free up disk space complete
       run: |
-        echo "磁盘空间释放后"
+        echo "Free up disk space complete"
         echo "=============================================================================="
         df -hT
         echo "=============================================================================="
 
-    - name: 检查
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: 环境信息
       run: |
         echo "警告⚠"
         echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
@@ -98,7 +101,7 @@ jobs:
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
-    - name: 初始化
+    - name: 初始环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
