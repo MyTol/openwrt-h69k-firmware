@@ -81,7 +81,7 @@ jobs:
         df -hT
         echo "=============================================================================="
 
-    - name: 准备完成
+    - name: Checkout
       uses: actions/checkout@main
 
     - name: 环境信息
