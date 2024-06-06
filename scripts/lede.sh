@@ -118,15 +118,15 @@ sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-
 ## luci-app-gowebdav 
 pushd customfeeds/luci/applications/luci-app-gowebdav/po
 mkdir zh-cn
-cp -f zh_Hans/gowebdav.po zh_cn/gowebdav.po
+cp -f zh_Hans/gowebdav.po zh-cn/gowebdav.po
 sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' zh-cn/gowebdav.po
 popd
 
 ## luci-app-argon-config
 pushd package/community/luci-app-argon-config/po
 mkdir zh-cn
-cp -f zh_Hans/argon-config.po zh_cn/argon-config.po
-sed -i 's/Argon 主题设置/主题设置/g' zh_cn/argon-config.po
+cp -f zh_Hans/argon-config.po zh-cn/argon-config.po
+sed -i 's/Argon 主题设置/主题设置/g' zh-cn/argon-config.po
 popd
 
 # 插件设置
