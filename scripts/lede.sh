@@ -76,6 +76,7 @@ popd
 # 添加上游 5G 支持
 rm -rf package/wwan
 git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
+rm -rf package/wwan/rooter/0optionalapps/ext-rspeedtest
 rm -rf package/wwan/rooter/0optionalapps/bwallocate
 # 修改接口名
 sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/etc/init.d/modem
@@ -110,7 +111,7 @@ sed -i 's/msgstr "网络存储"/msgstr "存储"/g' customfeeds/luci/applications
 sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 ## luci-app-argon-config
 sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh_Hans/argon-config.po
-sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/po/zh_cn/argon-config.po
+# sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/po/zh_cn/argon-config.po
 ## luci-app-filebrowser
 sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
 ## luci-app-iperf3-server
