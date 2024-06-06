@@ -61,6 +61,9 @@ rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
 rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 git clone https://github.com/DHDAXCW/theme
+echo "====="
+ls
+echo "====="
 popd
 
 # 修改 zzz-default-settings
@@ -75,8 +78,6 @@ popd
 # 添加上游 5G 支持
 rm -rf package/wwan
 git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
-rm -rf package/wwan/rooter/0optionalapps/ext-rspeedtest
-rm -rf package/wwan/rooter/0optionalapps/bwallocate
 # 修改接口名
 sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/etc/init.d/modem
 sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/etc/init.d/modem
@@ -114,12 +115,16 @@ sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' customfeeds/luci/applications/l
 sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh_Hans/argon-config.po
 sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/po/zh_cn/argon-config.po
 pushd customfeeds/luci/applications
+echo "====="
 ls
+echo "====="
 popd
 ## luci-app-filebrowser
 sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
 ## luci-app-iperf3-server
 sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
+## luci-app-store
+sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/src/po/zh-cn/iStore.po
 
 # 插件设置
 #
