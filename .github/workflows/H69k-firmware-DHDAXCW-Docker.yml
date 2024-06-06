@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: H69k-firmware-DHDAXCW
+name: H69k-firmware-DHDAXCW-Docker
 
 # 设置权限
 permissions:
