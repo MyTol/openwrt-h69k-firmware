@@ -83,11 +83,13 @@ sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/etc/ini
 sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
 sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
 # 修复 FM160-CN 电话号码获取
-sed -i 's/sim_number=.*print \\$2/sim_number=.*print \\$4/; /sim_number=.*print \\$4/ s/sim_number=.*print \\$4/sim_number=.*print \\$2/' package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
+rm -rf package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
+cp -f $GITHUB_WORKSPACE/data/fibocom.sh package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
 # 修改页面布局
 rm -rf package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
 cp -f $GITHUB_WORKSPACE/data/modem_info.htm package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
-sed -i '317i\n	translation["Network Mode"]=luci.i18n.translate("Network Mode")' package/wwan/luci-app-modem/luasrc/controller/modem.lua
+rm -rf package/wwan/luci-app-modem/luasrc/controller/modem.lua
+cp -f $GITHUB_WORKSPACE/data/modem.lua package/wwan/luci-app-modem/luasrc/controller/modem.lua
 
 # 修改本地化文本
 ## 基础
@@ -110,7 +112,8 @@ sed -i 's/msgstr "网络存储"/msgstr "存储"/g' customfeeds/luci/applications
 sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 ## luci-app-argon-config
 sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh_Hans/argon-config.po
-# sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/po/zh_cn/argon-config.po
+sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/po/zh_cn/argon-config.po
+pwd
 ## luci-app-filebrowser
 sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
 ## luci-app-iperf3-server
