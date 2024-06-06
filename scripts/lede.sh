@@ -55,8 +55,32 @@ rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
 rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 git clone https://github.com/DHDAXCW/theme
-
 popd
+
+# 修改 zzz-default-settings
+pushd package/lean/default-settings/files
+sed -i '/http/d' zzz-default-settings
+sed -i '/18.06/d' zzz-default-settings
+export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+export date_version=$(date -u +'%Y-%m-%d')
+sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
+popd
+
+# 添加上游 5G 支持
+rm -rf package/wwan
+git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
+rm -rf package/wwan/rooter/0optionalapps/bwallocate
+# 修改接口名
+sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/etc/init.d/modem
+sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/etc/init.d/modem
+sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
+sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
+# 修复 FM160-CN 电话号码获取
+sed -i 's/sim_number=.*print \\$2/sim_number=.*print \\$4/; /sim_number=.*print \\$4/ s/sim_number=.*print \\$4/sim_number=.*print \\$2/' package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
+# 修改页面布局
+rm -rf package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
+cp -f $GITHUB_WORKSPACE/data/modem_info.htm package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
+sed -i '317i\n	translation["Network Mode"]=luci.i18n.translate("Network Mode")' package/wwan/luci-app-modem/luasrc/controller/modem.lua
 
 # 修改本地化文本
 ## 基础
@@ -66,6 +90,9 @@ echo -e "\nmsgid \"NAS\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+## luci-app-modem
+sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
+sed -i 's/msgstr "网络模式"/msgstr "网络模式(Network Mode)"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
 ## luci-app-turboacc
 sed -i 's/Turbo ACC 网络加速设置/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
 sed -i 's/Turbo ACC 网络加速/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
@@ -97,15 +124,6 @@ sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-
-# 修改 zzz-default-settings
-pushd package/lean/default-settings/files
-sed -i '/http/d' zzz-default-settings
-sed -i '/18.06/d' zzz-default-settings
-export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-export date_version=$(date -u +'%Y-%m-%d')
-sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
-popd
 
 # 修改默认 shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
