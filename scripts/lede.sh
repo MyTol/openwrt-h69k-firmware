@@ -12,6 +12,13 @@
 mkdir package/community
 pushd package/community
 
+# 添加 xiangfeidexiaohuo 源
+git clone --depth=1 https://github.com/xiangfeidexiaohuo/extra-ipk
+cp -r ./extra-ipk/op-ddnsgo ./
+cp -r ./extra-ipk/op-homebox ./
+cp -r ./extra-ipk/luci-app-iperf3-server ./
+rm -rf extra-ipk
+
 # 添加 Lienol 源
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
@@ -106,6 +113,8 @@ sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-co
 sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/po/zh_cn/argon-config.po
 ## luci-app-filebrowser
 sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
+## luci-app-iperf3-server
+sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
 
 # 插件设置
 #
