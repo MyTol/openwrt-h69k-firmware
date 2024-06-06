@@ -15,7 +15,6 @@ pushd package/community
 # 添加 xiangfeidexiaohuo 源
 git clone --depth=1 https://github.com/xiangfeidexiaohuo/extra-ipk
 cp -r ./extra-ipk/op-ddnsgo ./
-cp -r ./extra-ipk/op-homebox ./
 cp -r ./extra-ipk/luci-app-iperf3-server ./
 rm -rf extra-ipk
 
