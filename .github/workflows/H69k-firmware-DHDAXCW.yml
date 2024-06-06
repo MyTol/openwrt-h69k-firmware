@@ -125,7 +125,7 @@ jobs:
 
     - name: 缓存工具链
       id: cache
-      uses: klever1988/cachewrtbuild@main
+      uses: HiGarfield/cachewrtbuild@main
       with:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
