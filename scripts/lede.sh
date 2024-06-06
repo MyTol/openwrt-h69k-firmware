@@ -18,6 +18,9 @@ rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
 rm -rf openwrt-package/verysync
 rm -rf openwrt-package/luci-app-verysync
 
+# 添加 h69k-fanctrl
+git clone --depth=1 https://github.com/MyTol/h69k-fanctrl h69k-fanctrl
+
 # 添加 luci-app-ssr-plus
 # git clone --depth=1 https://github.com/fw876/helloworld
 
@@ -42,13 +45,13 @@ cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/
 git clone https://github.com/DHDAXCW/theme
 
 # 添加 subconverter
-git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
+# git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
 
 # alist
 # git clone --depth=1 https://github.com/sbwml/luci-app-alist
 
 # Add OpenAppFilter
-git clone --depth=1 https://github.com/destan19/OpenAppFilter
+# git clone --depth=1 https://github.com/destan19/OpenAppFilter
 
 popd
  
