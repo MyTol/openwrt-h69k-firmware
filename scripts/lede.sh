@@ -103,13 +103,9 @@ sed -i 's/msgstr "网络模式"/msgstr "网络模式(Network Mode)"/g' package/w
 ## luci-app-turboacc
 sed -i 's/Turbo ACC 网络加速设置/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
 sed -i 's/Turbo ACC 网络加速/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
-## luci-app-gowebdav 
-sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' customfeeds/luci/applications/luci-app-gowebdav/po/zh_Hans/gowebdav.po
 ## luci-app-vsftpd
 sed -i 's/msgstr "网络存储"/msgstr "存储"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
-## luci-app-argon-config
-sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh_Hans/argon-config.po
 ## luci-app-filebrowser
 sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
 ## luci-app-iperf3-server
@@ -118,6 +114,20 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-ap
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/src/po/zh-cn/iStore.po
 ## luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
+
+## luci-app-gowebdav 
+pushd customfeeds/luci/applications/luci-app-gowebdav/po
+mkdir zh-cn
+cp -f zh_Hans/gowebdav.po zh_cn/gowebdav.po
+sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' zh-cn/gowebdav.po
+popd
+
+## luci-app-argon-config
+pushd package/community/luci-app-argon-config/po
+mkdir zh-cn
+cp -f zh_Hans/argon-config.po zh_cn/argon-config.po
+sed -i 's/Argon 主题设置/主题设置/g' zh_cn/argon-config.po
+popd
 
 # 插件设置
 #
