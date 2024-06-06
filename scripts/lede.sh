@@ -30,6 +30,20 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 
+# 调整 luci-app-passwall 菜单入口
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/controller/*.lua
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/passwall/*.lua
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/model/cbi/passwall/server/*.lua
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/app_update/*.htm
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/socks_auto_switch/*.htm
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/global/*.htm
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/haproxy/*.htm
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/log/*.htm
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/rule/*.htm
+sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
+
 # 添加 luci-app-poweroff
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
 
@@ -43,7 +57,46 @@ cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/
 git clone https://github.com/DHDAXCW/theme
 
 popd
- 
+
+# 修改本地化文本
+## 基础
+echo -e "\nmsgid \"Control\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "msgstr \"控制\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "\nmsgid \"NAS\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+## luci-app-turboacc
+sed -i 's/Turbo ACC 网络加速设置/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
+sed -i 's/Turbo ACC 网络加速/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
+## luci-app-gowebdav 
+sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' customfeeds/luci/applications/luci-app-gowebdav/po/zh_Hans/gowebdav.po
+## luci-app-vsftpd
+sed -i 's/msgstr "网络存储"/msgstr "存储"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
+sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
+## luci-app-argon-config
+sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh_Hans/argon-config.po
+## luci-app-filebrowser
+sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
+
+# 插件设置
+#
+## luci-app-oled
+sed -i "s|enable '0'|enable '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|netspeed '0'|netspeed '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|time '60'|time '300'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|text 'OPENWRT'|text 'OmO'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+### luci-app-filebrowser
+sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+sed -i 's|/tmp|/usr/bin|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+### luci-app-gowebdav
+sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+
 # 修改 zzz-default-settings
 pushd package/lean/default-settings/files
 sed -i '/http/d' zzz-default-settings
@@ -55,6 +108,9 @@ popd
 
 # 修改默认 shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
-
+## 设置主机名
+sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 # 修改默认 IP
 # sed -i 's/192.168.1.1/192.168.11.1/g' package/base-files/files/bin/config_generate
+# 设置 IPV6 分发长度
+sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
