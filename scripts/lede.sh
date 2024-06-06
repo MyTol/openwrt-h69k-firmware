@@ -99,7 +99,7 @@ echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 ## luci-app-modem
 sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
-sed -i 's/msgstr "网络模式"/msgstr "网络模式(Network Mode)"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
+sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
 ## luci-app-turboacc
 sed -i 's/Turbo ACC 网络加速设置/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
 sed -i 's/Turbo ACC 网络加速/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
