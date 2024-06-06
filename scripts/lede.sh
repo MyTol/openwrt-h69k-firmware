@@ -127,7 +127,6 @@ pushd package/community/luci-app-argon-config/po
 mkdir zh-cn
 cp -f zh_Hans/argon-config.po zh-cn/argon-config.po
 sed -i 's/Argon 主题设置/主题设置/g' zh-cn/argon-config.po
-cat zh-cn/argon-config.po
 popd
 
 # 插件设置
