@@ -16,21 +16,19 @@ pushd package/community
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
 rm -rf openwrt-package/verysync
+rm -rf openwrt-package/luci-app-filebrowser
 rm -rf openwrt-package/luci-app-verysync
+
+# 添加 luci-app-filebrowser
+git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser luci-app-filebrowser
 
 # 添加 h69k-fanctrl
 git clone --depth=1 https://github.com/MyTol/h69k-fanctrl h69k-fanctrl
 
-# 添加 luci-app-ssr-plus
-# git clone --depth=1 https://github.com/fw876/helloworld
-
 # 添加 luci-app-passwall
-git clone --depth=1 https://github.com/MyTol/openwrt-passwall-packages
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
-
-# 添加 OpenClash
-# git clone --depth=1 https://github.com/vernesong/OpenClash
 
 # 添加 luci-app-poweroff
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
@@ -43,15 +41,6 @@ rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
 rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 git clone https://github.com/DHDAXCW/theme
-
-# 添加 subconverter
-# git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
-
-# alist
-# git clone --depth=1 https://github.com/sbwml/luci-app-alist
-
-# Add OpenAppFilter
-# git clone --depth=1 https://github.com/destan19/OpenAppFilter
 
 popd
  
