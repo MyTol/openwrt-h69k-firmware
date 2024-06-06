@@ -14,7 +14,7 @@
 - [GitHub Actions](https://github.com/features/actions)
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
-- [DHDAXCW/lede-rockchip](https://github.com/DHDAXCW/lede-rockchip))
+- [DHDAXCW/lede-rockchip](https://github.com/DHDAXCW/lede-rockchip)
 - [Mikubill/transfer](https://github.com/Mikubill/transfer)
 - [softprops/action-gh-release](https://github.com/softprops/action-gh-release)
 - [Mattraks/delete-workflow-runs](https://github.com/Mattraks/delete-workflow-runs)
