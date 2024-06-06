@@ -6,7 +6,7 @@
 ![GitHub Stars](https://img.shields.io/github/stars/P3TERX/Actions-OpenWrt.svg?style=flat-square&label=Stars&logo=github)
 ![GitHub Forks](https://img.shields.io/github/forks/P3TERX/Actions-OpenWrt.svg?style=flat-square&label=Forks&logo=github)
 
-适配 H69k 的 OpenWrt 固件编译工作流
+根据上游 LEDE 与 DHDAXCW 的源码自动编译适配 H69k 的 OpenWrt 固件
 
 ## Credits
 
@@ -14,6 +14,7 @@
 - [GitHub Actions](https://github.com/features/actions)
 - [OpenWrt](https://github.com/openwrt/openwrt)
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
+- [DHDAXCW/lede-rockchip](https://github.com/DHDAXCW/lede-rockchip))
 - [Mikubill/transfer](https://github.com/Mikubill/transfer)
 - [softprops/action-gh-release](https://github.com/softprops/action-gh-release)
 - [Mattraks/delete-workflow-runs](https://github.com/Mattraks/delete-workflow-runs)
