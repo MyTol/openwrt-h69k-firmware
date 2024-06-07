@@ -89,6 +89,10 @@ cp -f $GITHUB_WORKSPACE/data/modem_info.htm package/wwan/luci-app-modem/luasrc/v
 rm -rf package/wwan/luci-app-modem/luasrc/controller/modem.lua
 cp -f $GITHUB_WORKSPACE/data/modem.lua package/wwan/luci-app-modem/luasrc/controller/modem.lua
 
+# 调整 luci-app-fileassistant 菜单入口
+sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
+sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
+
 # 修改本地化文本
 ## 基础
 echo -e "\nmsgid \"Control\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
@@ -97,6 +101,19 @@ echo -e "\nmsgid \"NAS\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
+
+## luci-app-nlbwmon
+sed -i 's/带宽监控/流量/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
+## luci-app-ipsec-server
+sed -i 's/IPSec VPN 服务器/IPSec/g' customfeeds/luci/applications/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
+## luci-app-pptp-server
+sed -i 's/PPTP VPN 服务器/PPTP/g' customfeeds/luci/applications/luci-app-pptp-server/po/zh-cn/pptp.po
+## luci-app-nfs
+sed -i 's/NFS 管理/NFS/g' customfeeds/luci/applications/luci-app-nfs/po/zh-cn/nfs.po
+## luci-app-wol
+sed -i 's/msgstr "网络唤醒"/msgstr "Wol"/g' customfeeds/luci/applications/luci-app-wol/po/zh-cn/wol.po
+## luci-app-commands
+sed -i 's/msgstr "自定义命令"/快捷命令/g' customfeeds/luci/applications/luci-app-commands/po/zh-cn/commands.po
 ## luci-app-modem
 sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
 sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
