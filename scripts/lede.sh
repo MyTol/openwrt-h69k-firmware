@@ -154,7 +154,7 @@ popd
 sed -i "s|enable '0'|enable '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
 sed -i "s|netspeed '0'|netspeed '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
 sed -i "s|time '60'|time '300'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
-sed -i "s|text 'OPENWRT'|text 'OmO'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
 sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
 ### luci-app-filebrowser
 sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
