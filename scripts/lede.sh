@@ -21,6 +21,10 @@ rm -rf extra-ipk
 # 添加 sundaqiang 源
 git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
 
+# 添加 JiaY-shi 源
+git clone --depth=1 https://github.com/JiaY-shi/fancontrol
+rm -rf fancontrol/images
+
 # 添加 Lienol 源
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
