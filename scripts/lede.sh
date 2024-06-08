@@ -58,7 +58,7 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
 
 # 添加 luci-theme
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
-# git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
+git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-app-argon-config 
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
 rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
@@ -139,13 +139,12 @@ sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/sr
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
 
 ## luci-app-argon-config
-sed -i 's/Argon 主题设置/主题设置/g' feeds/luci/applications/luci-app-argon-config/zh-cn/argon-config.po
-# sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/zh-cn/argon-config.po
-# pushd package/community/luci-app-argon-config/po
-# mkdir zh-cn
-# cp -f zh_Hans/argon-config.po zh-cn/argon-config.po
-# sed -i 's/Argon 主题设置/主题设置/g' zh-cn/argon-config.po
-# popd
+if [ -d "customfeeds/luci/applications/luci-app-argon-config" ]; then
+    rm -rf "customfeeds/luci/applications/luci-app-argon-config"
+    sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
+else
+    sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
+fi
 
 ## luci-app-gowebdav 
 pushd customfeeds/luci/applications/luci-app-gowebdav/po
