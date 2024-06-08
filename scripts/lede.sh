@@ -91,6 +91,7 @@ cp -f $GITHUB_WORKSPACE/data/modem.lua package/wwan/luci-app-modem/luasrc/contro
 
 # 调整 luci-app-fileassistant 菜单入口
 sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
+sed -i 's/, 1)/, 89)/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
 sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
 
 # 修改本地化文本
