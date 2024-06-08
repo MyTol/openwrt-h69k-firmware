@@ -118,7 +118,7 @@ sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/community/sun
 ## luci-app-nlbwmon
 sed -i 's/带宽监控/流量/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 # luci-app-wrtbwmon
-sed -i 's/实时流量监测/实时/g' customfeeds/luci/applications/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po.po
+sed -i 's/实时流量监测/实时/g' customfeeds/luci/applications/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po
 ## luci-app-ipsec-server
 sed -i 's/IPSec VPN 服务器/IPSec/g' customfeeds/luci/applications/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
 ## luci-app-pptp-server
