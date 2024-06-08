@@ -137,8 +137,15 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-ap
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/src/po/zh-cn/iStore.po
 ## luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
+
 ## luci-app-argon-config
 sed -i 's/Argon 主题设置/主题设置/g' feeds/luci/applications/luci-app-argon-config/zh-cn/argon-config.po
+# sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/zh-cn/argon-config.po
+# pushd package/community/luci-app-argon-config/po
+# mkdir zh-cn
+# cp -f zh_Hans/argon-config.po zh-cn/argon-config.po
+# sed -i 's/Argon 主题设置/主题设置/g' zh-cn/argon-config.po
+# popd
 
 ## luci-app-gowebdav 
 pushd customfeeds/luci/applications/luci-app-gowebdav/po
@@ -146,13 +153,6 @@ mkdir zh-cn
 cp -f zh_Hans/gowebdav.po zh-cn/gowebdav.po
 sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' zh-cn/gowebdav.po
 popd
-
-## luci-app-argon-config
-# pushd package/community/luci-app-argon-config/po
-# mkdir zh-cn
-# cp -f zh_Hans/argon-config.po zh-cn/argon-config.po
-# sed -i 's/Argon 主题设置/主题设置/g' zh-cn/argon-config.po
-# popd
 
 # 插件设置
 #
