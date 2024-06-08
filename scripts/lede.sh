@@ -19,10 +19,10 @@ cp -r ./extra-ipk/luci-app-iperf3-server ./
 rm -rf extra-ipk
 
 # 添加 jjm2473 存储库
-git clone --depth=1 https://github.com/jjm2473/openwrt-apps jjm2473
-rm -rf jjm2473/luci-app-cpufreq
-rm -rf jjm2473/luci-app-tasks
-rm -rf jjm2473/luci-lib-mac-vendor
+# git clone --depth=1 https://github.com/jjm2473/openwrt-apps jjm2473
+# rm -rf jjm2473/luci-app-cpufreq
+# rm -rf jjm2473/luci-app-tasks
+# rm -rf jjm2473/luci-lib-mac-vendor
 
 # 添加 sundaqiang 存储库
 git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
