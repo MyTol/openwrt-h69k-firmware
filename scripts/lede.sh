@@ -138,7 +138,7 @@ sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/sr
 ## luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
 ## luci-app-argon-config
-sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/zh-cn/argon-config.po
+sed -i 's/Argon 主题设置/主题设置/g' feeds/luci/applications/luci-app-argon-config/zh-cn/argon-config.po
 
 ## luci-app-gowebdav 
 pushd customfeeds/luci/applications/luci-app-gowebdav/po
