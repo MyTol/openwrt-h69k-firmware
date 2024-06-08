@@ -169,14 +169,14 @@ sed -i "s|time '60'|time '300'|g" customfeeds/luci/applications/luci-app-oled/ro
 sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
 sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
 ### luci-app-filebrowser
-sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
-sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
-sed -i 's|/tmp|/usr/bin|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+# sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+# sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+# sed -i 's|/tmp|/usr/bin|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
 ### luci-app-gowebdav
-sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+# sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+# sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+# sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+# sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 
 # 修改默认 shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
