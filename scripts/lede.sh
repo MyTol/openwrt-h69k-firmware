@@ -109,7 +109,6 @@ echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.
 echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 
-
 ## luci-app-nginx-manager
 sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g' package/community/sundaqiang/luci-app-nginx-manager/po/zh-cn/nginx-manager.po
 ## luci-app-supervisord
@@ -142,15 +141,8 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-ap
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/src/po/zh-cn/iStore.po
 ## luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
-
 ## luci-app-argon-config
-if [ -d "customfeeds/luci/applications/luci-app-argon-config" ]; then
-    rm -rf "customfeeds/luci/applications/luci-app-argon-config"
-    sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
-else
-    sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
-fi
-
+sed -i 's/Argon 主题设置/主题设置/g' package/feeds/luci/luci-app-argon-config/po/zh-cn/argon-config.po
 ## luci-app-gowebdav 
 pushd customfeeds/luci/applications/luci-app-gowebdav/po
 mkdir zh-cn
