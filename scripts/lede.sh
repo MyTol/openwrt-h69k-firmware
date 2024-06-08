@@ -18,6 +18,9 @@ cp -r ./extra-ipk/op-ddnsgo ./
 cp -r ./extra-ipk/luci-app-iperf3-server ./
 rm -rf extra-ipk
 
+# 添加 sundaqiang 源
+git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
+
 # 添加 Lienol 源
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
@@ -71,6 +74,9 @@ export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk 
 export date_version=$(date -u +'%Y-%m-%d')
 sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
 popd
+
+# 移除 uhttpd uhttpd-mod-ubus
+sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
 
 # 添加上游 5G 支持
 rm -rf package/wwan
