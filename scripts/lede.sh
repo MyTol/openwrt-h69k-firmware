@@ -21,10 +21,6 @@ rm -rf extra-ipk
 # 添加 sundaqiang 源
 git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
 
-# 添加 JiaY-shi 源
-git clone --depth=1 https://github.com/JiaY-shi/fancontrol
-rm -rf fancontrol/images
-
 # 添加 Lienol 源
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
@@ -147,6 +143,7 @@ sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/sr
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
 ## luci-app-argon-config
 sed -i 's/Argon 主题设置/主题设置/g' package/feeds/luci/luci-app-argon-config/po/zh-cn/argon-config.po
+
 ## luci-app-gowebdav 
 pushd customfeeds/luci/applications/luci-app-gowebdav/po
 mkdir zh-cn
