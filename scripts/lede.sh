@@ -55,12 +55,12 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
 
 # 添加 luci-theme
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
-git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
+# git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
 rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-git clone https://github.com/DHDAXCW/theme
+git clone --depth=1 https://github.com/DHDAXCW/theme
 popd
 
 # 修改 zzz-default-settings
@@ -104,6 +104,7 @@ echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.
 
 ## luci-app-nlbwmon
 sed -i 's/带宽监控/流量/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
+sed -i 's/实时流量监测/实时/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 ## luci-app-ipsec-server
 sed -i 's/IPSec VPN 服务器/IPSec/g' customfeeds/luci/applications/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
 ## luci-app-pptp-server
@@ -112,8 +113,6 @@ sed -i 's/PPTP VPN 服务器/PPTP/g' customfeeds/luci/applications/luci-app-pptp
 sed -i 's/NFS 管理/NFS/g' customfeeds/luci/applications/luci-app-nfs/po/zh-cn/nfs.po
 ## luci-app-wol
 sed -i 's/msgstr "网络唤醒"/msgstr "Wol"/g' customfeeds/luci/applications/luci-app-wol/po/zh-cn/wol.po
-## luci-app-commands
-sed -i 's/msgstr "自定义命令"/快捷命令/g' customfeeds/luci/applications/luci-app-commands/po/zh-cn/commands.po
 ## luci-app-modem
 sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
 sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
@@ -131,6 +130,8 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-ap
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/src/po/zh-cn/iStore.po
 ## luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
+## luci-app-argon-config
+sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/zh-cn/argon-config.po
 
 ## luci-app-gowebdav 
 pushd customfeeds/luci/applications/luci-app-gowebdav/po
@@ -140,11 +141,11 @@ sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' zh-cn/gowebdav.po
 popd
 
 ## luci-app-argon-config
-pushd package/community/luci-app-argon-config/po
-mkdir zh-cn
-cp -f zh_Hans/argon-config.po zh-cn/argon-config.po
-sed -i 's/Argon 主题设置/主题设置/g' zh-cn/argon-config.po
-popd
+# pushd package/community/luci-app-argon-config/po
+# mkdir zh-cn
+# cp -f zh_Hans/argon-config.po zh-cn/argon-config.po
+# sed -i 's/Argon 主题设置/主题设置/g' zh-cn/argon-config.po
+# popd
 
 # 插件设置
 #
