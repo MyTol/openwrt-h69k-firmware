@@ -192,5 +192,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        keep_latest: 2
+        keep_latest: 7
         delete_tags: true
