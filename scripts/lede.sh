@@ -109,6 +109,11 @@ echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.
 echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 
+
+## luci-app-nginx-manager
+sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g' package/community/sundaqiang/luci-app-nginx-manager/po/zh-cn/nginx-manager.po
+## luci-app-supervisord
+sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/community/sundaqiang/luci-app-supervisord/po/zh-cn/supervisord.po
 ## luci-app-nlbwmon
 sed -i 's/带宽监控/流量/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 sed -i 's/实时流量监测/实时/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
