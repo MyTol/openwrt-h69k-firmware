@@ -12,18 +12,24 @@
 mkdir package/community
 pushd package/community
 
-# 添加 xiangfeidexiaohuo 源
+# 添加 xiangfeidexiaohuo 存储库
 git clone --depth=1 https://github.com/xiangfeidexiaohuo/extra-ipk
 cp -r ./extra-ipk/op-ddnsgo ./
 cp -r ./extra-ipk/luci-app-iperf3-server ./
 rm -rf extra-ipk
 
-# 添加 sundaqiang 源
+# 添加 jjm2473 存储库
+git clone --depth=1 https://github.com/jjm2473/openwrt-apps jjm2473
+rm -rf jjm2473/luci-app-cpufreq
+rm -rf jjm2473/luci-app-tasks
+rm -rf jjm2473/luci-lib-mac-vendor
+
+# 添加 sundaqiang 存储库
 git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
 rm -rf sundaqiang/luci-app-supervisord/luasrc/controller/supervisord.lua
 cp -f $GITHUB_WORKSPACE/data/supervisord.lua sundaqiang/luci-app-supervisord/luasrc/controller/supervisord.lua
 
-# 添加 Lienol 源
+# 添加 Lienol 存储库
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
 rm -rf openwrt-package/verysync
