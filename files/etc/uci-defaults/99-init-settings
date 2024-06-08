@@ -10,6 +10,9 @@
 # 设置默认主题 luci-theme-argon
 uci set luci.main.mediaurlbase='/luci-static/argon'
 
+# 停止 sing-box
+/etc/init.d/sing-box stop
+
 # 禁用 uhttpd
 # /etc/init.d/uhttpd stop
 # /etc/init.d/uhttpd disable
