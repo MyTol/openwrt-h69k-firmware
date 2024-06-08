@@ -20,6 +20,8 @@ rm -rf extra-ipk
 
 # 添加 sundaqiang 源
 git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
+rm -rf sundaqiang/luci-app-supervisord/luasrc/controller/supervisord.lua
+cp -f $GITHUB_WORKSPACE/data/supervisord.lua sundaqiang/luci-app-supervisord/luasrc/controller/supervisord.lua
 
 # 添加 Lienol 源
 git clone --depth=1 https://github.com/Lienol/openwrt-package
@@ -115,7 +117,8 @@ sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g' package/community/sundaqiang
 sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/community/sundaqiang/luci-app-supervisord/po/zh-cn/supervisord.po
 ## luci-app-nlbwmon
 sed -i 's/带宽监控/流量/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
-sed -i 's/实时流量监测/实时/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
+# luci-app-wrtbwmon
+sed -i 's/实时流量监测/实时/g' customfeeds/luci/applications/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po.po
 ## luci-app-ipsec-server
 sed -i 's/IPSec VPN 服务器/IPSec/g' customfeeds/luci/applications/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
 ## luci-app-pptp-server
