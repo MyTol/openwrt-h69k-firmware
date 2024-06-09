@@ -84,7 +84,7 @@ sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-setti
 popd
 
 # 移除 uhttpd uhttpd-mod-ubus
-# sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
+sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
 
 # 添加上游 5G 支持
 rm -rf package/wwan
