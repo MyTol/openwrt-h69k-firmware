@@ -117,6 +117,8 @@ echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.
 echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 
+## luci-app-ttyd
+sed -i 's/TTYD 终端/终端/g' customfeeds/luci/applications/luci-app-ttyd/po/zh-cn/terminal.po
 ## luci-app-nginx-manager
 sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g' package/community/sundaqiang/luci-app-nginx-manager/po/zh-cn/nginx-manager.po
 ## luci-app-supervisord
@@ -177,6 +179,9 @@ sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" customfeeds/luci/applications/lu
 # sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 # sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 # sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+## luci-app-ttyd
+sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
+
 
 # 修改默认 shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
