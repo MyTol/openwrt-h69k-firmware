@@ -108,6 +108,11 @@ sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant
 sed -i 's/, 1)/, 89)/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
 sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
 
+## 添加 Nginx 支持 luci-app-ttyd 
+sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
+## 添加 Nginx 支持 luci-app-netdata
+sed -i 's|:<%=luci.model.uci.cursor():get("netdata", "netdata", "port") %>|/netdata|g' customfeeds/luci/applications/luci-app-netdata/luasrc/view/netdata/netdata.htm
+
 # 修改本地化文本
 ## 基础
 echo -e "\nmsgid \"Control\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
@@ -179,9 +184,6 @@ sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" customfeeds/luci/applications/lu
 # sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 # sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 # sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-## luci-app-ttyd
-sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
-
 
 # 修改默认 shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
