@@ -6,7 +6,7 @@ location /terminal/ {
       proxy_buffer_size 64k;
       proxy_buffers   32 32k;
       proxy_busy_buffers_size 128k;
-      proxy_pass http://192.168.1.1:7681/;
+      proxy_pass http://127.0.0.1:7681/;
       proxy_http_version 1.1;
       proxy_set_header Connection "upgrade";
       proxy_set_header Upgrade $http_upgrade;
