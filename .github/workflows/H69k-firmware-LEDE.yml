@@ -77,7 +77,9 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
+        pushd openwrt
         git checkout -b lede_old cb1f2c6a583bd6e07412c460a37d44e5f619ea24
+        popd
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: 缓存构建动作
