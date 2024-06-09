@@ -1,3 +1,4 @@
+# etc/config/nginx
 
 config main global
 	option uci_enable 'true'
