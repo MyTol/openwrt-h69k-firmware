@@ -193,3 +193,6 @@ sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 # sed -i 's/192.168.1.1/192.168.11.1/g' package/base-files/files/bin/config_generate
 # 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
+# 为 uwsgi 添加长连接支持
+sed '$ahttp-keepalive = true' customfeeds/packages/net/uwsgi/files-luci-support/luci-cgi_io.ini
+sed '$ahttp-timeout = 1000' customfeeds/packages/net/uwsgi/files-luci-support/luci-cgi_io.ini
