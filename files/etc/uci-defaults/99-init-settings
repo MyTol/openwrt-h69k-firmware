@@ -12,10 +12,29 @@ uci set luci.main.mediaurlbase='/luci-static/argon'
 
 # 停止 sing-box
 /etc/init.d/sing-box stop
+/etc/init.d/sing-box disable
 
 # 禁用 uhttpd
 # /etc/init.d/uhttpd stop
 # /etc/init.d/uhttpd disable
+
+# 替换 Nginx 配置文件 nginx
+if [ -e package/base-files/files/etc/config/nginx ]; then
+    rm -rf package/base-files/files/etc/config/nginx
+fi
+mv package/base-files/files/etc/config/nginx.tmp package/base-files/files/etc/config/nginx
+# 替换 Nginx 配置文件 nginx.conf
+if [ -e package/base-files/files/etc/nginx/nginx.conf ]; then
+    rm -rf package/base-files/files/etc/nginx/nginx.conf
+fi
+mv package/base-files/files/etc/nginx/nginx.conf.tmp package/base-files/files/etc/nginx/nginx.conf
+# 替换 uwsgi 配置文件 luci-cgi_io.ini
+if [ -e package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini ]; then
+    rm -rf package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini
+fi
+mv package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini.tmp package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini
+# 重启 Nginx
+/etc/init.d/nginx restart
 
 # 禁用 opkg 签名检查
 sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
