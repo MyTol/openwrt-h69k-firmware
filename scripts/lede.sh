@@ -25,9 +25,7 @@ rm -rf extra-ipk
 # rm -rf jjm2473/luci-lib-mac-vendor
 
 # 添加 sundaqiang 存储库
-git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
-rm -rf sundaqiang/luci-app-supervisord/luasrc/controller/supervisord.lua
-cp -f $GITHUB_WORKSPACE/data/supervisord.lua sundaqiang/luci-app-supervisord/luasrc/controller/supervisord.lua
+# git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
 
 # 添加 Lienol 存储库
 git clone --depth=1 https://github.com/Lienol/openwrt-package
@@ -149,6 +147,8 @@ echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.
 echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 
+## luci-app-ttyd
+sed -i 's/msgstr "SQM QoS"/msgstr "流量塑形"/g' customfeeds/luci/applications/luci-app-sqm/po/zh-cn/sqm.po
 ## luci-app-ttyd
 sed -i 's/TTYD 终端/终端/g' customfeeds/luci/applications/luci-app-ttyd/po/zh-cn/terminal.po
 ## luci-app-nginx-manager
