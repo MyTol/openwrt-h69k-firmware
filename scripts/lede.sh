@@ -85,7 +85,9 @@ popd
 rm -rf package/wwan
 git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
 rm -rf package/wwan/rooter/0optionalapps/bwallocate
+rm -rf package/wwan/rooter/0optionalapps/ext-speedtest
 rm -rf package/wwan/rooter/0optionalapps/ext-rspeedtest
+
 # 修改接口名
 sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/etc/init.d/modem
 sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/etc/init.d/modem
