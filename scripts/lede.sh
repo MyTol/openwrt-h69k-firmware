@@ -147,7 +147,9 @@ echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.
 echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
 
-## luci-app-ttyd
+## luci-app-arpbind
+sed -i 's/IP/MAC 绑定/地址绑定/g' customfeeds/luci/applications/luci-app-arpbind/po/zh-cn/arpbind.po
+## luci-app-sqm
 sed -i 's/msgstr "SQM QoS"/msgstr "流量塑形"/g' customfeeds/luci/applications/luci-app-sqm/po/zh-cn/sqm.po
 ## luci-app-ttyd
 sed -i 's/TTYD 终端/终端/g' customfeeds/luci/applications/luci-app-ttyd/po/zh-cn/terminal.po
