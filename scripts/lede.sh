@@ -37,14 +37,14 @@ rm -rf openwrt-package/luci-app-filebrowser
 rm -rf openwrt-package/luci-app-verysync
 
 # 添加 luci-app-filebrowser
-git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser luci-app-filebrowser
+# git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser luci-app-filebrowser
 
 # 添加 h69k-fanctrl
 git clone --depth=1 https://github.com/MyTol/h69k-fanctrl h69k-fanctrl
 
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2
+# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 
 # 调整 luci-app-passwall 菜单入口
@@ -62,7 +62,7 @@ sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwal
 sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
 
 # 添加 luci-app-poweroff
-git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
+# git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
 
 # 添加 luci-theme
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon luci-theme-argon
@@ -83,9 +83,6 @@ export date_version=$(date -u +'%Y-%m-%d')
 sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
 popd
 
-# 移除 uhttpd uhttpd-mod-ubus
-sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
-
 # 添加上游 5G 支持
 rm -rf package/wwan
 git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
@@ -96,22 +93,52 @@ sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/usr/share
 sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
 # 修复 FM160-CN 电话号码获取
 rm -rf package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
-cp -f $GITHUB_WORKSPACE/data/fibocom.sh package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
+cp -f $GITHUB_WORKSPACE/data/modem/fibocom.sh package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
 # 修改页面布局
 rm -rf package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
-cp -f $GITHUB_WORKSPACE/data/modem_info.htm package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
+cp -f $GITHUB_WORKSPACE/data/view/modem_info.htm package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
 rm -rf package/wwan/luci-app-modem/luasrc/controller/modem.lua
-cp -f $GITHUB_WORKSPACE/data/modem.lua package/wwan/luci-app-modem/luasrc/controller/modem.lua
+cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/luci-app-modem/luasrc/controller/modem.lua
 
 # 调整 luci-app-fileassistant 菜单入口
 sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
 sed -i 's/, 1)/, 89)/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
 sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
 
-## 添加 Nginx 支持 luci-app-ttyd 
+# 移除 uhttpd uhttpd-mod-ubus
+sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
+
+# 为插件添加 Nginx 支持, 禁用 https 访问
+mkdir -p package/base-files/files/etc/nginx
+cp -r $GITHUB_WORKSPACE/data/nginx/conf.d package/base-files/files/etc/nginx
+mkdir -p package/base-files/files/etc/config
+cp -f $GITHUB_WORKSPACE/data/nginx/_nginx package/base-files/files/etc/config/nginx
+cp -f $GITHUB_WORKSPACE/data/nginx/_nginx.conf package/base-files/files/etc/nginx/nginx.conf
+## luci-app-ttyd 
 sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
-## 添加 Nginx 支持 luci-app-netdata
+## luci-app-netdata
 sed -i 's|:<%=luci.model.uci.cursor():get("netdata", "netdata", "port") %>|/netdata|g' customfeeds/luci/applications/luci-app-netdata/luasrc/view/netdata/netdata.htm
+## uwsgi
+mkdir -p package/base-files/files/etc/uwsgi/vassals
+cp -f $GITHUB_WORKSPACE/data/uwsgi/luci-cgi_io.ini package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini
+
+# 插件设置
+#
+## luci-app-oled
+sed -i "s|enable '0'|enable '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|netspeed '0'|netspeed '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|time '60'|time '300'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
+## luci-app-filebrowser
+# sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+# sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+# sed -i 's|/tmp|/usr/bin|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+## luci-app-gowebdav
+# sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+# sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+# sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+# sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 
 # 修改本地化文本
 ## 基础
@@ -166,24 +193,6 @@ mkdir zh-cn
 cp -f zh_Hans/gowebdav.po zh-cn/gowebdav.po
 sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' zh-cn/gowebdav.po
 popd
-
-# 插件设置
-#
-## luci-app-oled
-sed -i "s|enable '0'|enable '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
-sed -i "s|netspeed '0'|netspeed '1'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
-sed -i "s|time '60'|time '300'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
-sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
-sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" customfeeds/luci/applications/luci-app-oled/root/etc/config/oled
-### luci-app-filebrowser
-# sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
-# sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
-# sed -i 's|/tmp|/usr/bin|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
-### luci-app-gowebdav
-# sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-# sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-# sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-# sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 
 # 修改默认 shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
