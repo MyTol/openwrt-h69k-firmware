@@ -154,9 +154,9 @@ sed -i 's/msgstr "SQM QoS"/msgstr "流量塑形"/g' customfeeds/luci/application
 ## luci-app-ttyd
 sed -i 's/TTYD 终端/终端/g' customfeeds/luci/applications/luci-app-ttyd/po/zh-cn/terminal.po
 ## luci-app-nginx-manager
-sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g' package/community/sundaqiang/luci-app-nginx-manager/po/zh-cn/nginx-manager.po
+# sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g' package/community/sundaqiang/luci-app-nginx-manager/po/zh-cn/nginx-manager.po
 ## luci-app-supervisord
-sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/community/sundaqiang/luci-app-supervisord/po/zh-cn/supervisord.po
+# sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/community/sundaqiang/luci-app-supervisord/po/zh-cn/supervisord.po
 ## luci-app-nlbwmon
 sed -i 's/带宽监控/流量/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 # luci-app-wrtbwmon
@@ -179,7 +179,7 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' customfeeds/luci/applications/l
 sed -i 's/msgstr "网络存储"/msgstr "存储"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 ## luci-app-filebrowser
-sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
+# sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
 ## luci-app-iperf3-server
 sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
 ## luci-app-store
