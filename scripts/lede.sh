@@ -110,15 +110,15 @@ sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
 mkdir -p package/base-files/files/etc/nginx
 cp -r $GITHUB_WORKSPACE/data/nginx/conf.d package/base-files/files/etc/nginx
 mkdir -p package/base-files/files/etc/config
-cp -f $GITHUB_WORKSPACE/data/nginx/_nginx package/base-files/files/etc/config/nginx
-cp -f $GITHUB_WORKSPACE/data/nginx/_nginx.conf package/base-files/files/etc/nginx/nginx.conf
+cp -f $GITHUB_WORKSPACE/data/nginx/_nginx package/base-files/files/etc/config/nginx.tmp
+cp -f $GITHUB_WORKSPACE/data/nginx/_nginx.conf package/base-files/files/etc/nginx/nginx.conf.tmp
 ## luci-app-ttyd 
 sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
 ## luci-app-netdata
 sed -i 's|:<%=luci.model.uci.cursor():get("netdata", "netdata", "port") %>|/netdata|g' customfeeds/luci/applications/luci-app-netdata/luasrc/view/netdata/netdata.htm
 ## uwsgi
 mkdir -p package/base-files/files/etc/uwsgi/vassals
-cp -f $GITHUB_WORKSPACE/data/uwsgi/luci-cgi_io.ini package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini
+cp -f $GITHUB_WORKSPACE/data/uwsgi/luci-cgi_io.ini package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini.tmp
 
 # 插件设置
 #
