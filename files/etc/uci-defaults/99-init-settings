@@ -19,20 +19,20 @@ uci set luci.main.mediaurlbase='/luci-static/argon'
 # /etc/init.d/uhttpd disable
 
 # 替换 Nginx 配置文件 nginx
-if [ -e package/base-files/files/etc/config/nginx ]; then
+if [ -e "package/base-files/files/etc/config/nginx" ] && [ -e "package/base-files/files/etc/config/nginx.tmp" ]; then
     rm -rf package/base-files/files/etc/config/nginx
+    mv package/base-files/files/etc/config/nginx.tmp package/base-files/files/etc/config/nginx
 fi
-mv package/base-files/files/etc/config/nginx.tmp package/base-files/files/etc/config/nginx
 # 替换 Nginx 配置文件 nginx.conf
-if [ -e package/base-files/files/etc/nginx/nginx.conf ]; then
+if [ -e "package/base-files/files/etc/nginx/nginx.conf" ] && [ -e "package/base-files/files/etc/nginx/nginx.conf.tmp" ]; then
     rm -rf package/base-files/files/etc/nginx/nginx.conf
+    mv package/base-files/files/etc/nginx/nginx.conf.tmp package/base-files/files/etc/nginx/nginx.conf
 fi
-mv package/base-files/files/etc/nginx/nginx.conf.tmp package/base-files/files/etc/nginx/nginx.conf
 # 替换 uwsgi 配置文件 luci-cgi_io.ini
-if [ -e package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini ]; then
+if [ -e "package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini" ] && [ -e "package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini.tmp" ]; then
     rm -rf package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini
+    mv package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini.tmp package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini
 fi
-mv package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini.tmp package/base-files/files/etc/uwsgi/vassals/luci-cgi_io.ini
 # 重启 Nginx
 /etc/init.d/nginx restart
 
