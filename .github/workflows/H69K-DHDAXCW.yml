@@ -66,7 +66,7 @@ jobs:
     - name: 释放空间
       uses: easimon/maximize-build-space@master
       with: 
-        root-reserve-mb: 10240
+        root-reserve-mb: 8196
         swap-size-mb: 1
         remove-dotnet: 'true'
         remove-android: 'true'
@@ -147,8 +147,8 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cd openwrt
-
-        
+        rm -rf tools/automake
+        cp -r $GITHUB_WORKSPACE/data/automake tools
         cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
         sed -i "s/http:\/\/192.168.123.100:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/lean/g" files/etc/opkg/distfeeds.conf.mirror
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
@@ -180,7 +180,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt—_D_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: DHDAXCW—bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
     - name: 整理固件
@@ -196,7 +196,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_D_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: DHDAXCW-firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: 生成标签
@@ -210,8 +210,6 @@ jobs:
         📂 源码: ${{ env.REPO_URL }}
 
         🌳 分支: ${{ env.REPO_BRANCH }}
-
-        📄 配置: ${{ env.CONFIG_FILE }}
 
         ⏱️ 编译时间: $(date +"%Y年%m月%d日%H时%M分")
 
