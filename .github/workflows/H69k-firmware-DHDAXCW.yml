@@ -16,8 +16,8 @@ permissions:
 # 自动执行
 on:
   repository_dispatch:
-  schedule:
-    - cron: 0 01 * * *
+#   schedule:
+#     - cron: 0 01 * * *
   workflow_dispatch:
 
 # 环境变量
