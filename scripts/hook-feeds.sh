@@ -5,7 +5,7 @@ mkdir customfeeds
 git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
 # 拉取新版 Golang
 rm -rf customfeeds/packages/lang/golang
-git clone https://github.com/MyTol/packages_lang_golang -b 22.x customfeeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x customfeeds/packages/lang/golang
 # 拉取 luci
 git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
 # 设置为本地源

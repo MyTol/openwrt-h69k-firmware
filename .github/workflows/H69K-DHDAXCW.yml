@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: H69k-firmware-DHDAXCW
+name: H69k-DHDAXCW-Full
 
 # 设置权限
 permissions:
@@ -16,13 +16,11 @@ permissions:
 # 自动执行
 on:
   repository_dispatch:
-#   schedule:
-#     - cron: 0 01 * * *
   workflow_dispatch:
 
 # 环境变量
 env:
-  REPO_URL: https://github.com/MyTol/lede-rockchip
+  REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   REPO_BRANCH: stable
   CONFIG_FILE: configs/DHDAXCW/full.config
   DIY_P1_SH: scripts/hook-feeds.sh
@@ -38,13 +36,13 @@ jobs:
     runs-on: ubuntu-22.04
       
     steps:
-    - name: 释放空间前
+    - name: 打印信息
       run: |
         echo "=============================================================================="
         df -hT
         echo "=============================================================================="
 
-    - name: "优化空间"
+    - name: 优化空间
       uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.1"
       with:
         operate_sudo: "True"
@@ -65,7 +63,7 @@ jobs:
         npm_clean: "True"
         os_swap: "True"
 
-    - name: "释放空间"
+    - name: 释放空间
       uses: easimon/maximize-build-space@master
       with: 
         root-reserve-mb: 10240
@@ -76,7 +74,7 @@ jobs:
         remove-codeql: 'true'
         remove-docker-images: 'true'
 
-    - name: 释放空间后
+    - name: 打印信息
       run: |
         echo "=============================================================================="
         df -hT
@@ -134,7 +132,7 @@ jobs:
       id: ufeeds
       run: |
         cd openwrt
-        chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 安装源
@@ -149,10 +147,11 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cd openwrt
+
+        
         cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
         sed -i "s/http:\/\/192.168.123.100:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/lean/g" files/etc/opkg/distfeeds.conf.mirror
-        chmod +x $GITHUB_WORKSPACE/$DIY_P2_SH
-        chmod +x $GITHUB_WORKSPACE/$DIY_P3_SH
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
         $GITHUB_WORKSPACE/$DIY_P3_SH
         make defconfig
