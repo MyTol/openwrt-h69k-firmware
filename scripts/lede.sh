@@ -7,8 +7,8 @@
 # Author: SuLingGG
 # Blog: https://mlapp.cn
 #=================================================
-# Clone community packages to package/community
 
+# 拉取存储库至 package/community 目录
 mkdir package/community
 pushd package/community
 
@@ -38,11 +38,10 @@ rm -rf openwrt-package/luci-app-verysync
 # git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser luci-app-filebrowser
 
 # 添加 h69k-fanctrl
-git clone --depth=1 https://github.com/MyTol/h69k-fanctrl h69k-fanctrl
+git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 
 # 调整 luci-app-passwall 菜单入口
@@ -87,8 +86,7 @@ git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
 rm -rf package/wwan/rooter/0optionalapps/bwallocate
 rm -rf package/wwan/rooter/0optionalapps/ext-speedtest
 rm -rf package/wwan/rooter/0optionalapps/ext-rspeedtest
-
-# 修改接口名
+# 修改接口名, 将移除多模块兼容
 sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/etc/init.d/modem
 sed -i 's/wwan6_5g_${modem_no}/wwan6/g' package/wwan/luci-app-modem/root/etc/init.d/modem
 sed -i 's/wwan_5g_${modem_no}/wwan/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
@@ -205,6 +203,6 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 ## 设置主机名
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 # 修改默认 IP
-# sed -i 's/192.168.1.1/192.168.11.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 # 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
