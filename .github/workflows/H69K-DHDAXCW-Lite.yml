@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   REPO_BRANCH: stable
-  CONFIG_FILE: configs/DHDAXCW/full.config
+  CONFIG_FILE: configs/DHDAXCW/lite.config
   DIY_P1_SH: scripts/hook-feeds.sh
   DIY_P2_SH: scripts/lede.sh
   DIY_P3_SH: scripts/preset-terminal-tools.sh
