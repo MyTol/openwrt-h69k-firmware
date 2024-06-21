@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: H69k-DHDAXCW-Full
+name: H69k-DHDAXCW-Lite
 
 # 设置权限
 permissions:
@@ -24,7 +24,7 @@ env:
   REPO_BRANCH: stable
   CONFIG_FILE: configs/DHDAXCW/lite.config
   DIY_P1_SH: scripts/hook-feeds.sh
-  DIY_P2_SH: scripts/lede.sh
+  DIY_P2_SH: scripts/lede-rockchip.sh
   DIY_P3_SH: scripts/preset-terminal-tools.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
@@ -180,7 +180,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: DHDAXCW—bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: DHDAXCW-lite—bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
     - name: 整理固件
@@ -196,7 +196,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: DHDAXCW-firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: DHDAXCW-lite-firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: 生成标签

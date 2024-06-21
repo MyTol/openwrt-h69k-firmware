@@ -24,8 +24,9 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: configs/LEDE/feeds.conf
   CONFIG_FILE: configs/LEDE/full.config
-  DIY_P1_SH: scripts/diy-part1.sh
+  DIY_P1_SH: scripts/lede.sh
   DIY_P2_SH: scripts/diy-part1.sh
+  DIY_P3_SH: ''
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -133,16 +134,16 @@ jobs:
     - name: 加载初始脚本 一
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
         cd openwrt
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 加载初始脚本 二
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
         cd openwrt
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: 下载软件包
@@ -173,7 +174,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: LEDE-bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: LEDE-full-bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
     - name: 整理固件文件
@@ -189,7 +190,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: LEDE-firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: LEDE-full-firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: 生成发布标签
