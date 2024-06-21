@@ -25,7 +25,7 @@ env:
   FEEDS_CONF: configs/LEDE/feeds.conf
   CONFIG_FILE: configs/LEDE/full.config
   DIY_P1_SH: scripts/lede.sh
-  DIY_P2_SH: scripts/diy-part1.sh
+  DIY_P2_SH: scripts/customize.sh
   DIY_P3_SH: ''
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
