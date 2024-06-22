@@ -122,7 +122,7 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: 缓存构建动作
+    - name: 缓存工具链
       uses: klever1988/cachewrtbuild@main
       with:
         ccache: 'true'
@@ -173,7 +173,7 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: 上传 bin 文件夹
+    - name: 上传 Bin 文件夹
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:

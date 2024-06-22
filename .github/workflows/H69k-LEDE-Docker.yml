@@ -122,35 +122,32 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: 缓存构建动作
+    - name: 缓存工具链
       uses: klever1988/cachewrtbuild@main
       with:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
 
-    - name: 加载初始脚本 一
+    - name: 添加 Feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 加载初始脚本 二
+    - name: 更新 Feeds
+      run: cd openwrt && ./scripts/feeds update -a
+
+    - name: 安装 Feeds
+      run: cd openwrt && ./scripts/feeds install -a
+
+    - name: 自定义内容
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
-
-    - name: 下载软件包
-      id: package
-      run: |
-        cd openwrt
-        make defconfig
-        make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
 
     - name: 编译固件
       id: compile
@@ -167,7 +164,7 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: 上传 bin 文件夹
+    - name: 上传 Bin 文件夹
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
