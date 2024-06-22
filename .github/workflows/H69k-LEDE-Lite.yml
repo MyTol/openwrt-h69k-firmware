@@ -128,14 +128,20 @@ jobs:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
 
-    - name: 加载初始脚本 一
+    - name: 添加 Feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 加载初始脚本 二
+    - name: 更新 Feeds
+      run: cd openwrt && ./scripts/feeds update -a
+
+    - name: 安装 Feeds
+      run: cd openwrt && ./scripts/feeds install -a
+
+    - name: 自定义内容
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
