@@ -46,7 +46,7 @@ sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/
 sed -i 's/Turbo ACC 网络加速设置/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
 ### luci-app-vsftpd
-sed -i 's/msgstr "网络存储"/msgstr "存储"/g' package/feeds/luci/luci-app-vsftpd/po/zh-cn/vsftpd.po
+#sed -i 's/msgstr "网络存储"/msgstr "存储"/g' package/feeds/luci/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' package/feeds/luci/luci-app-vsftpd/po/zh-cn/vsftpd.po
 ### luci-app-filebrowser
 #sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po

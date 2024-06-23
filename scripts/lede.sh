@@ -16,7 +16,6 @@ pushd package/community
 # 添加 xiangfeidexiaohuo 存储库
 git clone --depth=1 https://github.com/xiangfeidexiaohuo/extra-ipk
 cp -r ./extra-ipk/op-ddnsgo ./
-cp -r ./extra-ipk/op-webdav ./
 cp -r ./extra-ipk/luci-app-iperf3-server ./
 rm -rf extra-ipk
 
@@ -89,9 +88,9 @@ sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/l
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
 
 # 调整 luci-app-fileassistant 菜单入口
-sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
-sed -i 's/, 1)/, 89)/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
-sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
+#sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
+#sed -i 's/, 1)/, 89)/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
+#sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
 
 # 修改 zzz-default-settings
 pushd package/lean/default-settings/files
