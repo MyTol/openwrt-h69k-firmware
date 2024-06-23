@@ -59,4 +59,4 @@ sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/luci-app-dockerm
 ### luci-app-argon-config
 sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
 ### luci-app-gowebdav 
-sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/community/op-webdav/luci-app-gowebdav/po/zh-cn/gowebdav.po
+sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/feeds/luci/luci-app-gowebdav/po/zh-cn/gowebdav.po
