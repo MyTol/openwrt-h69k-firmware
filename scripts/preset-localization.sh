@@ -12,8 +12,8 @@
 ## 基础
 echo -e "\nmsgid \"Control\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"控制\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
-echo -e "\nmsgid \"NAS\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
-echo -e "msgstr \"存储\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+#echo -e "\nmsgid \"NAS\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+#echo -e "msgstr \"存储\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 ## 插件
@@ -49,7 +49,7 @@ sed -i 's/Turbo ACC 网络加速/网络加速/g' package/feeds/luci/luci-app-tur
 sed -i 's/msgstr "网络存储"/msgstr "存储"/g' package/feeds/luci/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' package/feeds/luci/luci-app-vsftpd/po/zh-cn/vsftpd.po
 ### luci-app-filebrowser
-sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
+#sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
 ### luci-app-iperf3-server
 sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
 ### luci-app-store
@@ -59,4 +59,4 @@ sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/luci-app-dockerm
 ### luci-app-argon-config
 sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
 ### luci-app-gowebdav 
-sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' package/community/op-webdav/luci-app-gowebdav/po/zh-cn/gowebdav.po
+sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/community/op-webdav/luci-app-gowebdav/po/zh-cn/gowebdav.po
