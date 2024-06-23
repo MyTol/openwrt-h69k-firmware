@@ -140,64 +140,6 @@ sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 
-# 修改本地化文本
-## 基础
-echo -e "\nmsgid \"Control\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
-echo -e "msgstr \"控制\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
-echo -e "\nmsgid \"NAS\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
-echo -e "msgstr \"存储\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
-echo -e "\nmsgid \"VPN\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
-echo -e "msgstr \"魔法\"" >> customfeeds/luci/modules/luci-base/po/zh-cn/base.po
-
-## luci-app-arpbind
-sed -i 's|IP/MAC 绑定|地址绑定|g' customfeeds/luci/applications/luci-app-arpbind/po/zh-cn/arpbind.po
-## luci-app-sqm
-sed -i 's/msgstr "SQM QoS"/msgstr "流量塑形"/g' customfeeds/luci/applications/luci-app-sqm/po/zh-cn/sqm.po
-## luci-app-ttyd
-sed -i 's/TTYD 终端/终端/g' customfeeds/luci/applications/luci-app-ttyd/po/zh-cn/terminal.po
-## luci-app-nginx-manager
-# sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g' package/community/sundaqiang/luci-app-nginx-manager/po/zh-cn/nginx-manager.po
-## luci-app-supervisord
-# sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/community/sundaqiang/luci-app-supervisord/po/zh-cn/supervisord.po
-## luci-app-nlbwmon
-sed -i 's/带宽监控/流量/g' customfeeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
-# luci-app-wrtbwmon
-sed -i 's/实时流量监测/实时/g' customfeeds/luci/applications/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po
-## luci-app-ipsec-server
-sed -i 's/IPSec VPN 服务器/IPSec/g' customfeeds/luci/applications/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
-## luci-app-pptp-server
-sed -i 's/PPTP VPN 服务器/PPTP/g' customfeeds/luci/applications/luci-app-pptp-server/po/zh-cn/pptp.po
-## luci-app-nfs
-sed -i 's/NFS 管理/NFS/g' customfeeds/luci/applications/luci-app-nfs/po/zh-cn/nfs.po
-## luci-app-wol
-sed -i 's/msgstr "网络唤醒"/msgstr "Wol"/g' customfeeds/luci/applications/luci-app-wol/po/zh-cn/wol.po
-## luci-app-modem
-sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
-sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
-## luci-app-turboacc
-sed -i 's/Turbo ACC 网络加速设置/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
-sed -i 's/Turbo ACC 网络加速/网络加速/g' customfeeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
-## luci-app-vsftpd
-sed -i 's/msgstr "网络存储"/msgstr "存储"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
-sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' customfeeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
-## luci-app-filebrowser
-# sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
-## luci-app-iperf3-server
-sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
-## luci-app-store
-sed -i 's/msgstr "iStore"/msgstr "商店"/g' feeds/istore/luci/luci-app-store/src/po/zh-cn/iStore.po
-## luci-app-dockerman
-sed -i 's/msgstr "Docker"/msgstr "容器"/g' customfeeds/luci/applications/luci-app-dockerman/po/zh-cn/dockerman.po
-## luci-app-argon-config
-sed -i 's/Argon 主题设置/主题设置/g' package/feeds/luci/luci-app-argon-config/po/zh-cn/argon-config.po
-
-## luci-app-gowebdav 
-pushd customfeeds/luci/applications/luci-app-gowebdav/po
-mkdir zh-cn
-cp -f zh_Hans/gowebdav.po zh-cn/gowebdav.po
-sed -i 's/msgstr "GoWebDav"/msgstr "Webdav"/g' zh-cn/gowebdav.po
-popd
-
 # 修改默认 shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 ## 设置主机名

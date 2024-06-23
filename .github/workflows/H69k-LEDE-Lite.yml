@@ -26,7 +26,7 @@ env:
   CONFIG_FILE: configs/LEDE/lite.config
   DIY_P1_SH: scripts/lede.sh
   DIY_P2_SH: scripts/preset-other.sh
-  DIY_P3_SH: ''
+  DIY_P3_SH: scripts/preset-localization.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -148,6 +148,7 @@ jobs:
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$DIY_P3_SH
 
     - name: 下载软件包
       id: package
