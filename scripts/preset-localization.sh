@@ -22,7 +22,7 @@ sed -i 's|备份/恢复|备份与恢复|g' feeds/luci/modules/luci-base/po/zh-cn
 ### luci-app-arpbind
 sed -i 's|IP/MAC 绑定|地址绑定|g' package/feeds/luci/luci-app-arpbind/po/zh-cn/arpbind.po
 ### luci-app-sqm
-sed -i 's/msgstr "SQM QoS"/msgstr "流量塑形"/g'  package/feeds/luci/luci-app-sqm/po/zh-cn/sqm.po
+sed -i 's/msgstr "SQM QoS"/msgstr "智能队列"/g'  package/feeds/luci/luci-app-sqm/po/zh-cn/sqm.po
 ### luci-app-ttyd
 sed -i 's/TTYD 终端/终端/g'  package/feeds/luci/luci-app-ttyd/po/zh-cn/terminal.po
 ### luci-app-nlbwmon
