@@ -16,6 +16,8 @@ echo -e "\nmsgid \"NAS\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"存储\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i 's|备份/升级|备份升级|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i 's|备份/恢复|备份与恢复|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
 ## 插件
 ### luci-app-arpbind
 sed -i 's|IP/MAC 绑定|地址绑定|g' package/feeds/luci/luci-app-arpbind/po/zh-cn/arpbind.po
