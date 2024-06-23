@@ -32,9 +32,9 @@ sed -i 's/带宽监控/流量/g' package/feeds/luci/luci-app-nlbwmon/po/zh-cn/nl
 ### luci-app-wrtbwmon
 sed -i 's/实时流量监测/实时/g' package/feeds/luci/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po
 ### luci-app-ipsec-server
-sed -i 's/IPSec VPN 服务器/IPSec/g' package/feeds/luci/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
+#sed -i 's/IPSec VPN 服务器/IPSec/g' package/feeds/luci/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
 ### luci-app-pptp-server
-sed -i 's/PPTP VPN 服务器/PPTP/g' package/feeds/luci/luci-app-pptp-server/po/zh-cn/pptp.po
+#sed -i 's/PPTP VPN 服务器/PPTP/g' package/feeds/luci/luci-app-pptp-server/po/zh-cn/pptp.po
 ### luci-app-nfs
 sed -i 's/NFS 管理/NFS/g' package/feeds/luci/luci-app-nfs/po/zh-cn/nfs.po
 ### luci-app-wol
@@ -53,7 +53,7 @@ sed -i 's/msgstr "FTP 服务器"/msgstr "FTP"/g' package/feeds/luci/luci-app-vsf
 ### luci-app-iperf3-server
 sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-app-iperf3-server/po/zh-cn/iperf3-server.po
 ### luci-app-store
-sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/luci/luci-app-store/src/po/zh-cn/iStore.po
+#sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/luci/luci-app-store/src/po/zh-cn/iStore.po
 ### luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-argon-config
