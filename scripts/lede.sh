@@ -60,6 +60,7 @@ popd
 # 添加上游 5G 支持
 git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan/modem
 # 移除错误模块
+rm -rf package/wwan/modem/rooter/ext-rooter-basic
 rm -rf package/wwan/modem/rooter/0optionalapps/bwallocate
 rm -rf package/wwan/modem/rooter/0optionalapps/ext-speedtest
 rm -rf package/wwan/modem/rooter/0optionalapps/ext-rspeedtest
