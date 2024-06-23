@@ -13,11 +13,11 @@
 # 插件设置
 #
 ## luci-app-oled
-sed -i "s|enable '0'|enable '1'|g" package/feeds/luci/luci-app-oled/root/etc/config/oled
-sed -i "s|netspeed '0'|netspeed '1'|g" package/feeds/luci/luci-app-oled/root/etc/config/oled
-sed -i "s|time '60'|time '300'|g" package/feeds/luci/luci-app-oled/root/etc/config/oled
-sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" package/feeds/luci/luci-app-oled/root/etc/config/oled
-sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" package/feeds/luci/luci-app-oled/root/etc/config/oled
+sed -i "s|enable '0'|enable '1'|g" package/community/luci-app-oled/root/etc/config/oled
+sed -i "s|netspeed '0'|netspeed '1'|g" package/community/luci-app-oled/root/etc/config/oled
+sed -i "s|time '60'|time '300'|g" package/community/luci-app-oled/root/etc/config/oled
+sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" package/community/luci-app-oled/root/etc/config/oled
+sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" package/community/luci-app-oled/root/etc/config/oled
 ## luci-app-filebrowser
 #sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
 #sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
