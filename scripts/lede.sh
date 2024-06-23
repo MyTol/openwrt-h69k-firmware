@@ -27,7 +27,7 @@ rm -rf openwrt-package/luci-app-filebrowser
 rm -rf openwrt-package/luci-app-verysync
 
 # 添加 luci-app-filebrowser
-git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser luci-app-filebrowser
+#git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser luci-app-filebrowser
 
 # 添加 h69k-fanctrl
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
@@ -35,6 +35,10 @@ git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
+
+# 添加 luci-app-oled
+rm -rf ../../feeds/luci/applications/luci-app-oled
+git clone --depth=1 https://github.com/NateLol/luci-app-oled
 
 # 添加 luci-app-poweroff
 # git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
