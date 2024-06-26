@@ -109,18 +109,18 @@ sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant
 # sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
 
 # 为插件添加 Nginx 支持,
-mkdir -p package/base-files/files/etc/nginx
+#mkdir -p package/base-files/files/etc/nginx
 # 为插件添加反代路由
-cp -r $GITHUB_WORKSPACE/data/nginx/conf.d package/base-files/files/etc/nginx
+#cp -r $GITHUB_WORKSPACE/data/nginx/conf.d package/base-files/files/etc/nginx
 # Nginx 禁用 HTTPS 访问
-cp -f $GITHUB_WORKSPACE/data/nginx/_nginx customfeeds/packages/net/nginx-util/files/nginx.config
-cp -f $GITHUB_WORKSPACE/data/nginx/_nginx.conf package/base-files/files/etc/nginx/nginx.conf
+#cp -f $GITHUB_WORKSPACE/data/nginx/_nginx customfeeds/packages/net/nginx-util/files/nginx.config
+#cp -f $GITHUB_WORKSPACE/data/nginx/_nginx.conf package/base-files/files/etc/nginx/nginx.conf
 ## luci-app-ttyd 
-sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
+#sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
 ## luci-app-netdata
-sed -i 's|:<%=luci.model.uci.cursor():get("netdata", "netdata", "port") %>|/netdata|g' customfeeds/luci/applications/luci-app-netdata/luasrc/view/netdata/netdata.htm
+#sed -i 's|:<%=luci.model.uci.cursor():get("netdata", "netdata", "port") %>|/netdata|g' customfeeds/luci/applications/luci-app-netdata/luasrc/view/netdata/netdata.htm
 ## uwsgi
-cp -f $GITHUB_WORKSPACE/data/uwsgi/luci-cgi_io.ini customfeeds/packages/net/uwsgi/files-luci-support/luci-cgi_io.ini
+#cp -f $GITHUB_WORKSPACE/data/uwsgi/luci-cgi_io.ini customfeeds/packages/net/uwsgi/files-luci-support/luci-cgi_io.ini
 
 # 插件设置
 #
