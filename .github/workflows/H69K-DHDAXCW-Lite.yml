@@ -25,7 +25,8 @@ env:
   CONFIG_FILE: configs/DHDAXCW/lite.config
   DIY_P1_SH: scripts/hook-feeds.sh
   DIY_P2_SH: scripts/lede-rockchip.sh
-  DIY_P3_SH: scripts/preset-terminal-tools.sh
+  DIY_P3_SH: scripts/preset-localization.sh
+  DIY_P4_SH: scripts/preset-terminal-tools.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -154,6 +155,7 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
         $GITHUB_WORKSPACE/$DIY_P3_SH
+        $GITHUB_WORKSPACE/$DIY_P4_SH
         make defconfig
 
     - name: 下载包

@@ -65,6 +65,6 @@ popd
 ### luci-app-supervisord
 # sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/feeds/luci/luci-app-supervisord/po/zh-cn/supervisord.po
 ### luci-app-store
-#sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/luci/luci-app-store/src/po/zh-cn/iStore.po
+sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/luci/luci-app-store/src/po/zh-cn/iStore.po
 ### luci-app-filebrowser
 #sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po
