@@ -182,7 +182,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: DHDAXCW-lite—bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: DHDAXCW-lite-bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
     - name: 整理固件
