@@ -47,7 +47,7 @@ git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 # MT7916 160mhz 修复
 #rm -rf package/kernel/mt76
 #git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
-cp -f $GITHUB_WORKSPACE/data/firmware/mt7981_eeprom_mt7976_dbdc.bin package/kernel/mt76/src/firmware
+cp -f $GITHUB_WORKSPACE/data/firmware/mt7981_eeprom_mt7976_dbdc.bin package/kernel/mt76/src/firmware/mt7981_eeprom_mt7976_dbdc.bin
 
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
