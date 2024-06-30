@@ -47,7 +47,7 @@ git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 # MT7916 160mhz 修复
 #rm -rf package/kernel/mt76
 #git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
-cp -f $GITHUB_WORKSPACE/data/firmware/mt7981_eeprom_mt7976_dbdc.bin package/kernel/mt76/firmware
+cp -f $GITHUB_WORKSPACE/data/firmware/mt7981_eeprom_mt7976_dbdc.bin package/kernel/mt76/src/firmware
 
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
@@ -152,7 +152,7 @@ sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.conf
 sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 
 # 修改默认 shell 为 zsh
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+#sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 ## 设置主机名
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 # 修改默认 IP
