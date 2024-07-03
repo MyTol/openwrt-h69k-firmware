@@ -45,7 +45,7 @@ git clone --depth=1 https://github.com/NateLol/luci-app-oled
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
 # 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
-#rm -rf package/kernel/mt76
+rm -rf package/kernel/mt76
 #git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
