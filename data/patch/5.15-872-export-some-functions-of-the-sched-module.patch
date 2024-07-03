@@ -1,0 +1,25 @@
+From 259a02deb1d427e7c3a76b22c38f254d8f79ad5e Mon Sep 17 00:00:00 2001
+From: W_Y_CPP <383152993@qq.com>
+Date: Wed, 8 Mar 2023 13:20:14 +0800
+Subject: [PATCH] 1
+
+---
+ kernel/sched/core.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+--- a/kernel/sched/core.c
++++ b/kernel/sched/core.c
+@@ -7603,11 +7603,13 @@ int sched_setscheduler(struct task_struc
+ {
+ 	return _sched_setscheduler(p, policy, param, true);
+ }
++EXPORT_SYMBOL_GPL(sched_setscheduler);
+ 
+ int sched_setattr(struct task_struct *p, const struct sched_attr *attr)
+ {
+ 	return __sched_setscheduler(p, attr, true, true);
+ }
++EXPORT_SYMBOL_GPL(sched_setattr);
+ 
+ int sched_setattr_nocheck(struct task_struct *p, const struct sched_attr *attr)
+ {

@@ -1,0 +1,32 @@
+From 1b8adc8e003ab3b2dbd356e78b9f9a3c4b09aee7 Mon Sep 17 00:00:00 2001
+From: W_Y_CPP <383152993@qq.com>
+Date: Wed, 8 Mar 2023 12:19:14 +0800
+Subject: [PATCH] export sched same function
+
+---
+ kernel/sched/core.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/kernel/sched/core.c
++++ b/kernel/sched/core.c
+@@ -5514,17 +5514,19 @@ int sched_setscheduler(struct task_struc
+ {
+ 	return _sched_setscheduler(p, policy, param, true);
+ }
++EXPORT_SYMBOL_GPL(sched_setscheduler);
+ 
+ int sched_setattr(struct task_struct *p, const struct sched_attr *attr)
+ {
+ 	return __sched_setscheduler(p, attr, true, true);
+ }
++EXPORT_SYMBOL_GPL(sched_setattr);
+ 
+ int sched_setattr_nocheck(struct task_struct *p, const struct sched_attr *attr)
+ {
+ 	return __sched_setscheduler(p, attr, false, true);
+ }
+-
++EXPORT_SYMBOL_GPL(sched_setattr_nocheck);
+ /**
+  * sched_setscheduler_nocheck - change the scheduling policy and/or RT priority of a thread from kernelspace.
+  * @p: the task in question.

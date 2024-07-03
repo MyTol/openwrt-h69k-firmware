@@ -20,6 +20,9 @@ sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_g
 # 切换6.1内核编译
 sed -i 's/6.6/6.1/g' target/linux/rockchip/Makefile
 
+# 添加 5G 驱动补丁
+cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1/6.1-872-export-some-functions-of-the-sched-module.patch
+
 # 修改 zzz-default-settings
 pushd package/lean/default-settings/files
 sed -i '/http/d' zzz-default-settings
