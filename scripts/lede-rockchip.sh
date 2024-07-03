@@ -108,11 +108,10 @@ rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
 # 添加上游 5G 支持
-rm -rf package/wwan
-git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
-rm -rf package/wwan/rooter/0optionalapps/bwallocate
-rm -rf package/wwan/rooter/0optionalapps/ext-speedtest
-rm -rf package/wwan/rooter/0optionalapps/ext-rspeedtest
+git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan/modem
+cp -r package/wwan/modem/luci-app-modem package/wwan
+rm -rf package/wwan/modem
+
 # 修改接口名
 sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/luci-app-modem/root/etc/init.d/modem
 sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/luci-app-modem/root/etc/init.d/modem
