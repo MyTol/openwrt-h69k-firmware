@@ -4,8 +4,8 @@
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
-# Author: MyTol
-# Blog: https://aiacg.cn
+# Author: AIacg
+# Blog: https://blog.aiacg.cn
 #=================================================
 
 # 本地化文本

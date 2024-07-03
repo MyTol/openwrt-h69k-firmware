@@ -1,11 +1,19 @@
 #!/bin/bash
+#=================================================
+# File name: hook-feeds.sh
+# System Required: Linux
+# Version: 1.0
+# Lisence: MIT
+# Author: AIacg
+# Blog: https://blog.aiacg.cn
+#=================================================
+
 # 创建 customfeeds 目录
 mkdir customfeeds
 # 拉取 packages
 git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
-# 拉取新版 Golang
-rm -rf customfeeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 22.x customfeeds/packages/lang/golang
+# 更新 golang
+source ./preset-golang.sh
 # 拉取 luci
 git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
 # 设置为本地源
