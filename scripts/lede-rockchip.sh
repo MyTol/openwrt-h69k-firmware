@@ -158,3 +158,6 @@ sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 # sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 # 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
+
+# 切换6.1内核编译
+sed -i 's/6.6/6.1/g' target/linux/rockchip/Makefile
