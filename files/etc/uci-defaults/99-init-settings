@@ -22,7 +22,7 @@ uci set luci.main.mediaurlbase='/luci-static/argon'
 sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
 
 # 禁用 IPV6 前缀
-sed -i 's/^[^#].*option ula/#&/' /etc/config/network
+# sed -i 's/^[^#].*option ula/#&/' /etc/config/network
 
 # 禁用某些软件包的自启
 cd /etc/rc.d

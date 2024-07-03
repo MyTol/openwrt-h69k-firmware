@@ -44,8 +44,8 @@ git clone --depth=1 https://github.com/NateLol/luci-app-oled
 # 添加 h69k-fanctrl
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
-# 修复 Linux Kernel 6.1 下 MT7916 的支持
-rm -rf package/kernel/mt76
+# 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
+#rm -rf package/kernel/mt76
 #git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
@@ -147,6 +147,7 @@ popd
 # sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
 # sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
 # sed -i 's|/tmp|/usr/bin|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
+
 ## luci-app-gowebdav
 sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
