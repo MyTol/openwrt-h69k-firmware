@@ -44,11 +44,6 @@ git clone --depth=1 https://github.com/NateLol/luci-app-oled
 # 添加 h69k-fanctrl
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
-# 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
-rm -rf package/kernel/mt76
-#git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
-git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
-
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
@@ -88,6 +83,11 @@ export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk 
 export date_version=$(date -u +'%Y-%m-%d')
 sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
 popd
+
+# 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
+rm -rf package/kernel/mt76
+#git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
+git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
 # 添加上游 5G 支持
 rm -rf package/wwan
