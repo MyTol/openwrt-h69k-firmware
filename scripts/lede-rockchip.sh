@@ -44,9 +44,10 @@ git clone --depth=1 https://github.com/NateLol/luci-app-oled
 # 添加 h69k-fanctrl
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
-# MT7916 160mhz 修复
-#rm -rf package/kernel/mt76
+# 修复 Linux Kernel 6.1 下 MT7916 的支持
+rm -rf package/kernel/mt76
 #git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
+git clone --depth=1 https://github.com/MyTol/mt76 package/kernel/mt76
 
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
