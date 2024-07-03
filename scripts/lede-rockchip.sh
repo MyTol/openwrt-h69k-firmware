@@ -11,9 +11,6 @@
 # 修复 AutoCore 样式
 sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
 
-# 修改默认 shell 为 zsh
-#sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
-
 ## 设置主机名
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 
@@ -36,24 +33,12 @@ cp -r ./extra-ipk/op-ddnsgo ./
 cp -r ./extra-ipk/luci-app-iperf3-server ./
 rm -rf extra-ipk
 
-# 添加 jjm2473 存储库
-# git clone --depth=1 https://github.com/jjm2473/openwrt-apps jjm2473
-# rm -rf jjm2473/luci-app-cpufreq
-# rm -rf jjm2473/luci-app-tasks
-# rm -rf jjm2473/luci-lib-mac-vendor
-
-# 添加 sundaqiang 存储库
-# git clone --depth=1 https://github.com/sundaqiang/openwrt-packages sundaqiang
-
 # 添加 Lienol 存储库
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
 rm -rf openwrt-package/verysync
 rm -rf openwrt-package/luci-app-filebrowser
 rm -rf openwrt-package/luci-app-verysync
-
-# 添加 luci-app-filebrowser
-# git clone --depth=1 https://github.com/wangqn/luci-app-filebrowser luci-app-filebrowser
 
 # 添加 luci-app-oled
 rm -rf ../../feeds/luci/applications/luci-app-oled
@@ -80,9 +65,6 @@ sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwal
 sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/rule/*.htm
 sed -i 's/services/vpn/g' openwrt-passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
 
-# 添加 luci-app-poweroff
-# git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff
-
 # 添加 luci-theme
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
@@ -104,10 +86,9 @@ popd
 
 # 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
 rm -rf package/kernel/mt76
-#git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
 git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
-# 添加上游 5G 支持
+# 添加上游 5G 支持, 仅编译 luci-app-modem 代码
 git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan/modem
 cp -r package/wwan/modem/luci-app-modem package/wwan
 rm -rf package/wwan/modem
@@ -117,10 +98,10 @@ sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/luci-app-modem/ro
 sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/luci-app-modem/root/etc/init.d/modem
 sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
 sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
-# 修复 FM160-CN 电话号码获取
+# 修复 FM160-CN 模块电话号码获取
 rm -rf package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
 cp -f $GITHUB_WORKSPACE/data/modem/fibocom.sh package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
-# 修改页面布局
+# 修改页面样式
 rm -rf package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
 cp -f $GITHUB_WORKSPACE/data/view/modem_info.htm package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
 rm -rf package/wwan/luci-app-modem/luasrc/controller/modem.lua
@@ -130,23 +111,6 @@ cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/luci-app-modem/luasrc/
 sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
 sed -i 's/, 1)/, 89)/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
 sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
-
-# 移除 uhttpd uhttpd-mod-ubus
-# sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile
-
-# 为插件添加 Nginx 支持,
-#mkdir -p package/base-files/files/etc/nginx
-# 为插件添加反代路由
-#cp -r $GITHUB_WORKSPACE/data/nginx/conf.d package/base-files/files/etc/nginx
-# Nginx 禁用 HTTPS 访问
-#cp -f $GITHUB_WORKSPACE/data/nginx/_nginx customfeeds/packages/net/nginx-util/files/nginx.config
-#cp -f $GITHUB_WORKSPACE/data/nginx/_nginx.conf package/base-files/files/etc/nginx/nginx.conf
-## luci-app-ttyd 
-#sed -i "s|:7681|/terminal|g" customfeeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
-## luci-app-netdata
-#sed -i 's|:<%=luci.model.uci.cursor():get("netdata", "netdata", "port") %>|/netdata|g' customfeeds/luci/applications/luci-app-netdata/luasrc/view/netdata/netdata.htm
-## uwsgi
-#cp -f $GITHUB_WORKSPACE/data/uwsgi/luci-cgi_io.ini customfeeds/packages/net/uwsgi/files-luci-support/luci-cgi_io.ini
 
 # 插件设置
 #
@@ -158,11 +122,6 @@ sed -i "s|time '60'|time '300'|g" root/etc/config/oled
 sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" root/etc/config/oled
 sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" root/etc/config/oled
 popd
-
-## luci-app-filebrowser
-# sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
-# sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
-# sed -i 's|/tmp|/usr/bin|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
 
 ## luci-app-gowebdav
 sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
