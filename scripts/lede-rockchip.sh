@@ -134,8 +134,7 @@ sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant
 # 插件设置
 #
 ## luci-app-oled
-pushd package/feeds/luci/luci-app-oled
-#pushd package/community/luci-app-oled/luci-app-oled
+pushd package/community/luci-app-oled/luci-app-oled
 sed -i "s|enable '0'|enable '1'|g" root/etc/config/oled
 sed -i "s|netspeed '0'|netspeed '1'|g" root/etc/config/oled
 sed -i "s|time '60'|time '300'|g" root/etc/config/oled
