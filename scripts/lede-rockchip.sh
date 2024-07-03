@@ -150,12 +150,18 @@ sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 
+# 修复 AutoCore 样式
+sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
+
 # 修改默认 shell 为 zsh
-#sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+
 ## 设置主机名
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
+
 # 修改默认 IP
 # sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+
 # 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
 
