@@ -47,7 +47,7 @@ git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 # 修复 Linux Kernel 6.1 下 MT7916 的支持
 rm -rf package/kernel/mt76
 #git clone --depth=1 https://github.com/2253845067/mt76 package/kernel/mt76
-git clone --depth=1 https://github.com/MyTol/mt76 package/kernel/mt76
+git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
 # 添加 luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
@@ -134,13 +134,15 @@ sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant
 # 插件设置
 #
 ## luci-app-oled
-pushd package/community/luci-app-oled/luci-app-oled
+pushd package/feeds/luci/luci-app-oled
+#pushd package/community/luci-app-oled/luci-app-oled
 sed -i "s|enable '0'|enable '1'|g" root/etc/config/oled
 sed -i "s|netspeed '0'|netspeed '1'|g" root/etc/config/oled
 sed -i "s|time '60'|time '300'|g" root/etc/config/oled
 sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" root/etc/config/oled
 sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" root/etc/config/oled
 popd
+
 ## luci-app-filebrowser
 # sed -i 's|8088|8082|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
 # sed -i 's|/root|/home|g' package/community/luci-app-filebrowser/root/etc/config/filebrowser
