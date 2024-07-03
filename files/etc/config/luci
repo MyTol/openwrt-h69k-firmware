@@ -1,0 +1,12 @@
+config internal 'diag'
+	option dns 'ipw.cn'
+	option ping 'ipw.cn'
+	option route 'ipw.cn'
+
+config command
+	option name '高速风扇'
+	option command '/bin/sh -c "echo 40000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle"'
+
+config command
+	option name '低速风扇'
+	option command '/bin/sh -c "echo 20000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle"'
