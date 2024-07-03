@@ -13,7 +13,7 @@ mkdir customfeeds
 # 拉取 packages
 git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
 # 更新 golang
-source ./preset-golang.sh
+source $GITHUB_WORKSPACE/scripts/preset-golang.sh
 # 拉取 luci
 git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
 # 设置为本地源

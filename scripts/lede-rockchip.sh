@@ -86,23 +86,22 @@ rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
 # 添加上游 5G 支持, 仅编译 luci-app-modem 代码
-git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan/modem
-cp -r package/wwan/modem/luci-app-modem package/wwan
-rm -rf package/wwan/modem
+rm -rf package/wwan
+git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
 
 # 修改接口名
-sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/luci-app-modem/root/etc/init.d/modem
-sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/luci-app-modem/root/etc/init.d/modem
-sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
-sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/luci-app-modem/root/usr/share/modem/modem_network_task.sh
+sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
+sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
+sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
+sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
 # 修复 FM160-CN 模块电话号码获取
-rm -rf package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
-cp -f $GITHUB_WORKSPACE/data/modem/fibocom.sh package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
+rm -rf package/wwan/app/luci-app-modem/root/usr/share/modem/fibocom.sh
+cp -f $GITHUB_WORKSPACE/data/modem/fibocom.sh package/wwan/app/luci-app-modem/root/usr/share/modem/fibocom.sh
 # 替换静态页面
-rm -rf package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
-cp -f $GITHUB_WORKSPACE/data/view/modem_info.htm package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
-rm -rf package/wwan/luci-app-modem/luasrc/controller/modem.lua
-cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/luci-app-modem/luasrc/controller/modem.lua
+rm -rf package/wwan/app/luci-app-modem/luasrc/view/modem/modem_info.htm
+cp -f $GITHUB_WORKSPACE/data/view/modem_info.htm package/wwan/app/luci-app-modem/luasrc/view/modem/modem_info.htm
+rm -rf package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
+cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
 
 # 插件设置
 #
