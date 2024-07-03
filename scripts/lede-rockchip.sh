@@ -4,8 +4,8 @@
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
-# Author: SuLingGG
-# Blog: https://mlapp.cn
+# Author: AIacg
+# Blog: https://blog.aiacg.cn
 #=================================================
 
 # 修复 AutoCore 样式
@@ -14,14 +14,20 @@ sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin
 ## 设置主机名
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 
-# 修改默认 IP
-# sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-
 # 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
 
 # 切换6.1内核编译
 sed -i 's/6.6/6.1/g' target/linux/rockchip/Makefile
+
+# 修改 zzz-default-settings
+pushd package/lean/default-settings/files
+sed -i '/http/d' zzz-default-settings
+sed -i '/18.06/d' zzz-default-settings
+export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+export date_version=$(date -u +'%Y-%m-%d')
+sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
+popd
 
 # 拉取存储库至 package/community 目录
 mkdir package/community
@@ -75,15 +81,6 @@ cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/
 git clone --depth=1 https://github.com/DHDAXCW/theme
 popd
 
-# 修改 zzz-default-settings
-pushd package/lean/default-settings/files
-sed -i '/http/d' zzz-default-settings
-sed -i '/18.06/d' zzz-default-settings
-export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-export date_version=$(date -u +'%Y-%m-%d')
-sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
-popd
-
 # 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
@@ -101,16 +98,11 @@ sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/luci-app-modem/
 # 修复 FM160-CN 模块电话号码获取
 rm -rf package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
 cp -f $GITHUB_WORKSPACE/data/modem/fibocom.sh package/wwan/luci-app-modem/root/usr/share/modem/fibocom.sh
-# 修改页面样式
+# 替换静态页面
 rm -rf package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
 cp -f $GITHUB_WORKSPACE/data/view/modem_info.htm package/wwan/luci-app-modem/luasrc/view/modem/modem_info.htm
 rm -rf package/wwan/luci-app-modem/luasrc/controller/modem.lua
 cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/luci-app-modem/luasrc/controller/modem.lua
-
-# 调整 luci-app-fileassistant 菜单入口
-sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
-sed -i 's/, 1)/, 89)/g' package/community/openwrt-package/luci-app-fileassistant/luasrc/controller/*.lua
-sed -i 's/nas/system/g' package/community/openwrt-package/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/*.js
 
 # 插件设置
 #
