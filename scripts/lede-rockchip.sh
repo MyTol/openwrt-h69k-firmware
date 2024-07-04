@@ -76,12 +76,14 @@ popd
 rm -rf package/kernel/mt76
 git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
-# 添加上游 5G 支持, 仅编译 luci-app-modem 代码
+# 添加 5G 支持
 rm -rf package/wwan
 git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
 
-# 添加 Linux Kernel 6.1 下 5G Gobinet 驱动补丁
-cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1/6.1-872-export-some-functions-of-the-sched-module.patch
+# 添加 Linux Kernel 6.1 下 Gobinet 驱动补丁
+pushd target/linux/generic/backport-6.1
+cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch ./
+popd
 
 # 修改接口名
 sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
