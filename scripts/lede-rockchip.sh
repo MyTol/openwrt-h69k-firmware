@@ -76,8 +76,8 @@ git clone --depth=1 https://github.com/DHDAXCW/theme
 popd
 
 # 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
-rm -rf package/kernel/mt76
-git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
+#rm -rf package/kernel/mt76
+#git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 
 # 添加上游 5G 支持, 仅编译 luci-app-modem 代码
 rm -rf package/wwan
