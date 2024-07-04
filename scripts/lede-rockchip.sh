@@ -20,9 +20,6 @@ sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_g
 # 切换6.1内核编译
 sed -i 's/6.6/6.1/g' target/linux/rockchip/Makefile
 
-# 添加 5G 驱动补丁
-cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1/6.1-872-export-some-functions-of-the-sched-module.patch
-
 # 拉取存储库至 package/community 目录
 mkdir package/community
 pushd package/community
@@ -82,6 +79,9 @@ git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
 # 添加上游 5G 支持, 仅编译 luci-app-modem 代码
 rm -rf package/wwan
 git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
+
+# 添加 Linux Kernel 6.1 下 5G Gobinet 驱动补丁
+cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1/6.1-872-export-some-functions-of-the-sched-module.patch
 
 # 修改接口名
 sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
