@@ -23,15 +23,6 @@ sed -i 's/6.6/6.1/g' target/linux/rockchip/Makefile
 # 添加 5G 驱动补丁
 cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1/6.1-872-export-some-functions-of-the-sched-module.patch
 
-# 修改 zzz-default-settings
-pushd package/lean/default-settings/files
-sed -i '/http/d' zzz-default-settings
-sed -i '/18.06/d' zzz-default-settings
-export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-export date_version=$(date -u +'%Y-%m-%d')
-sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
-popd
-
 # 拉取存储库至 package/community 目录
 mkdir package/community
 pushd package/community
@@ -122,3 +113,12 @@ sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
+
+# 修改 zzz-default-settings
+pushd package/lean/default-settings/files
+sed -i '/http/d' zzz-default-settings
+sed -i '/18.06/d' zzz-default-settings
+export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+export date_version=$(date -u +'%Y-%m-%d')
+sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
+popd
