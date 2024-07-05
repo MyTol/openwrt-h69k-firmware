@@ -72,10 +72,6 @@ cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/
 git clone --depth=1 https://github.com/DHDAXCW/theme
 popd
 
-# 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持
-rm -rf package/kernel/mt76
-git clone --depth=1 https://github.com/my-world-only-me/mt76 package/kernel/mt76
-
 # 添加 5G 支持
 rm -rf package/wwan
 git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
