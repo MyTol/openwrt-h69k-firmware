@@ -24,7 +24,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: configs/LEDE/lite.config
   DIY_P1_SH: scripts/hook-feeds.sh
-  DIY_P2_SH: scripts/lede-rockchip.sh
+  DIY_P2_SH: scripts/lede.sh
   DIY_P3_SH: scripts/preset-localization.sh
   DIY_P4_SH: scripts/preset-terminal-tools.sh
   UPLOAD_BIN_DIR: true
