@@ -1,6 +1,6 @@
 #!/bin/bash
 #=================================================
-# File name: lean-rockchip.sh
+# File name: lede-rockchip.sh
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
