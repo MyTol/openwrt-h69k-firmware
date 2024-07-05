@@ -118,3 +118,7 @@ export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk 
 export date_version=$(date -u +'%Y-%m-%d')
 sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
 popd
+
+# 更新并安装软件源
+./scripts/feeds update -a
+./scripts/feeds install -a

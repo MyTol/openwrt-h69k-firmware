@@ -157,9 +157,6 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P2_SH
         $GITHUB_WORKSPACE/$DIY_P3_SH
         $GITHUB_WORKSPACE/$DIY_P4_SH
-        # 更新并安装软件源
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
 
     - name: 下载包
       id: download
