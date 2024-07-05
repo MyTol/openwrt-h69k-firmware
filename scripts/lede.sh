@@ -99,9 +99,9 @@ cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/app/luci-app-modem/lua
 pushd package/community/luci-app-oled/luci-app-oled
 sed -i "s|enable '0'|enable '1'|g" root/etc/config/oled
 sed -i "s|netspeed '0'|netspeed '1'|g" root/etc/config/oled
-sed -i "s|time '60'|time '300'|g" root/etc/config/oled
-sed -i "s|text 'OPENWRT'|text 'OmO~~'|g" root/etc/config/oled
-sed -i "s|netsource 'eth0'|netsource 'wwan0'|g" root/etc/config/oled
+sed -i "s|'60'|time '300'|g" root/etc/config/oled
+sed -i "s|'OPENWRT'|text 'OmO~~'|g" root/etc/config/oled
+sed -i "s|'eth0'|'wwan0'|g" root/etc/config/oled
 popd
 
 ## luci-app-gowebdav
