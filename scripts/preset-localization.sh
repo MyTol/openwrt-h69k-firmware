@@ -50,7 +50,7 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-ap
 ### luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-argon-config
-sed -i 's/Argon 主题设置/主题设置/g' package/feeds/luci/luci-app-argon-config/po/zh-cn/argon-config.po
+sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
 
 ### luci-app-gowebdav 
 pushd package/feeds/luci/luci-app-gowebdav/po
