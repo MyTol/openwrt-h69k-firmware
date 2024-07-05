@@ -121,4 +121,4 @@ popd
 
 # 更新并安装软件源
 ./scripts/feeds update -a
-./scripts/feeds install -a
+#./scripts/feeds install -a
