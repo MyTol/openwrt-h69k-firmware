@@ -24,6 +24,9 @@ sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
 # 禁用 IPV6 前缀
 # sed -i 's/^[^#].*option ula/#&/' /etc/config/network
 
+# 添加 TTYD 账户
+sed -i 's|/bin/login|/bin/login -f root|g' /etc/config/ttyd
+
 # 禁用某些软件包的自启
 cd /etc/rc.d
 rm -f S98udptools || true
