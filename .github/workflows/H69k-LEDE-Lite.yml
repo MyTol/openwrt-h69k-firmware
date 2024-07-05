@@ -138,6 +138,12 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
+    - name: 安装源
+      id: ifeeds
+      run: |
+        cd openwrt
+        ./scripts/feeds install -a
+
     - name: 自定义
       id: customize
       run: |
@@ -145,12 +151,15 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cd openwrt
         cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
-        sed -i "s/http:\/\/192.168.123.100:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/lean/g" files/etc/opkg/distfeeds.conf.mirror
+        sed -i "s/http:\/\/192.168.123.100:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/lean/g" files/etc/opkg/distfeeds.conf.mirror 
+        # 赋予自定义脚本权限并执行
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
         $GITHUB_WORKSPACE/$DIY_P3_SH
         $GITHUB_WORKSPACE/$DIY_P4_SH
-        make defconfig
+        # 更新并安装软件源
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
 
     - name: 下载包
       id: download
