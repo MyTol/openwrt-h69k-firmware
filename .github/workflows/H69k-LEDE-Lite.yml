@@ -130,13 +130,19 @@ jobs:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
 
-    - name: 更新源
-      id: ufeeds
+    - name: 自定义源
+      id: hfeeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
+
+    - name: 更新源
+      id: ufeeds
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
 
     - name: 安装源
       id: ifeeds
@@ -144,7 +150,7 @@ jobs:
         cd openwrt
         ./scripts/feeds install -a
 
-    - name: 自定义
+    - name: 自定义脚本
       id: customize
       run: |
         [ -e files ] && mv files openwrt/files

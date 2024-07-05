@@ -14,8 +14,8 @@ mkdir customfeeds
 # 拉取 packages
 git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
 
-# 更新 golang
-source $GITHUB_WORKSPACE/scripts/preset-golang.sh
+# 更新 golang 版本, 仅 DHDAXCW 需要
+# source $GITHUB_WORKSPACE/scripts/preset-golang.sh
 
 # 拉取 luci
 git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
@@ -31,3 +31,51 @@ sed -i '/src-git packages/d' feeds.conf.default
 echo "src-link packages $packages_feed" >> feeds.conf.default
 sed -i '/src-git luci/d' feeds.conf.default
 echo "src-link luci $luci_feed" >> feeds.conf.default
+
+# 创建  package/community 目录, 并拉取额外支持文件.
+mkdir package/community
+pushd package/community
+
+# 添加 xiangfeidexiaohuo 存储库
+git clone --depth=1 https://github.com/xiangfeidexiaohuo/extra-ipk
+cp -r ./extra-ipk/op-ddnsgo ./
+cp -r ./extra-ipk/luci-app-iperf3-server ./
+rm -rf extra-ipk
+
+# 添加 Lienol 存储库
+git clone --depth=1 https://github.com/Lienol/openwrt-package
+rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
+rm -rf openwrt-package/verysync
+rm -rf openwrt-package/luci-app-filebrowser
+rm -rf openwrt-package/luci-app-verysync
+
+# 添加 xiaorouji 存储库
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
+
+# 添加 luci-app-oled
+rm -rf ../../customfeeds/luci/applications/luci-app-oled
+git clone --depth=1 https://github.com/NateLol/luci-app-oled
+
+# 添加 h69k-fanctrl
+git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
+
+# 添加 luci-theme
+git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon luci-theme-argon
+git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
+rm -rf ../../customfeeds/luci/themes/luci-theme-argon
+rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
+rm -rf ../../customfeeds/luci/applications/luci-app-argon-config
+rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+git clone --depth=1 https://github.com/DHDAXCW/theme
+popd
+
+# 添加 5G 支持
+rm -rf package/wwan
+git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
+
+# 添加 Linux Kernel 6.1 下 Gobinet 驱动补丁
+pushd target/linux/generic/backport-6.1
+cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch ./
+popd
