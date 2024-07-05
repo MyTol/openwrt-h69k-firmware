@@ -64,6 +64,7 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon luci-
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
+rm -rf ../../customfeeds/luci/applications/luci-app-argon-config
 rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 git clone --depth=1 https://github.com/DHDAXCW/theme
@@ -117,3 +118,6 @@ export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk 
 export date_version=$(date -u +'%Y-%m-%d')
 sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
 popd
+
+# 安装软件源
+./scripts/feeds install -a

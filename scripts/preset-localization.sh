@@ -50,7 +50,9 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-ap
 ### luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-argon-config
-sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
+sed -i 's/Argon 主题设置/主题设置/g' package/feeds/luci/luci-app-argon-config/po/zh-cn/argon-config.po
+### luci-app-store
+sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/istore/luci-app-store/src/po/zh-cn/iStore.po
 
 ### luci-app-gowebdav 
 pushd package/feeds/luci/luci-app-gowebdav/po
@@ -58,16 +60,3 @@ mkdir zh-cn
 cp -f zh_Hans/gowebdav.po zh-cn/gowebdav.po
 sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' zh-cn/gowebdav.po
 popd
-
-### luci-app-ipsec-server
-#sed -i 's/IPSec VPN 服务器/IPSec/g' package/feeds/luci/luci-app-ipsec-server/po/zh-cn/ipsec-server.po
-### luci-app-pptp-server
-#sed -i 's/PPTP VPN 服务器/PPTP/g' package/feeds/luci/luci-app-pptp-server/po/zh-cn/pptp.po
-### luci-app-nginx-manager
-# sed -i 's/msgstr "Nginx管理器"/msgstr "Nginx"/g'  package/feeds/luci/luci-app-nginx-manager/po/zh-cn/nginx-manager.po
-### luci-app-supervisord
-# sed -i 's/msgstr "进程管理器"/msgstr "Supervisord"/g' package/feeds/luci/luci-app-supervisord/po/zh-cn/supervisord.po
-### luci-app-store
-sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/istore/luci-app-store/src/po/zh-cn/iStore.po
-### luci-app-filebrowser
-#sed -i 's/msgstr "文件浏览器"/msgstr "FileBrowser"/g' package/community/luci-app-filebrowser/po/zh-cn/filebrowser.po

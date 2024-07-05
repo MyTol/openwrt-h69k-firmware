@@ -138,12 +138,6 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 安装源
-      id: ifeeds
-      run: |
-        cd openwrt
-        ./scripts/feeds install -a
-
     - name: 自定义
       id: customize
       run: |
