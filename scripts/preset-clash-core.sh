@@ -8,7 +8,7 @@
 # Blog: https://mlapp.cn
 #=================================================
 
-echo -e "预置Clash内核"
+echo -e "预置 Clash 内核"
 mkdir -p feeds/smpackage/luci-app-openclash/root/etc/openclash/core
 core_path="feeds/smpackage/luci-app-openclash/root/etc/openclash/core"
 goe_path="feeds/smpackage/luci-app-openclash/root/etc/openclash"
