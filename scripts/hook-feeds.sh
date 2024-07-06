@@ -58,13 +58,13 @@ rm -rf openwrt-package/luci-app-verysync
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 
-# 添加 luci-app-oled
+# 添加 luci-app-oled 插件
 rm -rf ../../customfeeds/luci/applications/luci-app-oled
 git clone --depth=1 https://github.com/NateLol/luci-app-oled op-oled
 cp -r ./op-oled/luci-app-oled ./
 rm -rf ./op-oled
 
-# 添加 h69k-fanctrl
+# 添加 h69k-fanctrl 插件
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
 # 添加 luci-theme
