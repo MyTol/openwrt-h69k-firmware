@@ -19,7 +19,7 @@ uci set luci.main.mediaurlbase='/luci-static/argon'
 # /etc/init.d/uhttpd disable
 
 # 禁用 opkg 签名检查
-sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
+#sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
 
 # 禁用 IPV6 前缀
 # sed -i 's/^[^#].*option ula/#&/' /etc/config/network

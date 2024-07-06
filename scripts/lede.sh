@@ -64,8 +64,6 @@ sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_g
 source scripts/preset-terminal-tools.sh
 ## 更改 zzz-default-settings
 pushd package/lean/default-settings/files
-sed -i '/http/d' zzz-default-settings
-sed -i '/18.06/d' zzz-default-settings
 export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 export date_version=$(date -u +'%Y-%m-%d')
 sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
