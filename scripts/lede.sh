@@ -10,19 +10,8 @@
 
 # 插件更改
 #
-## 修改 luci-app-modem 创建的接口名
-#sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
-#sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
-#sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
-#sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
-## 修复 FM160-CN 模块电话号码获取
-#rm -rf package/wwan/app/luci-app-modem/root/usr/share/modem/fibocom.sh
-#cp -f $GITHUB_WORKSPACE/data/modem/fibocom.sh package/wwan/app/luci-app-modem/root/usr/share/modem/fibocom.sh
-## 替换 luci-app-modem 静态页面
-#rm -rf package/wwan/app/luci-app-modem/luasrc/view/modem/modem_info.htm
-#cp -f $GITHUB_WORKSPACE/data/view/modem_info.htm package/wwan/app/luci-app-modem/luasrc/view/modem/modem_info.htm
-#rm -rf package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
-#cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
+## 调整 luci-app-modem
+#source scripts/preset-modem.sh
 ## 调整 luci-app-passwall 菜单
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/passwall/*.lua

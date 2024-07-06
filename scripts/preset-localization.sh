@@ -9,7 +9,7 @@
 #=================================================
 
 # 本地化文本
-## 基础
+## 固件
 echo -e "\nmsgid \"Control\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"控制\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "\nmsgid \"NAS\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
@@ -19,6 +19,9 @@ echo -e "msgstr \"魔法\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 sed -i 's|备份/升级|备份升级|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
 sed -i 's|备份/恢复|备份与恢复|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
 ## 插件
+### luci-app-modem
+sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
+sed -i 's/自定义命令/快捷指令/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
 ### luci-app-commands
 sed -i 's|自定义命令|快捷指令|g' package/feeds/luci/luci-app-commands/po/zh-cn/commands.po
 ### luci-app-arpbind
@@ -35,10 +38,6 @@ sed -i 's/实时流量监测/实时/g' package/feeds/luci/luci-app-wrtbwmon/po/z
 sed -i 's/NFS 管理/NFS/g' package/feeds/luci/luci-app-nfs/po/zh-cn/nfs.po
 ### luci-app-wol
 sed -i 's/msgstr "网络唤醒"/msgstr "Wol"/g' package/feeds/luci/luci-app-wol/po/zh-cn/wol.po
-### luci-app-modem
-sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
-sed -i 's/自定义命令/快捷指令/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
-#sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
 ### luci-app-turboacc
 sed -i 's/Turbo ACC 网络加速设置/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
@@ -50,15 +49,9 @@ sed -i 's/msgstr "iPerf3 服务器"/msgstr "iPerf3"/g' package/community/luci-ap
 ### luci-app-dockerman
 sed -i 's/msgstr "Docker"/msgstr "容器"/g' package/feeds/luci/luci-app-dockerman/po/zh-cn/dockerman.po
 ### luci-app-argon-config
-# sed -i 's/Argon 主题设置/主题设置/g' package/feeds/luci/luci-app-argon-config/po/zh-cn/argon-config.po
 sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-config/po/zh-cn/argon-config.po
-# sed -i 's/Argon 主题设置/主题设置/g' customfeeds/luci/applications/luci-app-argon-config/po/zh-cn/argon-config.po
 ### luci-app-store
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/istore/luci-app-store/src/po/zh-cn/iStore.po
-
 ### luci-app-gowebdav 
-pushd package/feeds/luci/luci-app-gowebdav/po
-mkdir zh-cn
-cp -f zh_Hans/gowebdav.po zh-cn/gowebdav.po
-sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' zh-cn/gowebdav.po
-popd
+cp -r package/feeds/luci/luci-app-gowebdav/po/zh_Hans package/feeds/luci/luci-app-gowebdav/po/zh-cn
+sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/feeds/luci/luci-app-gowebdav/po/zh-cn/gowebdav.po
