@@ -11,13 +11,18 @@
 # 创建 customfeeds 目录
 mkdir customfeeds
 
-# 拉取 packages
+# 拉取 packages 软件源
 git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
 
-# 更新 golang 版本, 仅 DHDAXCW 需要
-# source $GITHUB_WORKSPACE/scripts/preset-golang.sh
+# 更新 golang 与 automake 版本, 仅 DHDAXCW 仓库需要
+if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
+  rm -rf tools/automake
+  rm -rf customfeeds/packages/lang/golang
+  cp -r $GITHUB_WORKSPACE/data/automake tools/
+  git clone https://github.com/sbwml/packages_lang_golang -b 22.x customfeeds/packages/lang/golang
+fi
 
-# 拉取 luci
+# 拉取 luci 软件源
 git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
 
 # 设置为本地源
@@ -66,16 +71,9 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-app-argon-config 
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon
 rm -rf ../../customfeeds/luci/themes/luci-theme-argon-mod
 rm -rf ../../customfeeds/luci/applications/luci-app-argon-config
-rm -rf ./luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
-cp -f $GITHUB_WORKSPACE/data/background.jpg luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 git clone --depth=1 https://github.com/DHDAXCW/theme
 popd
 
 # 添加 5G 支持
 rm -rf package/wwan
 git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
-
-# 添加 Linux Kernel 6.1 下 Gobinet 驱动补丁
-pushd target/linux/generic/backport-6.1
-cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch ./
-popd
