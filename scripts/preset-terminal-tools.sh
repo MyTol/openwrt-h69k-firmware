@@ -7,19 +7,18 @@
 # Author: SuLingGG
 # Blog: https://mlapp.cn
 #=================================================
+
+## 安装 zhs 终端
+#
+##创建 files/root 目录
 mkdir -p files/root
 pushd files/root
-
-## 安装 oh-my-zsh
-# Clone oh-my-zsh repository
+## 拉取 oh-my-zsh 代码仓库
 git clone https://github.com/ohmyzsh/ohmyzsh ./.oh-my-zsh
-
-# 安装扩展插件
+## 拉取 oh-my-zsh 插件仓库
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
-
-# 获取 .zshrc 文件
-cp $GITHUB_WORKSPACE/scripts/.zshrc .
-
+## 添加 .zshrc
+cp $GITHUB_WORKSPACE/data/.zshrc .
 popd
