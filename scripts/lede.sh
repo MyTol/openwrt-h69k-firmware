@@ -36,14 +36,6 @@ sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/l
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/rule/*.htm
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
-## 调整 luci-app-oled 设置
-pushd package/community/luci-app-oled/luci-app-oled
-sed -i "s|enable '0'|enable '1'|g" root/etc/config/oled
-sed -i "s|netspeed '0'|netspeed '1'|g" root/etc/config/oled
-sed -i "s|'60'|time '300'|g" root/etc/config/oled
-sed -i "s|'OPENWRT'|text 'OmO~~'|g" root/etc/config/oled
-sed -i "s|'eth0'|'wwan0'|g" root/etc/config/oled
-popd
 ## 调整 luci-app-gowebdav 设置
 sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
