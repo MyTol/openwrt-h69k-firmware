@@ -8,33 +8,22 @@
 # Blog: https://blog.aiacg.cn
 #=================================================
 
-# 修复 AutoCore 样式
-cp -f $GITHUB_WORKSPACE/data/autocore/cpuinfo package/lean/autocore/files/arm/sbin/cpuinfo
-sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
-
-## 设置主机名
-sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
-
-# 设置 IPV6 分发长度
-sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
-
-# 插件设置
+# 插件更改
 #
 ## 修改 luci-app-modem 创建的接口名
-sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
-sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
-sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
-sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
-# 修复 FM160-CN 模块电话号码获取
+#sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
+#sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
+#sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
+#sed -i 's/wwan6_5g_${modem_no}/wwan6_${modem_no}/g' package/wwan/app/luci-app-modem/root/usr/share/modem/modem_network_task.sh
+## 修复 FM160-CN 模块电话号码获取
 rm -rf package/wwan/app/luci-app-modem/root/usr/share/modem/fibocom.sh
 cp -f $GITHUB_WORKSPACE/data/modem/fibocom.sh package/wwan/app/luci-app-modem/root/usr/share/modem/fibocom.sh
-# 替换静态页面
+## 替换 luci-app-modem 静态页面
 rm -rf package/wwan/app/luci-app-modem/luasrc/view/modem/modem_info.htm
 cp -f $GITHUB_WORKSPACE/data/view/modem_info.htm package/wwan/app/luci-app-modem/luasrc/view/modem/modem_info.htm
 rm -rf package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
 cp -f $GITHUB_WORKSPACE/data/modem/modem.lua package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
-
-# 调整 luci-app-passwall 菜单
+## 调整 luci-app-passwall 菜单
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/passwall/*.lua
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
@@ -47,8 +36,7 @@ sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/l
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/rule/*.htm
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
-
-## luci-app-oled
+## 调整 luci-app-oled 设置
 pushd package/community/luci-app-oled/luci-app-oled
 sed -i "s|enable '0'|enable '1'|g" root/etc/config/oled
 sed -i "s|netspeed '0'|netspeed '1'|g" root/etc/config/oled
@@ -56,14 +44,22 @@ sed -i "s|'60'|time '300'|g" root/etc/config/oled
 sed -i "s|'OPENWRT'|text 'OmO~~'|g" root/etc/config/oled
 sed -i "s|'eth0'|'wwan0'|g" root/etc/config/oled
 popd
-
-## luci-app-gowebdav
+## 调整 luci-app-gowebdav 设置
 sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 
-# 修改 zzz-default-settings
+# 固件更改
+#
+## 修复 AutoCore 显示
+cp -f $GITHUB_WORKSPACE/data/autocore/cpuinfo package/lean/autocore/files/arm/sbin/cpuinfo
+sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
+## 设置主机名
+sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
+## 设置 IPV6 分发长度
+sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
+## 更改 zzz-default-settings
 pushd package/lean/default-settings/files
 sed -i '/http/d' zzz-default-settings
 sed -i '/18.06/d' zzz-default-settings
