@@ -9,6 +9,7 @@
 #=================================================
 
 # 修复 AutoCore 样式
+cp -f $GITHUB_WORKSPACE/data/autocore/cpuinfo package/lean/autocore/files/arm/sbin/cpuinfo
 sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
 
 ## 设置主机名
