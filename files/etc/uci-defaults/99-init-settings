@@ -10,6 +10,12 @@
 # 设置默认主题 luci-theme-argon
 uci set luci.main.mediaurlbase='/luci-static/argon'
 
+# 禁用 IPV6 前缀
+sed -i 's/^[^#].*option ula/#&/' /etc/config/network
+
+# 添加 luci-app-ttyd 账户
+sed -i 's|/bin/login|/bin/login -f root|g' /etc/config/ttyd
+
 # 停止 sing-box
 /etc/init.d/sing-box stop
 /etc/init.d/sing-box disable
@@ -18,22 +24,12 @@ uci set luci.main.mediaurlbase='/luci-static/argon'
 # /etc/init.d/uhttpd stop
 # /etc/init.d/uhttpd disable
 
-# 禁用 opkg 签名检查
-# sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
-
-# 禁用 IPV6 前缀
-sed -i 's/^[^#].*option ula/#&/' /etc/config/network
-
-# 添加 TTYD 账户
-sed -i 's|/bin/login|/bin/login -f root|g' /etc/config/ttyd
-
-# 禁用某些软件包的自启
+# 禁用软件包自启
 cd /etc/rc.d
 rm -f S98udptools || true
 rm -f S99nft-qos || true
 
-# Try to execute init.sh (if exists)
-
+# 尝试执行 init.sh (如果存在)
 if [ ! -f "/boot/init.sh" ]; then
 bash /boot/init.sh
 fi
