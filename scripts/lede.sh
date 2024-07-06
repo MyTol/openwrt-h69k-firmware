@@ -57,6 +57,8 @@ cp -f $GITHUB_WORKSPACE/data/autocore/cpuinfo package/lean/autocore/files/arm/sb
 sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
 ## 设置主机名
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
+## 更改 Shell 为 zsh
+sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 ## 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
 ## 更改 zzz-default-settings
