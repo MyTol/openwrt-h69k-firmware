@@ -77,14 +77,5 @@ git clone --depth=1 https://github.com/DHDAXCW/theme
 popd
 
 # 添加 5G 支持
-#rm -rf package/wwan
-#git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
-
-rm -rf package/wwan/driver/quectel_Gobinet
-cp -r $GITHUB_WORKSPACE/data/quectel_Gobinet package/wwan/driver
-git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan/modem
-cp -r package/wwan/modem/sendat package/wwan/app
-cp -r package/wwan/modem/sms-tool package/wwan/app
-cp -r package/wwan/modem/luci-app-modem package/wwan/app
-cp -r package/wwan/modem/luci-app-sms-tool package/wwan/app
-rm -rf package/wwan/modem
+rm -rf package/wwan
+git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
