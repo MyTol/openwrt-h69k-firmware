@@ -38,7 +38,7 @@ sed -i 's/msgstr "网络唤醒"/msgstr "Wol"/g' package/feeds/luci/luci-app-wol/
 ### luci-app-modem
 sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
 sed -i 's/自定义命令/快捷指令/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
-sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
+#sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
 ### luci-app-turboacc
 sed -i 's/Turbo ACC 网络加速设置/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
 sed -i 's/Turbo ACC 网络加速/网络加速/g' package/feeds/luci/luci-app-turboacc/po/zh-cn/turboacc.po
