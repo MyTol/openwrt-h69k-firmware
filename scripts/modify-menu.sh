@@ -13,7 +13,7 @@
 ##
 
 ## luci-app-store
-sed -i 's|_("iStore"), 31|_("iStore"), 40|g' feeds/istore/luci-app-store/luasrc/controller/store.lua
+sed -i 's|_("iStore"), 31|_("iStore"), 40|g' feeds/istore/luci/luci-app-store/luasrc/controller/store.lua
 
 pushd feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin
 ## luci-mod-admin-full
