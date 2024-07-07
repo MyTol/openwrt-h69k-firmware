@@ -21,9 +21,6 @@ sed -i 's|备份/恢复|备份与恢复|g' feeds/luci/modules/luci-base/po/zh-cn
 ## 插件
 ### AutoCore
 sed -i 's|CPU 使用率|核心占用|g' package/lean/default-settings/po/zh-cn/default.po
-### luci-app-modem
-sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
-sed -i 's/自定义命令/快捷指令/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
 ### luci-app-commands
 sed -i 's|自定义命令|快捷指令|g' package/feeds/luci/luci-app-commands/po/zh-cn/commands.po
 ### luci-app-arpbind
@@ -57,3 +54,11 @@ sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/istore/luci-app-store
 ### luci-app-gowebdav 
 cp -r package/feeds/luci/luci-app-gowebdav/po/zh_Hans package/feeds/luci/luci-app-gowebdav/po/zh-cn
 sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/feeds/luci/luci-app-gowebdav/po/zh-cn/gowebdav.po
+### luci-app-modem
+if [ "$MODIFY_MODEM" = "true" ]; then
+  sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
+  sed -i 's/自定义命令/快捷指令/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
+else
+  sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
+  sed -i 's/自定义命令/快捷指令/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
+fi
