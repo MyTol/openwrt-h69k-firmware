@@ -11,6 +11,10 @@
 ## 调整菜单排序
 #
 ##
+
+## luci-app-store
+sed -i 's|_("iStore"), 31|_("iStore"), 40|g' feeds/istore/luci-app-istore/luasrc/controller/store.lua
+
 pushd feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin
 ## luci-mod-admin-full
 cp -f $GITHUB_WORKSPACE/data/modify_menu/index.lua .
@@ -29,8 +33,6 @@ sed -i 's|_("FileTransfer"), 89|_("FileTransfer"), 45|g' luci/luci-app-filetrans
 sed -i 's|_("Custom Commands"), 80|_("Custom Commands"), 55|g' luci/luci-app-commands/luasrc/controller/commands.lua
 ## luci-app-autoreboot
 sed -i 's|_("Scheduled Reboot"),88|_("Scheduled Reboot"),60|g' luci/luci-app-autoreboot/luasrc/controller/autoreboot.lua
-## luci-app-store
-sed -i 's|_("iStore"), 31|_("iStore"), 40|g' istore/luci-app-istore/luasrc/controller/store.lua
 ## luci-app-firewall
 sed -i 's|_("Firewall"), 60|_("Firewall"), 25|g' luci/luci-app-firewall/luasrc/controller/firewall.lua
 ## luci-app-nlbwmon
@@ -41,7 +43,7 @@ sed -i 's|_("SQM QoS")|_("SQM QoS"), 40|g' luci/luci-app-sqm/luasrc/controller/s
 sed -i 's|_("Turbo ACC Center"), 101|_("Turbo ACC Center"), 50|g' luci/luci-app-turboacc/luasrc/controller/turboacc.lua
 popd
 
-popd package/community
+pushd package/community
 ## luci-app-amlogic
 sed -i 's|_("Amlogic Service"), 88|_("Amlogic Service"), 50|g' luci-app-amlogic/luasrc/controller/amlogic.lua
 ## luci-app-argon-config
@@ -54,7 +56,7 @@ else
 fi
 popd
 
-popd package/wwan
+pushd package/wwan
 ## luci-app-modem
 if [ "$MODIFY_MODEM" = "true" ]; then
   sed -i 's|translate("Modem"), 100|translate("Modem"), 45|g' app/luci-app-modem/luasrc/controller/modem.lua
