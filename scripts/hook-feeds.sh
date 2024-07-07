@@ -67,6 +67,9 @@ rm -rf ./op-oled
 # 添加 h69k-fanctrl 插件
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
+# 添加 luci-app-amlogic 插件
+git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git luci-app-amlogic
+
 # 添加 luci-theme
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
