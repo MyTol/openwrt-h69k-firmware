@@ -87,9 +87,11 @@ else
   rm -rf package/wwan
   git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
   rm -rf package/wwan/quectel_Gobinet
+  rm -rf package/wwan/quectel_cm_5G
   rm -rf package/wwan/rooter
   git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan/modem
   cp -r package/wwan/modem/driver/quectel_Gobinet package/wwan
+  cp -r package/wwan/modem/driver/quectel_cm_5G package/wwan
   rm -rf package/wwan/modem
   # sed -i 's|CONFIG_PACKAGE_kmod-gobinet=y|# CONFIG_PACKAGE_kmod-gobinet is not set|g' $GITHUB_WORKSPACE/$CONFIG_FILE
 fi
