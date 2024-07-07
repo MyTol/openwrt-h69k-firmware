@@ -48,12 +48,6 @@ pushd package/community
 sed -i 's|_("Amlogic Service"), 88|_("Amlogic Service"), 50|g' luci-app-amlogic/luasrc/controller/amlogic.lua
 ## luci-app-argon-config
 sed -i 's|_("Argon Config"), 90|_("Argon Config"), 65|g' luci-app-argon-config/luasrc/controller/argon-config.lua
-## luci-app-modem
-if [ "$MODIFY_MODEM" = "true" ]; then
-  sed -i 's|translate("Modem"), 100|translate("Modem"), 45|g' package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
-else
-  sed -i 's|translate("Modem"), 100|translate("Modem"), 45|g' package/wwan/luci-app-modem/luasrc/controller/modem.lua
-fi
 popd
 
 pushd package/wwan
