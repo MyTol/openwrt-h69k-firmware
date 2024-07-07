@@ -54,5 +54,5 @@ source $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
 pushd package/lean/default-settings/files
 export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 export date_version=$(date -u +'%Y-%m-%d')
-sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
+sed -i "s/${orig_version}/${orig_version}-L-(${date_version})/g" zzz-default-settings
 popd
