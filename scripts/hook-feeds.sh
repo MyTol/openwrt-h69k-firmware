@@ -43,8 +43,8 @@ pushd package/community
 
 # 添加 xiangfeidexiaohuo 存储库
 git clone --depth=1 https://github.com/xiangfeidexiaohuo/extra-ipk
-cp -r ./extra-ipk/op-ddnsgo ./
-cp -r ./extra-ipk/luci-app-iperf3-server ./
+cp -r ./extra-ipk/op-ddnsgo .
+cp -r ./extra-ipk/luci-app-iperf3-server .
 rm -rf extra-ipk
 
 # 添加 Lienol 存储库
@@ -61,14 +61,16 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 # 添加 luci-app-oled 插件
 rm -rf ../../customfeeds/luci/applications/luci-app-oled
 git clone --depth=1 https://github.com/NateLol/luci-app-oled op-oled
-cp -r ./op-oled/luci-app-oled ./
+cp -r ./op-oled/luci-app-oled .
 rm -rf ./op-oled
 
 # 添加 h69k-fanctrl 插件
 git clone --depth=1 https://github.com/2253845067/h69k-fanctrl h69k-fanctrl
 
 # 添加 luci-app-amlogic 插件
-git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git luci-app-amlogic
+git clone --depth=1 https://github.com/ophub/luci-app-amlogic op-amlogic
+cp -r op-amlogic/luci-app-amlogic .
+rm -rf amlogic
 
 # 添加 luci-theme
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon luci-theme-argon
