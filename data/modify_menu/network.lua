@@ -11,7 +11,7 @@ function index()
 	page = node("admin", "network")
 	page.target = firstchild()
 	page.title  = _("Network")
-	page.order  = 50
+	page.order  = 80
 	page.index  = true
 
 --	if page.inreq then
@@ -114,6 +114,11 @@ function index()
 
 
 		if nixio.fs.access("/etc/config/dhcp") then
+			page = node("admin", "network", "hosts")
+			page.target = cbi("admin_network/hosts")
+			page.title  = _("Hostnames")
+			page.order  = 20
+
 			page = node("admin", "network", "dhcp")
 			page.target = cbi("admin_network/dhcp")
 			page.title  = _("DHCP and DNS")
@@ -121,22 +126,17 @@ function index()
 
 			page = entry({"admin", "network", "dhcplease_status"}, call("lease_status"), nil)
 			page.leaf = true
-
-			page = node("admin", "network", "hosts")
-			page.target = cbi("admin_network/hosts")
-			page.title  = _("Hostnames")
-			page.order  = 40
 		end
 
 		page  = node("admin", "network", "routes")
 		page.target = cbi("admin_network/routes")
 		page.title  = _("Static Routes")
-		page.order  = 50
+		page.order  = 35
 
 		page = node("admin", "network", "diagnostics")
 		page.target = template("admin_network/diagnostics")
 		page.title  = _("Diagnostics")
-		page.order  = 60
+		page.order  = 40
 
 		page = entry({"admin", "network", "diag_ping"}, post("diag_ping"), nil)
 		page.leaf = true

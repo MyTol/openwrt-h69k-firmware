@@ -11,6 +11,9 @@ function index()
 	entry({"admin", "system", "system"}, cbi("admin_system/system"), _("System"), 1)
 	entry({"admin", "system", "clock_status"}, post_on({ set = true }, "action_clock_status"))
 
+	entry({"admin", "system", "reboot"}, template("admin_system/reboot"), _("Reboot"), 3)
+	entry({"admin", "system", "reboot", "call"}, post("action_reboot"))
+
 	entry({"admin", "system", "admin"}, cbi("admin_system/admin"), _("Administration"), 5)
 
 	if fs.access("/bin/opkg") then
@@ -19,7 +22,6 @@ function index()
 	end
 
 	entry({"admin", "system", "startup"}, form("admin_system/startup"), _("Startup"), 15)
-	entry({"admin", "system", "crontab"}, form("admin_system/crontab"), _("Scheduled Tasks"), 30)
 
 	if fs.access("/sbin/block") and fs.access("/etc/config/fstab") then
 		entry({"admin", "system", "fstab"}, cbi("admin_system/fstab"), _("Mount Points"), 20)
@@ -27,9 +29,11 @@ function index()
 		entry({"admin", "system", "fstab", "swap"},  cbi("admin_system/fstab/swap"),  nil).leaf = true
 	end
 
+	entry({"admin", "system", "crontab"}, form("admin_system/crontab"), _("Scheduled Tasks"), 30)
+
 	local nodes, number = nixio.fs.glob("/sys/class/leds/*")
 	if number > 0 then
-		entry({"admin", "system", "leds"}, cbi("admin_system/leds"), _("<abbr title=\"Light Emitting Diode\">LED</abbr> Configuration"), 60)
+		entry({"admin", "system", "leds"}, cbi("admin_system/leds"), _("<abbr title=\"Light Emitting Diode\">LED</abbr> Configuration"), 35)
 	end
 
 	entry({"admin", "system", "flashops"}, call("action_flashops"), _("Backup / Flash Firmware"), 40)
@@ -42,8 +46,6 @@ function index()
 	entry({"admin", "system", "flashops", "restore"}, call("action_restore"))
 	entry({"admin", "system", "flashops", "sysupgrade"}, call("action_sysupgrade"))
 
-	entry({"admin", "system", "reboot"}, template("admin_system/reboot"), _("Reboot"), 3)
-	entry({"admin", "system", "reboot", "call"}, post("action_reboot"))
 end
 
 function action_clock_status()
