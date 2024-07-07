@@ -18,6 +18,8 @@ echo -e "\nmsgid \"VPN\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 echo -e "msgstr \"魔法\"" >> feeds/luci/modules/luci-base/po/zh-cn/base.po
 sed -i 's|备份/升级|备份升级|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
 sed -i 's|备份/恢复|备份与恢复|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i 's|DHCP/DNS|地址管理|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
+
 ## 插件
 ### AutoCore
 sed -i 's|CPU 使用率|核心占用|g' package/lean/default-settings/po/zh-cn/default.po

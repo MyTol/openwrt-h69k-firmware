@@ -26,7 +26,7 @@ env:
   CONFIG_FILE: configs/DHDAXCW/lite.config
   DIY_P1_SH: scripts/hook-feeds.sh
   DIY_P2_SH: scripts/lede-rockchip.sh
-  DIY_P3_SH: scripts/preset-localization.sh
+  DIY_P3_SH: scripts/modify-localization.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
