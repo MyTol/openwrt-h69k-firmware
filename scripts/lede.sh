@@ -41,7 +41,6 @@ pushd target/linux/generic/backport-6.1
 cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch ./
 popd
 ## 修复 AutoCore 显示
-cp -f $GITHUB_WORKSPACE/data/autocore/cpuinfo package/lean/autocore/files/arm/sbin/cpuinfo
 sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
 ## 设置主机名
 sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
@@ -51,3 +50,9 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
 ## 安装 zsh 终端
 source $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+# 修改 zzz-default-settings
+pushd package/lean/default-settings/files
+export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+export date_version=$(date -u +'%Y-%m-%d')
+sed -i "s/${orig_version}/${orig_version} (${date_version})/g" zzz-default-settings
+popd
