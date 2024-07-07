@@ -11,7 +11,7 @@
 # 插件更改
 #
 ## 调整 luci-app-modem
-source scripts/preset-modem.sh
+source $GITHUB_WORKSPACE/scripts/preset-modem.sh
 ## 调整 luci-app-passwall 菜单
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/passwall/*.lua
@@ -50,4 +50,4 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 ## 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
 ## 安装 zsh 终端
-source scripts/preset-terminal-tools.sh
+source $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
