@@ -1,6 +1,6 @@
 #!/bin/bash
 #=================================================
-# File name: init.sh
+# File name: modify-menu.sh
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT

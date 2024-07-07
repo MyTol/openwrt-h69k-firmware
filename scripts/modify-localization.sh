@@ -1,6 +1,6 @@
 #!/bin/bash
 #=================================================
-# File name: preset-localization.sh
+# File name: modify-localization.sh
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT

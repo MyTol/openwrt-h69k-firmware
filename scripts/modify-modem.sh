@@ -1,6 +1,6 @@
 #!/bin/bash
 #=================================================
-# File name: preset-modem.sh
+# File name: modify-modem.sh
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
