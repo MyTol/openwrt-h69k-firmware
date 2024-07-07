@@ -8,7 +8,7 @@
 
 name: H69k-LEDE-Full
 
-# 设置工作流权限
+# 设置权限
 permissions:
   contents: write
   actions: write
@@ -24,9 +24,9 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: configs/LEDE/feeds.conf
   CONFIG_FILE: configs/LEDE/full.config
-  DIY_P1_SH: scripts/lede.sh
-  DIY_P2_SH: scripts/preset-other.sh
-  DIY_P3_SH: ''
+  DIY_P1_SH: scripts/hook-feeds.sh
+  DIY_P2_SH: scripts/lede.sh
+  DIY_P3_SH: scripts/preset-localization.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -35,7 +35,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-22.04
-
+      
     steps:
     - name: 打印信息
       run: |
@@ -84,7 +84,7 @@ jobs:
     - name: 准备完成
       uses: actions/checkout@main
 
-    - name: 检查服务器配置
+    - name: 环境信息
       run: |
         echo "警告⚠"
         echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
@@ -99,7 +99,7 @@ jobs:
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
-    - name: 初始化编译环境
+    - name: 初始环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -108,7 +108,7 @@ jobs:
         sudo docker image prune --all --force
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
-        echo "------------------------------- 清理Docker镜像和软件 -------------------------------"
+        echo "------------------------------- 清理镜像和软件 -------------------------------"
         sudo docker image prune --all --force
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
@@ -117,40 +117,49 @@ jobs:
         sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
 
     - name: 克隆源码
+      id: clone
       working-directory: ./
       run: |
-        df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
 
     - name: 缓存工具链
-      uses: klever1988/cachewrtbuild@main
+      id: cache
+      uses: HiGarfield/cachewrtbuild@main
       with:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
 
-    - name: 添加 Feeds
+    - name: 自定义源
+      id: hookfeeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 更新 Feeds
-      run: cd openwrt && ./scripts/feeds update -a
+    - name: 更新源
+      id: ufeeds
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
 
-    - name: 安装 Feeds
-      run: cd openwrt && ./scripts/feeds install -a
+    - name: 安装源
+      id: ifeeds
+      run: |
+        cd openwrt
+        ./scripts/feeds install -a
 
-    - name: 自定义内容
+    - name: 自定义脚本
+      id: customize
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cd openwrt
-        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$DIY_P3_SH
 
-    - name: 下载软件包
-      id: package
+    - name: 下载包
+      id: download
       run: |
         cd openwrt
         make defconfig
@@ -169,10 +178,6 @@ jobs:
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
-    - name: 检查磁盘空间
-      if: (!cancelled())
-      run: df -hT
-
     - name: 上传 Bin 文件夹
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
@@ -180,23 +185,23 @@ jobs:
         name: LEDE-full-bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-    - name: 整理固件文件
+    - name: 整理固件
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: env.UPLOAD_FIRMWARE == 'true'
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: 上传固件目录
+    - name: 上传固件
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: LEDE-full-firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-    - name: 生成发布标签
+    - name: 生成标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
@@ -208,8 +213,6 @@ jobs:
 
         🌳 分支: ${{ env.REPO_BRANCH }}
 
-        📄 配置: ${{ env.CONFIG_FILE }}
-
         ⏱️ 编译时间: $(date +"%Y年%m月%d日%H时%M分")
 
         🌐 管理地址: 192.168.1.1
@@ -219,7 +222,7 @@ jobs:
         🔒 密码: password " >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: 自动发布固件到 Releases
+    - name: 发布固件
       uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
@@ -229,13 +232,13 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
-    - name: 删除运行记录
+    - name: 删除记录
       uses: Mattraks/delete-workflow-runs@main
       with:
         retain_days: 0
         keep_minimum_runs: 4
 
-    - name: 删除自动发布的旧固件
+    - name: 删除固件
       uses: dev-drprasad/delete-older-releases@master
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       env:
