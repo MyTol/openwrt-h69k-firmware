@@ -80,8 +80,14 @@ git clone --depth=1 https://github.com/DHDAXCW/theme
 popd
 
 # 添加 5G 支持
-rm -rf package/wwan
-git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
+if [ "$MODIFY_MODEM" = "true" ]; then
+  rm -rf package/wwan
+  git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
+else
+  rm -rf package/wwan
+  git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
+  sed -i 's|CONFIG_PACKAGE_kmod-gobinet=y|# CONFIG_PACKAGE_kmod-gobinet is not set|g' ./.config
+fi
 
 # 替换 Lede 代码修复 Linux Kernel 6.1 下 MT7916 的支持, 仅 DHDAXCW 仓库需要
 if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
