@@ -27,7 +27,7 @@ env:
   DIY_P1_SH: scripts/hook-feeds.sh
   DIY_P2_SH: scripts/lede.sh
   DIY_P3_SH: scripts/preset-localization.sh
-  MODIFY_MODEM: false
+  MODIFY_MODEM: true
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
