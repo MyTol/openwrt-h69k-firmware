@@ -12,7 +12,7 @@
 #
 ## 调整 luci-app-modem
 source $GITHUB_WORKSPACE/scripts/modify-modem.sh
-## 调整 luci-app-passwall 菜单
+## 更改 luci-app-passwall 菜单
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/passwall/*.lua
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
@@ -29,7 +29,7 @@ sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/l
 sed -i 's|"Custom Commands"|"Fast commands"|g' package/feeds/luci/luci-app-commands/luasrc/controller/*.lua
 sed -i 's|"Custom Commands"|"Fast commands"|g' package/feeds/luci/luci-app-commands/luasrc/model/cbi/*.lua
 sed -i 's|"Custom Commands"|"Fast commands"|g' package/feeds/luci/luci-app-commands/luasrc/view/*.htm
-## 调整 luci-app-gowebdav 设置
+## 更改 luci-app-gowebdav 设置
 sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
