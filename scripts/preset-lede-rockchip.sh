@@ -48,8 +48,10 @@ sed -i 's/OpenWrt/OmO/g' package/base-files/files/bin/config_generate
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 ## 设置 IPV6 分发长度
 sed -i "s/ip6assign='60'/ip6assign='64'/g" package/base-files/files/bin/config_generate
-## 安装 zsh 终端
-source scripts/preset-terminal-tools.sh
+## 更改菜单排序
+source $GITHUB_WORKSPACE/scripts/modify-menu.sh
+## 更改汉化文本
+source $GITHUB_WORKSPACE/scripts/modify-localization.sh
 # 修改 zzz-default-settings
 pushd package/lean/default-settings/files
 sed -i '/http/d' zzz-default-settings
