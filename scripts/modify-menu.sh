@@ -52,6 +52,14 @@ sed -i 's|_("Rclone"), 100|_("Rclone"), 20|g' luci/luci-app-rclone/luasrc/contro
 ## luci-app-gowebdav
 sed -i 's|_("NAS"), 45|_("NAS"), 70|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
 sed -i 's|_("GoWebDav"), 100|_("GoWebDav"), 30|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
+## luci-app-wol
+sed -i 's|_("Wake on LAN"), 90|_("Wake on LAN"), 5|g' luci/luci-app-wol/luasrc/controller/wol.lua
+## luci-app-upnp
+sed -i 's|_("UPnP")|_("UPnP"), 10|g' luci/luci-app-upnp/luasrc/controller/upnp.lua
+## luci-app-smartdns
+sed -i 's|_("SmartDNS"), 60|_("SmartDNS"), 25|g' luci/luci-app-smartdns/luasrc/controller/smartdns.lua
+## luci-app-adguardhome
+sed -i 's|_("AdGuard Home"), 10|_("AdGuard Home"), 30|g' luci/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 popd
 
 pushd package/community
@@ -59,6 +67,10 @@ pushd package/community
 sed -i 's|_("Amlogic Service"), 88|_("Amlogic Service"), 50|g' luci-app-amlogic/luasrc/controller/amlogic.lua
 ## luci-app-argon-config
 sed -i 's|_("Argon Config"), 90|_("Argon Config"), 65|g' luci-app-argon-config/luasrc/controller/argon-config.lua
+## luci-app-oled
+sed -i 's|_("OLED"), 90|_("OLED"), 15|g' luci-app-oled/luasrc/controller/oled.lua
+## luci-app-iperf3-server
+sed -i 's|_("iPerf3 Server"),99|_("iPerf3 Server"), 20|g' luci-app-iperf3-server/luasrc/controller/iperf3-server.lua
 popd
 
 pushd package/wwan
