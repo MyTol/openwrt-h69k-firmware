@@ -58,9 +58,7 @@ cp -r package/feeds/luci/luci-app-gowebdav/po/zh_Hans package/feeds/luci/luci-ap
 sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/feeds/luci/luci-app-gowebdav/po/zh-cn/gowebdav.po
 ### luci-app-modem
 if [ "$MODIFY_MODEM" = "true" ]; then
-  sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
-  sed -i 's/自定义命令/快捷指令/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
+  sed -i 's/msgstr "移动通信模组"/msgstr "蜂窝"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
 else
-  sed -i 's/msgstr "移动通信模组"/msgstr "移动通信"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
-  sed -i 's/自定义命令/快捷指令/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
+  sed -i 's/msgstr "移动通信模组"/msgstr "蜂窝"/g' package/wwan/luci-app-modem/po/zh-cn/modem.po
 fi
