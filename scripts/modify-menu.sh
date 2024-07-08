@@ -59,7 +59,7 @@ sed -i 's|_("UPnP")|_("UPnP"), 10|g' luci/luci-app-upnp/luasrc/controller/upnp.l
 ## luci-app-smartdns
 sed -i 's|_("SmartDNS"), 60|_("SmartDNS"), 25|g' luci/luci-app-smartdns/luasrc/controller/smartdns.lua
 ## luci-app-adguardhome
-sed -i 's|_("AdGuard Home"), 10|_("AdGuard Home"), 30|g' luci/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
+sed -i 's|_("AdGuard Home"), 10|_("AdGuard Home"), 35|g' luci/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 popd
 
 pushd package/community
@@ -71,6 +71,8 @@ sed -i 's|_("Argon Config"), 90|_("Argon Config"), 65|g' luci-app-argon-config/l
 sed -i 's|_("OLED"), 90|_("OLED"), 15|g' luci-app-oled/luasrc/controller/oled.lua
 ## luci-app-iperf3-server
 sed -i 's|_("iPerf3 Server"),99|_("iPerf3 Server"), 20|g' luci-app-iperf3-server/luasrc/controller/iperf3-server.lua
+## luci-app-ddns-go
+sed -i 's|_("DDNS-GO"), 58|_("DDNS-GO"), 30|g' op-ddnsgo/luci-app-ddns-go/luasrc/controller/ddns-go.lua
 popd
 
 pushd package/wwan
