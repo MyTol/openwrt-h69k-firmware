@@ -1,6 +1,6 @@
 #!/bin/bash
 #=================================================
-# File name: lede-rockchip.sh
+# File name: preset-lede-rockchip.sh
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT

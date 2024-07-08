@@ -85,6 +85,8 @@ popd
 if [ "$MODIFY_MODEM" = "true" ]; then
   rm -rf package/wwan
   git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
+  # 添加 Gobinet 补丁
+  cp -f $GITHUB_WORKSPACE/data/patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1
 else
   rm -rf package/wwan
   git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
