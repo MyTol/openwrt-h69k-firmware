@@ -39,7 +39,7 @@ cp -f $GITHUB_WORKSPACE/data/background.jpg package/community/luci-theme-argon/h
 ## 更改 Linux 核心版本为 6.1
 sed -i 's/6.6/6.1/g' target/linux/rockchip/Makefile
 ## 添加 Gobinet 补丁
-cp -f $GITHUB_WORKSPACE/data/modify_patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1
+cp -f $GITHUB_WORKSPACE/data/modify_modem/patch/6.1-872-export-some-functions-of-the-sched-module.patch target/linux/generic/backport-6.1
 ## 修复 AutoCore 显示
 sed -i 's/CPU: ${cpu_usage}/${cpu_usage}/g' package/lean/autocore/files/arm/sbin/usage
 ## 设置主机名
