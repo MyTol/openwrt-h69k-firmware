@@ -11,9 +11,7 @@
 # 插件更改
 #
 ## 调整 luci-app-modem
-if [ "$MODIFY_MODEM" = "true" ]; then
-  source $GITHUB_WORKSPACE/scripts/modify-modem.sh
-fi
+source $GITHUB_WORKSPACE/scripts/modify-modem.sh
 ## 调整 luci-app-passwall 菜单
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/passwall/*.lua
