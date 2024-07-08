@@ -41,6 +41,17 @@ sed -i 's|_("Bandwidth Monitor"), 80|_("Bandwidth Monitor"), 90|g' luci/luci-app
 sed -i 's|_("SQM QoS")|_("SQM QoS"), 40|g' luci/luci-app-sqm/luasrc/controller/sqm.lua
 ## luci-app-turboacc
 sed -i 's|_("Turbo ACC Center"), 101|_("Turbo ACC Center"), 50|g' luci/luci-app-turboacc/luasrc/controller/turboacc.lua
+## luci-app-zerotier
+sed -i 's|, "VPN", 45|, "VPN", 60|g' luci/luci-app-zerotier/luasrc/controller/zerotier.lua
+## luci-app-vsftpd
+sed -i 's|, "NAS", 44|, _("NAS"), 70|g' luci/luci-app-vsftpd/luasrc/controller/vsftpd.lua
+sed -i 's|_("FTP Server")|_("FTP Server"), 10|g' luci/luci-app-vsftpd/luasrc/controller/vsftpd.lua
+## luci-app-rclone
+sed -i 's|_("NAS") , 45|_("NAS"), 15|g' luci/luci-app-rclone/luasrc/controller/rclone.lua
+sed -i 's|_("Rclone"), 100|_("Rclone"), 20|g' luci/luci-app-rclone/luasrc/controller/rclone.lua
+## luci-app-gowebdav
+sed -i 's|_("NAS"), 45|_("NAS"), 70|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
+sed -i 's|_("GoWebDav"), 100|_("GoWebDav"), 30|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
 popd
 
 pushd package/community

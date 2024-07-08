@@ -24,9 +24,8 @@ env:
   REPO_BRANCH: stable
   CONFIG_FILE: configs/DHDAXCW/full.config
   DIY_P1_SH: scripts/hook-feeds.sh
-  DIY_P2_SH: scripts/lede-rockchip.sh
-  DIY_P3_SH: scripts/modify-localization.sh
-  DIY_P4_SH: scripts/preset-terminal-tools.sh
+  DIY_P2_SH: scripts/preset-lede-rockchip.sh
+  DIY_P3_SH: scripts/preset-terminal-tools.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
