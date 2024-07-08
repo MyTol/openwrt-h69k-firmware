@@ -47,7 +47,7 @@ sed -i 's|, "VPN", 45|, "VPN", 60|g' luci/luci-app-zerotier/luasrc/controller/ze
 sed -i 's|, "NAS", 44|, _("NAS"), 70|g' luci/luci-app-vsftpd/luasrc/controller/vsftpd.lua
 sed -i 's|_("FTP Server")|_("FTP Server"), 10|g' luci/luci-app-vsftpd/luasrc/controller/vsftpd.lua
 ## luci-app-rclone
-sed -i 's|_("NAS") , 45|_("NAS"), 15|g' luci/luci-app-rclone/luasrc/controller/rclone.lua
+sed -i 's|_("NAS") , 45|_("NAS"), 70|g' luci/luci-app-rclone/luasrc/controller/rclone.lua
 sed -i 's|_("Rclone"), 100|_("Rclone"), 20|g' luci/luci-app-rclone/luasrc/controller/rclone.lua
 ## luci-app-gowebdav
 sed -i 's|_("NAS"), 45|_("NAS"), 70|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
