@@ -24,6 +24,7 @@ sed -i 's|DHCP/DNS|地址管理|g' feeds/luci/modules/luci-base/po/zh-cn/base.po
 ### AutoCore
 sed -i 's|CPU 使用率|核心占用|g' package/lean/default-settings/po/zh-cn/default.po
 ### luci-app-commands
+sed -i 's|Custom Commands|Fast Commands|g' package/feeds/luci/luci-app-commands/po/zh-cn/commands.po
 sed -i 's|自定义命令|快捷指令|g' package/feeds/luci/luci-app-commands/po/zh-cn/commands.po
 ### luci-app-arpbind
 sed -i 's|IP/MAC 绑定|地址绑定|g' package/feeds/luci/luci-app-arpbind/po/zh-cn/arpbind.po
