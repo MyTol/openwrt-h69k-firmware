@@ -12,11 +12,12 @@
 if [ "$MODIFY_MODEM" = "true" ]; then
 
   ## 调整菜单位置
-
+  
   sed -i 's/.dependent = true/.dependent = false/g' package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
   sed -i 's/ "network",//g' package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
   sed -i 's/ "network",//g' package/wwan/app/luci-app-modem/luasrc/model/cbi/modem/*.lua
   sed -i 's/ "network",//g' package/wwan/app/luci-app-modem/luasrc/view/modem/*.htm
+  sed -i 's/, [[network]]//g' package/wwan/app/luci-app-modem/luasrc/view/modem/*.htm
 
   ## 调整创建的接口名
   sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/app/luci-app-modem/root/etc/init.d/modem
@@ -36,6 +37,7 @@ else
   sed -i 's/ "network",//g' package/wwan/luci-app-modem/luasrc/controller/modem.lua
   sed -i 's/ "network",//g' package/wwan/luci-app-modem/luasrc/model/cbi/modem/*.lua
   sed -i 's/ "network",//g' package/wwan/luci-app-modem/luasrc/view/modem/*.htm
+  sed -i 's/, [[network]]//g' package/wwan/luci-app-modem/luasrc/view/modem/*.htm
 
   ## 调整创建的接口名
   sed -i 's/wwan_5g_${modem_no}/wwan_${modem_no}/g' package/wwan/luci-app-modem/root/etc/init.d/modem
