@@ -13,8 +13,8 @@ if [ "$MODIFY_MODEM" = "true" ]; then
 
   ## 调整菜单位置
 
-  sed -i 's/.dependent = true/.dependent = false/g' package/wwan/app/luci-app-modem/luasrc/controller/*.lua
-  sed -i 's/ "network",//g' package/wwan/app/luci-app-modem/luasrc/controller/*.lua
+  sed -i 's/.dependent = true/.dependent = false/g' package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
+  sed -i 's/ "network",//g' package/wwan/app/luci-app-modem/luasrc/controller/modem.lua
   sed -i 's/ "network",//g' package/wwan/app/luci-app-modem/luasrc/model/cbi/modem/*.lua
   sed -i 's/ "network",//g' package/wwan/app/luci-app-modem/luasrc/view/modem/*.htm
 
@@ -32,8 +32,8 @@ if [ "$MODIFY_MODEM" = "true" ]; then
   sed -i 's/msgstr "网络模式"/msgstr "网络模式 (Network Mode)"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po
 else
   ## 调整菜单位置
-  sed -i 's/.dependent = true/.dependent = false/g' package/wwan/luci-app-modem/luasrc/controller/*.lua
-  sed -i 's/ "network",//g' package/wwan/luci-app-modem/luasrc/controller/*.lua
+  sed -i 's/.dependent = true/.dependent = false/g' package/wwan/luci-app-modem/luasrc/controller/modem.lua
+  sed -i 's/ "network",//g' package/wwan/luci-app-modem/luasrc/controller/modem.lua
   sed -i 's/ "network",//g' package/wwan/luci-app-modem/luasrc/model/cbi/modem/*.lua
   sed -i 's/ "network",//g' package/wwan/luci-app-modem/luasrc/view/modem/*.htm
 
