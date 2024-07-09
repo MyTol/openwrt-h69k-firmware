@@ -26,9 +26,9 @@ sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/l
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/rule/*.htm
 sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
 ## 更改 luci-app-commands 本地化
-sed -i 's|"Custom Commands"|"Fast commands"|g' package/feeds/luci/luci-app-commands/luasrc/controller/*.lua
-sed -i 's|"Custom Commands"|"Fast commands"|g' package/feeds/luci/luci-app-commands/luasrc/model/cbi/*.lua
-sed -i 's|"Custom Commands"|"Fast commands"|g' package/feeds/luci/luci-app-commands/luasrc/view/*.htm
+sed -i 's|"Custom Commands"|"Fast Commands"|g' package/feeds/luci/luci-app-commands/luasrc/controller/*.lua
+sed -i 's|"Custom Commands"|"Fast Commands"|g' package/feeds/luci/luci-app-commands/luasrc/model/cbi/*.lua
+sed -i 's|"Custom Commands"|"Fast Commands"|g' package/feeds/luci/luci-app-commands/luasrc/view/*.htm
 ## 更改 luci-app-gowebdav 设置
 sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config

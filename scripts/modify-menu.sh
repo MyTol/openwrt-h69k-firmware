@@ -30,7 +30,7 @@ sed -i 's|_("Disk Man"), 55|_("Disk Man"), 25|g' luci/luci-app-diskman/luasrc/co
 ## luci-app-filetransfer
 sed -i 's|_("FileTransfer"), 89|_("FileTransfer"), 45|g' luci/luci-app-filetransfer/luasrc/controller/filetransfer.lua
 ## luci-app-commands
-sed -i 's|_("Custom Commands"), 80|_("Custom Commands"), 55|g' luci/luci-app-commands/luasrc/controller/commands.lua
+sed -i 's|_("Fast Commands"), 80|_("Fast Commands"), 55|g' luci/luci-app-commands/luasrc/controller/commands.lua
 ## luci-app-autoreboot
 sed -i 's|_("Scheduled Reboot"),88|_("Scheduled Reboot"),60|g' luci/luci-app-autoreboot/luasrc/controller/autoreboot.lua
 ## luci-app-firewall
