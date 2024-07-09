@@ -37,6 +37,8 @@ sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 ## 替换 luci-theme-argon 默认背景
 rm -rf package/community/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/data/background.jpg package/community/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+## 调整 luci-theme-argon 菜单图标
+source $GITHUB_WORKSPACE/scripts/modify-theme.sh
 
 # 固件更改
 #
