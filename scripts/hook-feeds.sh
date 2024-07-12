@@ -87,10 +87,12 @@ if [ "$MODIFY_MODEM" = "true" ]; then
   git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
 
 else
+  # 拉取上游代码, 删除无用代码
   rm -rf package/wwan
   git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
   rm -rf package/wwan/rooter
 
+  # 替换新版本拨号工具, 以及兼容驱动
   rm -rf package/wwan/quectel_cm_5G
   rm -rf package/wwan/quectel_Gobinet
   rm -rf package/wwan/quectel_QMI_WWAN

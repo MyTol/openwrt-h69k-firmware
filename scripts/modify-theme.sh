@@ -8,6 +8,9 @@
 # Blog: https://blog.aiacg.cn
 #=================================================
 
+
+# 替换菜单图标
+# 未生效
 pushd package/community/luci-theme-argon/htdocs/luci-static/argon/css/
 
 sed -i 's|content: "\e90d";|content: "{0}";|g' fonts.css
