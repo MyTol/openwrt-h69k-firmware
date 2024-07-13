@@ -95,11 +95,9 @@ else
   # 替换新版本拨号工具, 以及兼容驱动
   rm -rf package/wwan/quectel_cm_5G
   rm -rf package/wwan/quectel_Gobinet
-  # rm -rf package/wwan/quectel_QMI_WWAN 
 
   cp -r $GITHUB_WORKSPACE/data/modify_modem/app/quectel_cm_5G package/wwan
   cp -r $GITHUB_WORKSPACE/data/modify_modem/driver/quectel_Gobinet package/wwan
-  # cp -r $GITHUB_WORKSPACE/data/modify_modem/driver/quectel_QMI_WWAN package/wwan
 fi
 
 # 替换 Lede 代码尝试修复 Linux Kernel 6.1 下 MT7916 的支持, 仅 DHDAXCW 仓库需要
