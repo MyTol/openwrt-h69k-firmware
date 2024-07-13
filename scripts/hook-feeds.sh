@@ -11,19 +11,26 @@
 # 创建 customfeeds 目录
 mkdir customfeeds
 
-# 拉取 packages 软件源
-git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
-
-# 更新 golang 与 automake 版本, 仅 DHDAXCW 仓库需要
 if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
+
+  # 拉取 packages 软件源
+  git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
+
+  # 更新 golang 与 automake 版本, 仅 DHDAXCW 仓库需要
   rm -rf tools/automake
   rm -rf customfeeds/packages/lang/golang
   cp -r $GITHUB_WORKSPACE/data/automake tools/
   git clone https://github.com/sbwml/packages_lang_golang -b 22.x customfeeds/packages/lang/golang
-fi
 
-# 拉取 luci 软件源
-git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
+  # 拉取 luci 软件源
+  git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
+
+else
+  # 拉取 packages 软件源
+  git clone --depth=1 https://github.com/coolsnowwolf/packages customfeeds/packages
+  # 拉取 luci 软件源
+  git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
+fi
 
 # 设置为本地源
 pushd customfeeds/packages
@@ -85,14 +92,13 @@ popd
 if [ "$MODIFY_MODEM" = "true" ]; then
   rm -rf package/wwan
   git clone --depth=1 https://github.com/my-world-only-me/modem package/wwan
-
 else
-  # 拉取上游代码, 删除无用代码
+  # 拉取上游代码删除无用代码
   rm -rf package/wwan
   git clone --depth=1 https://github.com/Siriling/5G-Modem-Support package/wwan
   rm -rf package/wwan/rooter
 
-  # 替换新版本拨号工具, 以及兼容驱动
+  # 替换新版本拨号工具以及兼容驱动
   rm -rf package/wwan/quectel_cm_5G
   rm -rf package/wwan/quectel_Gobinet
 
