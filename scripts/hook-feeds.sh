@@ -11,7 +11,7 @@
 # 创建 customfeeds 目录
 mkdir customfeeds
 
-if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
+# if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
 
   # 拉取 packages 软件源
   git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
@@ -25,12 +25,12 @@ if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
   # 拉取 luci 软件源
   git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
 
-else
+# else
   # 拉取 packages 软件源
-  git clone --depth=1 https://github.com/coolsnowwolf/packages customfeeds/packages
+#   git clone --depth=1 https://github.com/coolsnowwolf/packages customfeeds/packages
   # 拉取 luci 软件源
-  git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
-fi
+#   git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
+# fi
 
 # 设置为本地源
 pushd customfeeds/packages
