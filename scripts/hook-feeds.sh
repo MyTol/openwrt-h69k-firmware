@@ -11,7 +11,7 @@
 # 创建 customfeeds 目录
 mkdir customfeeds
 
-# if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
+if echo "$FEEDS_CONF" | grep -q "DHDAXCW"; then
 
   # 拉取 packages 软件源
   git clone --depth=1 https://github.com/DHDAXCW/packages customfeeds/packages
@@ -25,12 +25,12 @@ mkdir customfeeds
   # 拉取 luci 软件源
   git clone --depth=1 https://github.com/DHDAXCW/luci customfeeds/luci
 
-# else
+else
   # 拉取 packages 软件源
-#   git clone --depth=1 https://github.com/coolsnowwolf/packages customfeeds/packages
+  git clone --depth=1 https://github.com/coolsnowwolf/packages customfeeds/packages
   # 拉取 luci 软件源
-#   git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
-# fi
+  git clone --depth=1 https://github.com/coolsnowwolf/luci customfeeds/luci
+fi
 
 # 设置为本地源
 pushd customfeeds/packages
@@ -51,7 +51,9 @@ pushd package/community
 # 添加 xiangfeidexiaohuo 存储库
 git clone --depth=1 https://github.com/xiangfeidexiaohuo/extra-ipk
 cp -r extra-ipk/op-ddnsgo .
+cp -r extra-ipk/op-webdav .
 cp -r extra-ipk/luci-app-iperf3-server .
+cp -r extra-ipk/luci-app-adguardhome .
 rm -rf extra-ipk
 
 # 添加 Lienol 存储库
