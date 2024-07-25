@@ -71,8 +71,8 @@ sed -i 's|_("DDNS-GO"), 58|_("DDNS-GO"), 30|g' op-ddnsgo/luci-app-ddns-go/luasrc
 ## luci-app-adguardhome
 sed -i 's|_("AdGuard Home"), 10|_("AdGuard Home"), 35|g' luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 ## luci-app-gowebdav
-sed -i 's|_("NAS"), 45|_("NAS"), 70|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
-sed -i 's|_("GoWebDav"), 100|_("GoWebDav"), 30|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
+sed -i 's|_("NAS"), 45|_("NAS"), 70|g' luci-app-gowebdav/luasrc/controller/gowebdav.lua
+sed -i 's|_("GoWebDav"), 100|_("GoWebDav"), 30|g' luci-app-gowebdav/luasrc/controller/gowebdav.lua
 popd
 
 pushd package/wwan
