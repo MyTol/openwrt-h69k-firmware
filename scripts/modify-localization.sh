@@ -55,8 +55,7 @@ sed -i 's/Argon 主题设置/主题设置/g' package/community/luci-app-argon-co
 ### luci-app-store
 sed -i 's/msgstr "iStore"/msgstr "商店"/g' package/feeds/istore/luci-app-store/src/po/zh-cn/iStore.po
 ### luci-app-gowebdav 
-cp -r package/feeds/luci/luci-app-gowebdav/po/zh_Hans package/feeds/luci/luci-app-gowebdav/po/zh-cn
-sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/feeds/luci/luci-app-gowebdav/po/zh-cn/gowebdav.po
+sed -i 's/msgstr "GoWebDav"/msgstr "WebDav"/g' package/community/luci-app-gowebdav/po/zh-cn/gowebdav.po
 ### luci-app-modem
 if [ "$MODIFY_MODEM" = "true" ]; then
   sed -i 's/msgstr "移动通信模组"/msgstr "通信模组"/g' package/wwan/app/luci-app-modem/po/zh-cn/modem.po

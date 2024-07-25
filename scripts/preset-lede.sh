@@ -29,11 +29,6 @@ sed -i 's/services/vpn/g' package/community/openwrt-passwall/luci-app-passwall/l
 sed -i 's|"Custom Commands"|"Fast Commands"|g' package/feeds/luci/luci-app-commands/luasrc/controller/*.lua
 sed -i 's|"Custom Commands"|"Fast Commands"|g' package/feeds/luci/luci-app-commands/luasrc/model/cbi/*.lua
 sed -i 's|"Custom Commands"|"Fast Commands"|g' package/feeds/luci/luci-app-commands/luasrc/view/*.htm
-## 更改 luci-app-gowebdav 设置
-sed -i 's|6086|8083|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-sed -i 's|user|OmO|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-sed -i 's|pass|password|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
-sed -i 's|/mnt|/home|g' customfeeds/packages/net/gowebdav/files/gowebdav.config
 ## 替换 luci-theme-argon 默认背景
 rm -rf package/community/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/data/background.jpg package/community/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg

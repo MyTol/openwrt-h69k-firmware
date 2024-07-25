@@ -49,17 +49,12 @@ sed -i 's|_("FTP Server")|_("FTP Server"), 10|g' luci/luci-app-vsftpd/luasrc/con
 ## luci-app-rclone
 sed -i 's|_("NAS") , 45|_("NAS"), 70|g' luci/luci-app-rclone/luasrc/controller/rclone.lua
 sed -i 's|_("Rclone"), 100|_("Rclone"), 20|g' luci/luci-app-rclone/luasrc/controller/rclone.lua
-## luci-app-gowebdav
-sed -i 's|_("NAS"), 45|_("NAS"), 70|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
-sed -i 's|_("GoWebDav"), 100|_("GoWebDav"), 30|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
 ## luci-app-wol
 sed -i 's|_("Wake on LAN"), 90|_("Wake on LAN"), 5|g' luci/luci-app-wol/luasrc/controller/wol.lua
 ## luci-app-upnp
 sed -i 's|_("UPnP")|_("UPnP"), 10|g' luci/luci-app-upnp/luasrc/controller/upnp.lua
 ## luci-app-smartdns
 sed -i 's|_("SmartDNS"), 60|_("SmartDNS"), 25|g' luci/luci-app-smartdns/luasrc/controller/smartdns.lua
-## luci-app-adguardhome
-sed -i 's|_("AdGuard Home"), 10|_("AdGuard Home"), 35|g' luci/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
 popd
 
 pushd package/community
@@ -73,6 +68,11 @@ sed -i 's|_("OLED"), 90|_("OLED"), 15|g' luci-app-oled/luasrc/controller/oled.lu
 sed -i 's|_("iPerf3 Server"),99|_("iPerf3 Server"), 20|g' luci-app-iperf3-server/luasrc/controller/iperf3-server.lua
 ## luci-app-ddns-go
 sed -i 's|_("DDNS-GO"), 58|_("DDNS-GO"), 30|g' op-ddnsgo/luci-app-ddns-go/luasrc/controller/ddns-go.lua
+## luci-app-adguardhome
+sed -i 's|_("AdGuard Home"), 10|_("AdGuard Home"), 35|g' luci-app-adguardhome/luasrc/controller/AdGuardHome.lua
+## luci-app-gowebdav
+sed -i 's|_("NAS"), 45|_("NAS"), 70|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
+sed -i 's|_("GoWebDav"), 100|_("GoWebDav"), 30|g' luci/luci-app-gowebdav/luasrc/controller/gowebdav.lua
 popd
 
 pushd package/wwan
